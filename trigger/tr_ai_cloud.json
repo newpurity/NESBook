@@ -9,6 +9,12 @@
 					"referenceName": "pl_sales_ai_cloud",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pl_afs_npp",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
