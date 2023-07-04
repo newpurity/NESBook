@@ -1,0 +1,28 @@
+{
+	"name": "Dev_AFS_Prod",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "input/Purina/AFS",
+				"container": "dev"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "\"MTD_MTDR_ID\";\"MTD_ID\";\"Monitoring_ID\";\"Monitoring_Name\";\"Monitoring_Published\";\"Monitoring_Valid_From\";\"Monitoring_Valid_Till\";\"ST_ID\";\"Customer_GRP_ID\";\"Product_GRP_ID\";\"User_GRP_ID\";\"ROU_ID\";\"Route_GRP_ID\";\"LIS_HIE_HIN_ID\";\"PP_HIE_HIN_ID\";\"Monitoring_CostCenter_Name\";\"Monitoring_Available_At\";\"MA_ID\";\"Mon_Res_Text\";\"Mon_Res_Integer\";\"Mon_Res_Number\";\"Mon_Res_Codelist_1\";\"Mon_Res_Codelist_2\";\"Mon_Res_Codelist_3\";\"Mon_Res_Codelist_4\";\"Mon_Res_Codelist_5\";\"Mon_Res_Codelist_6\";\"Monitoring_Active\";\"Monitoring_Mandatory\";\"Monitoring_Note\";\"MTDR_ID\";\"Question_ID\";\"Question_SeqNo\";\"Question\";\"Parent_MTDR_ID\";\"Question_Type\";\"Question_Res_Text\";\"Question_Res_Integer\";\"Question_Res_Number\";\"Question_Res_Codelist_1\";\"Question_Res_Codelist_2\";\"Question_Res_Codelist_3\";\"Question_Res_Codelist_4\";\"Question_Res_Codelist_5\";\"Question_Res_Codelist_6\";\"Question_Note\";\"First_Question\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"Product_List\";\"Exclude_Not_Listed\";\"Question_Group\"",
+				"type": "String"
+			}
+		]
+	}
+}
