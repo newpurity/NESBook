@@ -1,0 +1,1764 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Nombre de instancia de Data Factory",
+			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Dev_AFS_Prod')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "input/Purina/AFS",
+						"container": "dev"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "\"MTD_MTDR_ID\";\"MTD_ID\";\"Monitoring_ID\";\"Monitoring_Name\";\"Monitoring_Published\";\"Monitoring_Valid_From\";\"Monitoring_Valid_Till\";\"ST_ID\";\"Customer_GRP_ID\";\"Product_GRP_ID\";\"User_GRP_ID\";\"ROU_ID\";\"Route_GRP_ID\";\"LIS_HIE_HIN_ID\";\"PP_HIE_HIN_ID\";\"Monitoring_CostCenter_Name\";\"Monitoring_Available_At\";\"MA_ID\";\"Mon_Res_Text\";\"Mon_Res_Integer\";\"Mon_Res_Number\";\"Mon_Res_Codelist_1\";\"Mon_Res_Codelist_2\";\"Mon_Res_Codelist_3\";\"Mon_Res_Codelist_4\";\"Mon_Res_Codelist_5\";\"Mon_Res_Codelist_6\";\"Monitoring_Active\";\"Monitoring_Mandatory\";\"Monitoring_Note\";\"MTDR_ID\";\"Question_ID\";\"Question_SeqNo\";\"Question\";\"Parent_MTDR_ID\";\"Question_Type\";\"Question_Res_Text\";\"Question_Res_Integer\";\"Question_Res_Number\";\"Question_Res_Codelist_1\";\"Question_Res_Codelist_2\";\"Question_Res_Codelist_3\";\"Question_Res_Codelist_4\";\"Question_Res_Codelist_5\";\"Question_Res_Codelist_6\";\"Question_Note\";\"First_Question\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"Product_List\";\"Exclude_Not_Listed\";\"Question_Group\"",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Excel1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "in",
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Consolidado General IC3 24102022.xlsx",
+						"folderPath": "temp_file_nbs",
+						"fileSystem": "dev"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": [
+					{
+						"name": "tradeID",
+						"type": "String"
+					},
+					{
+						"name": "TA",
+						"type": "String"
+					},
+					{
+						"name": "Nombre",
+						"type": "String"
+					},
+					{
+						"name": "AcuerdoWBSCliente",
+						"type": "String"
+					},
+					{
+						"name": "TipoTA",
+						"type": "String"
+					},
+					{
+						"name": "StatusSap",
+						"type": "String"
+					},
+					{
+						"name": "Gasto Efectivo / Presupuesto",
+						"type": "String"
+					},
+					{
+						"name": "Nota de Credito/ Gr",
+						"type": "String"
+					},
+					{
+						"name": "Compromiso",
+						"type": "String"
+					},
+					{
+						"name": "Saldo/Disponible",
+						"type": "String"
+					},
+					{
+						"name": "GastosCostos",
+						"type": "String"
+					},
+					{
+						"name": "ClientesNivel4",
+						"type": "String"
+					},
+					{
+						"name": "Nodo4",
+						"type": "String"
+					},
+					{
+						"name": "NodoObjetivo",
+						"type": "String"
+					},
+					{
+						"name": "NivelCarga",
+						"type": "String"
+					},
+					{
+						"name": "Canal",
+						"type": "String"
+					},
+					{
+						"name": "Campaña",
+						"type": "String"
+					},
+					{
+						"name": "Tactica",
+						"type": "String"
+					},
+					{
+						"name": "TipoGasto",
+						"type": "String"
+					},
+					{
+						"name": "Complementaria",
+						"type": "String"
+					},
+					{
+						"name": "Categorias",
+						"type": "String"
+					},
+					{
+						"name": "Payer",
+						"type": "String"
+					},
+					{
+						"name": "OrgVentas",
+						"type": "String"
+					},
+					{
+						"name": "OrganizacionVenta",
+						"type": "String"
+					},
+					{
+						"name": "CanalDistribucion",
+						"type": "String"
+					},
+					{
+						"name": "FechaInicio",
+						"type": "String"
+					},
+					{
+						"name": "FechaFinal",
+						"type": "String"
+					},
+					{
+						"name": "FechaCreacion",
+						"type": "String"
+					},
+					{
+						"name": "FechaAprobacion",
+						"type": "String"
+					},
+					{
+						"name": "FechaCarga",
+						"type": "String"
+					},
+					{
+						"name": "AprobadorPorMonto",
+						"type": "String"
+					},
+					{
+						"name": "Implementador",
+						"type": "String"
+					},
+					{
+						"name": "FueraVigencia",
+						"type": "String"
+					},
+					{
+						"name": "FueraEnvio",
+						"type": "String"
+					},
+					{
+						"name": "AbiertaCerrada",
+						"type": "String"
+					},
+					{
+						"name": "DeptoPropone",
+						"type": "String"
+					},
+					{
+						"name": "MesesVencidas",
+						"type": "String"
+					},
+					{
+						"name": "LiberacionGasto",
+						"type": "String"
+					},
+					{
+						"name": "NCGE",
+						"type": "String"
+					},
+					{
+						"name": "DiferenciaEntre",
+						"type": "String"
+					},
+					{
+						"name": "FijosDiscrecionales",
+						"type": "String"
+					},
+					{
+						"name": "GenerarNota",
+						"type": "String"
+					},
+					{
+						"name": "Estatus",
+						"type": "String"
+					},
+					{
+						"name": "Ceco",
+						"type": "String"
+					},
+					{
+						"name": "Soporte",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GilSalinas_NestleVeterinarios_BaseLiquidacion_destination')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "NESTLE_VETERINARIOS"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "inbound/nestle_veterinarios/baseliquidacion",
+						"container": "dev"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GilSalinas_NestleVeterinarios_Clientes_destination')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "NESTLE_VETERINARIOS"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "inbound/nestle_veterinarios/clientes",
+						"container": "dev"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GilSalinas_NestleVeterinarios_Productos_destination')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage2",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "NESTLE_VETERINARIOS"
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"folderPath": "inbound/nestle_veterinarios/productos",
+						"container": "dev"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IC3_SQL_TO_LAKE')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "IC3PROD",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "IdTradeActivity",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "NumeroTradeActivity",
+						"type": "varchar"
+					},
+					{
+						"name": "NombreTradeActivity",
+						"type": "varchar"
+					},
+					{
+						"name": "AcuerdosWBSCliente",
+						"type": "varchar"
+					},
+					{
+						"name": "TipoTA",
+						"type": "varchar"
+					},
+					{
+						"name": "StatusSAP",
+						"type": "varchar"
+					},
+					{
+						"name": "GastoEfectivo",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Compromiso",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Saldo",
+						"type": "decimal",
+						"precision": 18,
+						"scale": 2
+					},
+					{
+						"name": "Nodo4",
+						"type": "varchar"
+					},
+					{
+						"name": "Campaña",
+						"type": "varchar"
+					},
+					{
+						"name": "Tactica",
+						"type": "varchar"
+					},
+					{
+						"name": "TipoGasto",
+						"type": "varchar"
+					},
+					{
+						"name": "Complementaria",
+						"type": "varchar"
+					},
+					{
+						"name": "Payer",
+						"type": "varchar"
+					},
+					{
+						"name": "OrgVentas",
+						"type": "varchar"
+					},
+					{
+						"name": "OrganizacionVenta",
+						"type": "varchar"
+					},
+					{
+						"name": "NumCanalDistribucion",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "CanalDistribucio",
+						"type": "varchar"
+					},
+					{
+						"name": "FechaInicio",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FechaFinal",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FechaCreacion",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "FechaAprobacion",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					},
+					{
+						"name": "AprobadorporMonto",
+						"type": "varchar"
+					},
+					{
+						"name": "Implementador",
+						"type": "varchar"
+					},
+					{
+						"name": "AbiertaCerrada",
+						"type": "varchar"
+					},
+					{
+						"name": "DeptoPropone",
+						"type": "varchar"
+					},
+					{
+						"name": "MesesVencidas",
+						"type": "varchar"
+					},
+					{
+						"name": "Estatus",
+						"type": "varchar"
+					},
+					{
+						"name": "Soporte",
+						"type": "varchar"
+					},
+					{
+						"name": "UserSalesCopilot",
+						"type": "varchar"
+					},
+					{
+						"name": "BuildingBlock",
+						"type": "varchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "VW_TradeHeaderAdi"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adls_datascience_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_datascience",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "String"
+					},
+					"par_filename": {
+						"type": "String"
+					},
+					"par_delimiter": {
+						"type": "String",
+						"defaultValue": ","
+					},
+					"par_encoding": {
+						"type": "String",
+						"defaultValue": "UTF-8"
+					},
+					"par_header": {
+						"type": "Bool",
+						"defaultValue": true
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "datascience"
+					},
+					"columnDelimiter": {
+						"value": "@dataset().par_delimiter",
+						"type": "Expression"
+					},
+					"encodingName": {
+						"value": "@dataset().par_encoding",
+						"type": "Expression"
+					},
+					"escapeChar": "\\",
+					"firstRowAsHeader": {
+						"value": "@dataset().par_header",
+						"type": "Expression"
+					},
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_datascience_binary')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_datascience",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "datascience"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_extdata_binary')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_extdata",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "externaldata"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "dev"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"parContName": {
+						"type": "string"
+					},
+					"parPathDestination": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().parPathDestination",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().parContName",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary_source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"parContName": {
+						"type": "string"
+					},
+					"parPathCopy": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().parPathCopy",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().parContName",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					},
+					"par_delimeter": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "dev"
+					},
+					"columnDelimiter": {
+						"value": "@dataset().par_delimeter",
+						"type": "Expression"
+					},
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_xlsx')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					},
+					"par_delimeter": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Excel",
+				"typeProperties": {
+					"sheetName": "in",
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "consolidado_ic3.xlsx",
+						"folderPath": "temp_file_nbs",
+						"fileSystem": "dev"
+					},
+					"firstRowAsHeader": true
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_op_adls2_dinamyc_lakes_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_lake": {
+						"type": "string",
+						"defaultValue": "nmexprorigmxdhusw2sta"
+					},
+					"par_key": {
+						"type": "string",
+						"defaultValue": "adl2-token-nmex-origenesmx-pr"
+					},
+					"par_container": {
+						"type": "string",
+						"defaultValue": "prod"
+					},
+					"par_folder": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string",
+						"defaultValue": "0"
+					},
+					"par_delimiter": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_folder",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().par_container",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": {
+						"value": "@dataset().par_delimiter",
+						"type": "Expression"
+					},
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": ""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_sc_nmex_devorigmx_generic')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_container": {
+						"type": "string"
+					},
+					"par_diretorio": {
+						"type": "string"
+					},
+					"par_arquivo": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_arquivo",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_diretorio",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().par_container",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_testlogicapp_01')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HttpServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/json_api_web')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_datascience",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"FileName": {
+						"type": "string"
+					},
+					"ContName": {
+						"type": "string"
+					},
+					"FoldPath": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().FoldPath",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().ContName",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/GilSalinas_NestleVeterinarios_BaseLiquidacion')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyData_GilSalinas_NestleVeterinarios_BaseLiquidacion",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"disableChunking": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_BaseLiquidacion_origin",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_BaseLiquidacion_destination",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Notebook_GilSalinas_NestleVeterinarios_BaseLiquidacion",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "CopyData_GilSalinas_NestleVeterinarios_BaseLiquidacion",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugo.gallardo.tbGilSalinasNestleVeterinariosBaseLiquidacion.24082022"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Copy data Gil Salinas  Clientes",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"disableChunking": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_Clientes_origin",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_Clientes_destination",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Copy data Gil Salinas Productos",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"disableChunking": false
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_Productos_origin",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "GilSalinas_NestleVeterinarios_Productos_destination",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "Notebook_GilSalinas_NestleVeterinarios_Clientes",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Copy data Gil Salinas  Clientes",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugo.gallardo.tbGilSalinasNestleVeterinariosClientes.24082022"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Notebook_GilSalinas_NestleVeterinarios_Productos",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Copy data Gil Salinas Productos",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugo.gallardo.tbGilSalinasNestleVeterinariosProductos.24082022"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"folder": {
+					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-06-01T06:24:57Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/GilSalinas_NestleVeterinarios_BaseLiquidacion_destination')]",
+				"[concat(variables('factoryId'), '/datasets/GilSalinas_NestleVeterinarios_Clientes_destination')]",
+				"[concat(variables('factoryId'), '/datasets/GilSalinas_NestleVeterinarios_Productos_destination')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_00_BSG')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Execute silver condition",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Set uploaded files",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(greater(int(variables('UploadedFiles')), 0), greater(indexof(pipeline().parameters.par_TypeBSG, 'S'), 0))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Silver Execution",
+									"type": "ExecutePipeline",
+									"dependsOn": [
+										{
+											"activity": "Set retailer list",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_02_silver_layer",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_IdClient": {
+												"value": "@pipeline().parameters.par_IdClient",
+												"type": "Expression"
+											},
+											"par_IdRetailer": {
+												"value": "@variables('RetailerList')",
+												"type": "Expression"
+											},
+											"par_IdLog": {
+												"value": "@pipeline().parameters.par_IdLog",
+												"type": "Expression"
+											},
+											"par_MailList": {
+												"value": "@pipeline().parameters.par_MailList",
+												"type": "Expression"
+											},
+											"par_User": {
+												"value": "@pipeline().parameters.par_User",
+												"type": "Expression"
+											},
+											"par_ComplementLoad": {
+												"value": "@pipeline().parameters.par_ComplementLoad",
+												"type": "Expression"
+											},
+											"par_GroupedType": {
+												"value": "@pipeline().parameters.par_GroupedType",
+												"type": "Expression"
+											},
+											"par_RetailerName": {
+												"value": "@pipeline().parameters.par_RetailerName",
+												"type": "Expression"
+											},
+											"par_IsATM": {
+												"value": "@pipeline().parameters.par_IsATM",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Get temp data",
+									"type": "DatabricksNotebook",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/500_get_temp_values",
+										"baseParameters": {
+											"par_IdCustomer": {
+												"value": "@pipeline().parameters.par_IdClient",
+												"type": "Expression"
+											},
+											"par_IdRetailer": {
+												"value": "@pipeline().parameters.par_IdRetailer",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "Set range dates",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Get temp data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "RangeDates",
+										"value": {
+											"value": "@activity('Get temp data').output.runOutput.rangeDates",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set dynamic information type list",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set range dates",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "DynamicInformationTypeList",
+										"value": {
+											"value": "@activity('Get temp data').output.runOutput.dynamicInformationTypeList",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set retailer list",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set dynamic information type list",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "RetailerList",
+										"value": {
+											"value": "@if(equals(coalesce(pipeline().parameters.par_IdRetailer, ''), ''), activity('Get temp data').output.runOutput.retailerList, pipeline().parameters.par_IdRetailer)",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Execute gold condition",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Execute silver condition",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(and(greater(int(variables('UploadedFiles')), 0), greater(indexof(pipeline().parameters.par_TypeBSG, 'G'), 0)), not(equals(variables('RangeDates'), '')))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Gold Execution",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_03_gold_layer",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_IdClient": {
+												"value": "@pipeline().parameters.par_IdClient",
+												"type": "Expression"
+											},
+											"par_IdRetailer": {
+												"value": "@variables('RetailerList')",
+												"type": "Expression"
+											},
+											"par_IdLog": {
+												"value": "@pipeline().parameters.par_IdLog",
+												"type": "Expression"
+											},
+											"par_MailList": {
+												"value": "@pipeline().parameters.par_MailList",
+												"type": "Expression"
+											},
+											"par_DateList": {
+												"value": "@variables('RangeDates')",
+												"type": "Expression"
+											},
+											"par_Dashboards": {
+												"value": "@pipeline().parameters.par_Dashboards",
+												"type": "Expression"
+											},
+											"par_User": {
+												"value": "@pipeline().parameters.par_User",
+												"type": "Expression"
+											},
+											"par_RetailerName": {
+												"value": "@pipeline().parameters.par_RetailerName",
+												"type": "Expression"
+											},
+											"par_IsATM": {
+												"value": "@pipeline().parameters.par_IsATM",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Execute datasets custom views",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Execute gold condition",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(and(greater(int(variables('UploadedFiles')), 0), greater(indexof(pipeline().parameters.par_TypeBSG, 'D'), 0)), not(equals(coalesce(pipeline().parameters.par_CustomViewsList, ''), '')))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Datasets Custom Views",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_04_create_datasets",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_IdClient": {
+												"value": "@pipeline().parameters.par_IdClient",
+												"type": "Expression"
+											},
+											"par_IdLog": {
+												"value": "@pipeline().parameters.par_IdLog",
+												"type": "Expression"
+											},
+											"par_MailList": {
+												"value": "@pipeline().parameters.par_MailList",
+												"type": "Expression"
+											},
+											"par_User": {
+												"value": "@pipeline().parameters.par_User",
+												"type": "Expression"
+											},
+											"par_DynamicInformationTypesList": {
+												"value": "@coalesce('')",
+												"type": "Expression"
+											},
+											"par_SqlViewsList": {
+												"value": "@coalesce('')",
+												"type": "Expression"
+											},
+											"par_CustomViewsList": {
+												"value": "@pipeline().parameters.par_CustomViewsList",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Set uploaded files",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Load data",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "UploadedFiles",
+							"value": {
+								"value": "@string(activity('load data').output.runOutput.uploadedFiles)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Load data",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/Production/DatabricksMX/sl_siweb/execution/108_load_data",
+							"baseParameters": {
+								"par_IdClient": {
+									"value": "@pipeline().parameters.par_IdClient",
+									"type": "Expression"
+								},
+								"par_IdRetailer": {
+									"value": "@pipeline().parameters.par_IdRetailer",
+									"type": "Expression"
+								},
+								"par_IdType": {
+									"value": "@pipeline().parameters.par_TypeBSG",
+									"type": "Expression"
+								},
+								"par_IdLog": {
+									"value": "@pipeline().parameters.par_IdLog",
+									"type": "Expression"
+								},
+								"par_MailList": {
+									"value": "@pipeline().parameters.par_MailList",
+									"type": "Expression"
+								},
+								"par_User": {
+									"value": "@pipeline().parameters.par_User",
+									"type": "Expression"
+								},
+								"par_RetailerName": {
+									"value": "@pipeline().parameters.par_RetailerName",
+									"type": "Expression"
+								},
+								"par_IsATM": {
+									"value": "@pipeline().parameters.par_IsATM",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Execute datasets dynamic info type views",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Execute gold condition",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@and(and(greater(int(variables('UploadedFiles')), 0), greater(indexof(pipeline().parameters.par_TypeBSG, 'D'), 0)), not(equals(coalesce(variables('DynamicInformationTypeList'), ''), '')))",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Datasets Dynamic Information Types",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_04_create_datasets",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_IdClient": {
+												"value": "@pipeline().parameters.par_IdClient",
+												"type": "Expression"
+											},
+											"par_IdLog": {
+												"value": "@pipeline().parameters.par_IdLog",
+												"type": "Expression"
+											},
+											"par_MailList": {
+												"value": "@pipeline().parameters.par_MailList",
+												"type": "Expression"
+											},
+											"par_User": {
+												"value": "@pipeline().parameters.par_User",
+												"type": "Expression"
+											},
+											"par_DynamicInformationTypesList": {
+												"value": "@variables('DynamicInformationTypeList')",
+												"type": "Expression"
+											},
+											"par_SqlViewsList": {
+												"value": "@coalesce('')",
+												"type": "Expression"
+											},
+											"par_CustomViewsList": {
+												"value": "@coalesce('')",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"parameters": {
+					"par_IdClient": {
+						"type": "string"
+					},
+					"par_IdRetailer": {
+						"type": "string"
+					},
+					"par_TypeBSG": {
+						"type": "string"
+					},
+					"par_IdLog": {
+						"type": "string"
+					},
+					"par_MailList": {
+						"type": "string"
+					},
+					"par_User": {
+						"type": "string"
+					},
+					"par_RetailerName": {
+						"type": "string"
+					},
+					"par_IsATM": {
+						"type": "string"
+					},
+					"par_ComplementLoad": {
+						"type": "string"
+					},
+					"par_GroupedType": {
+						"type": "string"
+					},
+					"par_Dashboards": {
+						"type": "string"
+					},
+					"par_CustomViewsList": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"RangeDates": {
+						"type": "String"
+					},
+					"UploadedFiles": {
+						"type": "String"
+					},
+					"DynamicInformationTypeList": {
+						"type": "String"
+					},
+					"RetailerList": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "Siweb"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-01-31T17:59:13Z"
+			},
+			"dependsOn": []
+		}
+	]
+}
