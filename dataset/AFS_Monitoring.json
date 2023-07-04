@@ -1,0 +1,35 @@
+{
+	"name": "AFS_Monitoring",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AFS_AzureBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "NESTLE_VETERINARIOS"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 1, 'Month'), 'yyyyMM'), '01.csv')",
+					"type": "Expression"
+				},
+				"folderPath": "MonitoringDomain/F_MonitoringAnswer",
+				"container": "206"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "\"MTA_MTDR_PRD_ID\";\"MTD_MTDR_ID\";\"MTA_ID\";\"Answer_Date\";\"Answer_Time\";\"Date_Int\";\"USR_ID\";\"USR_ST_ID\";\"CUS_ID\";\"CUS_ST_ID\";\"APP_ID\";\"Digitally_Processed\";\"MTDR_ID\";\"PRD_ID\";\"PRD_ST_ID\";\"ST_ID\";\"Answer_As_Text\";\"Answer_As_Number\";\"Answer_As_DateInt\";\"Answer_As_OptionID\";\"Answer_As_OptionText\";\"URL_To_Photo\";\"User_Action\";\"Target_Description\";\"Target_Value\";\"Automatic_Answer\";\"Header_TimeStamp\";\"Row_TimeStamp\";\"CUS_PRD_ST_ID\";\"Last_Known\";\"Is_Listed\";\"LTP_HIE_HIN_PRD_Version_ID\";\"Is_PowerProduct\";\"PPP_HIE_HIN_PRD_Version_ID\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"MTD_ID\";\"Answer_DateTime\";\"AD_ID\";\"Automatic_Answer_As_Text\";\"Is_Edited\"",
+				"type": "String"
+			}
+		]
+	}
+}
