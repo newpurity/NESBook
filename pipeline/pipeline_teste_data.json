@@ -1,0 +1,37 @@
+{
+	"name": "pipeline_teste_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "teste",
+					"value": {
+						"value": "@convertTimeZone(utcNow(),'UTC','Central Standard Time (Mexico)')\n",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"teste": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "amsmx_supply_alice"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-06-01T06:24:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

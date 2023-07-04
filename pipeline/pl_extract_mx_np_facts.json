@@ -1,0 +1,22 @@
+{
+	"name": "pl_extract_mx_np_facts",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"folder": {
+			"name": "amsmx_professional/facts"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-09-27T18:05:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
