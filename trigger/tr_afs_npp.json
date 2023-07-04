@@ -16,14 +16,14 @@
 			"recurrence": {
 				"frequency": "Day",
 				"interval": 1,
-				"startTime": "2023-07-04T21:51:00",
+				"startTime": "2023-07-04T13:51:00",
 				"timeZone": "Central Standard Time (Mexico)",
 				"schedule": {
 					"minutes": [
-						57
+						8
 					],
 					"hours": [
-						15
+						16
 					]
 				}
 			}
