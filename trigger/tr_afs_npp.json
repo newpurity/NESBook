@@ -6,7 +6,7 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Copy_AFS",
+					"referenceName": "pl_afs_npp",
 					"type": "PipelineReference"
 				}
 			}
