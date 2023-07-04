@@ -3,14 +3,29 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
-		"pipelines": [],
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_afs_npp",
+					"type": "PipelineReference"
+				}
+			}
+		],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Minute",
-				"interval": 5,
+				"frequency": "Day",
+				"interval": 1,
 				"startTime": "2023-07-02T13:51:00",
-				"timeZone": "Central Standard Time (Mexico)"
+				"timeZone": "Central Standard Time (Mexico)",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						17
+					]
+				}
 			}
 		}
 	}
