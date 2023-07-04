@@ -14,18 +14,10 @@
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Day",
-				"interval": 1,
-				"startTime": "2023-07-04T13:51:00",
-				"timeZone": "Central Standard Time (Mexico)",
-				"schedule": {
-					"minutes": [
-						8
-					],
-					"hours": [
-						16
-					]
-				}
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2023-07-02T13:51:00",
+				"timeZone": "Central Standard Time (Mexico)"
 			}
 		}
 	}
