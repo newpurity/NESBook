@@ -120,7 +120,7 @@
 			"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-12-12T22:29:00Z"
+		"lastPublishTime": "2023-07-05T00:36:57Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -309,7 +309,7 @@
 			"name": "amsmx_supply_alice/pl_extract/SharePoint Catalogs"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-04-24T22:29:43Z"
+		"lastPublishTime": "2023-07-05T00:37:10Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

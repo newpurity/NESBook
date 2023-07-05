@@ -65,6 +65,8 @@
 		"folder": {
 			"name": "amsmx_veterinarios"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2023-07-04T23:19:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
 }

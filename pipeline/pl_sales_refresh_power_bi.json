@@ -171,7 +171,7 @@
 			"name": "amsmx_sales"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-05-29T17:04:13Z"
+		"lastPublishTime": "2023-07-05T00:37:06Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

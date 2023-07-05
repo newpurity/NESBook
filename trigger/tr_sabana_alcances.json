@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que desencadena cuando se agrega el txt de SabanaAlcances",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {

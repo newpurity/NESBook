@@ -274,7 +274,7 @@
 			"name": "amsmx_supply_alice"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-05-19T16:52:50Z"
+		"lastPublishTime": "2023-07-05T00:37:10Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

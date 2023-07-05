@@ -1,9 +1,9 @@
 {
-	"name": "pl_sales_kf",
+	"name": "pl_extract_mx_np_cat_materiales",
 	"properties": {
 		"activities": [
 			{
-				"name": "Extract KF",
+				"name": "load_layer_silver",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -15,7 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Repos/lucio.montelongo@mx.nestle.com/DatabricksMX/sl_kf/execution/0010.Extract_KF"
+					"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_materiales/execution/0010_np_cat_materiales_load_silver_layer"
 				},
 				"linkedServiceName": {
 					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
@@ -23,11 +23,11 @@
 				}
 			},
 			{
-				"name": "Tranform KF",
+				"name": "load_layer_gold",
 				"type": "DatabricksNotebook",
 				"dependsOn": [
 					{
-						"activity": "Extract KF",
+						"activity": "load_layer_silver",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -42,34 +42,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Repos/lucio.montelongo@mx.nestle.com/DatabricksMX/sl_kf/execution/0011.Transform_KF"
-				},
-				"linkedServiceName": {
-					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
-				"name": "View KF",
-				"type": "DatabricksNotebook",
-				"dependsOn": [
-					{
-						"activity": "Tranform KF",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"notebookPath": "/Repos/lucio.montelongo@mx.nestle.com/DatabricksMX/sl_kf/execution/0012.View_KF"
+					"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_materiales/execution/0020_np_cat_materiales_load_gold_layer"
 				},
 				"linkedServiceName": {
 					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
@@ -78,7 +51,7 @@
 			}
 		],
 		"folder": {
-			"name": "amsmx_ventas_test"
+			"name": "amsmx_professional/catalogs"
 		},
 		"annotations": [],
 		"lastPublishTime": "2023-07-05T00:37:06Z"

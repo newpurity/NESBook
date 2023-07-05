@@ -2,7 +2,7 @@
 	"name": "tg_sales_powerbi_refresh",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
