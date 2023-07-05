@@ -1,5 +1,5 @@
 {
-	"name": "tr_afs_npp",
+	"name": "tr_afs_npp_1",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
@@ -14,7 +14,7 @@
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
-				"frequency": "Day",
+				"frequency": "Month",
 				"interval": 1,
 				"startTime": "2023-07-02T13:51:00",
 				"timeZone": "Central Standard Time (Mexico)",
@@ -24,6 +24,9 @@
 					],
 					"hours": [
 						17
+					],
+					"monthDays": [
+						1
 					]
 				}
 			}
