@@ -1,12 +1,20 @@
 {
 	"name": "AFS_AzureBlobStorage",
-	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"annotations": [],
 		"type": "AzureBlobStorage",
 		"typeProperties": {
 			"connectionString": "DefaultEndpointsProtocol=https;AccountName=rehnprd206datalake;",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEY2Nzk5MjdGLTJGNkYtNEYyMy04NjZDLUFGQ0RGRDc3M0YzOF83ZTU0ZjY2OC05YTZlLTRlNDUtODZiMS1kY2M3MmZhMzVmZjEiDQp9"
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "lk_nmexdvorigmxdhusw2key",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "datalakeafs",
+				"secretVersion": "b09820ccb19344f1823065fdda05fb6a"
+			}
 		}
-	}
+	},
+	"type": "Microsoft.DataFactory/factories/linkedservices"
 }
