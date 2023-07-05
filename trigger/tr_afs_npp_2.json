@@ -1,0 +1,28 @@
+{
+	"name": "tr_afs_npp_2",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 1,
+				"startTime": "2023-07-04T17:15:00",
+				"timeZone": "Central Standard Time (Mexico)",
+				"schedule": {
+					"minutes": [
+						15
+					],
+					"hours": [
+						8
+					],
+					"weekDays": [
+						"Monday"
+					]
+				}
+			}
+		}
+	}
+}
