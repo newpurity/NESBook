@@ -119,6 +119,53 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [
+					{
+						"activity": "Copy AFS_Current_Month",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "No se cargo el file",
+					"errorCode": "001"
+				}
+			},
+			{
+				"name": "Notebook1",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Copy AFS__Last_Month",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/DatabricksMX/md_algoritmos/execution/AFS_Purina_Share of Shelf"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0130-211945-mcv1mi12"
+					}
+				}
 			}
 		],
 		"folder": {
