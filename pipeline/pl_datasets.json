@@ -151,7 +151,7 @@
 			"name": "amsmx_palantir"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-05T00:37:05Z"
+		"lastPublishTime": "2023-07-05T17:22:49Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

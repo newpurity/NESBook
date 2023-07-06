@@ -86,7 +86,7 @@
 			"name": "amsmx_finance_creditnotes"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-05T00:37:10Z"
+		"lastPublishTime": "2023-07-05T17:22:53Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que desencadena cuando se agrega el csv de la base fria",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que ejecuta cada que el catalogo de conexiones entre SO, SI y exhibiciones se actualiza",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

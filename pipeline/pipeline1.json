@@ -137,7 +137,7 @@
 			"name": "amsmx_data-load-tool"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-05T00:36:57Z"
+		"lastPublishTime": "2023-07-05T17:22:42Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

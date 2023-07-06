@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que desencadena la extraccion de precio de las acciones de Nestle y los principales autoservcios de Mexico",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

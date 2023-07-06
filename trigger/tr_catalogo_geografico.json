@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que se activa cuando se sube el catalogo geografico",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

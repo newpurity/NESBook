@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Trigger que desencadena cada que se actualiza el csv con la info de mash a categoria",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

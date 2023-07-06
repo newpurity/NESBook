@@ -2,7 +2,7 @@
 	"name": "trigger_ic3_mx",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {

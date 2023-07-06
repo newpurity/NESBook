@@ -2,7 +2,7 @@
 	"name": "tr_amsmx_sales_nieto",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
