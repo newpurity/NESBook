@@ -7,8 +7,6 @@
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
@@ -31,7 +29,7 @@
 			"name": "amsmx_supply_alice"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-05T17:22:42Z"
+		"lastPublishTime": "2023-07-06T16:03:13Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
