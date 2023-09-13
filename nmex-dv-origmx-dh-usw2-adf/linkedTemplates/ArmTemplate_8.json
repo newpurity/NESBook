@@ -65,6 +65,45 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/tr_ai_cloud')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_sales_ai_cloud",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2023-01-31T14:29:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								1
+							],
+							"hours": [
+								21
+							],
+							"weekDays": [
+								"Monday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/tr_catalogo_geografico')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -571,45 +610,6 @@
 							],
 							"hours": [
 								22
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_mx_npp_sell_out_weekly')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Update_Sell_Out_NPP",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2023-09-11T04:46:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								23
-							],
-							"weekDays": [
-								"Tuesday"
 							]
 						}
 					}
