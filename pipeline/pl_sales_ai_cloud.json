@@ -162,7 +162,7 @@
 			"name": "amsmx_ventas_test"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-04-24T13:40:38Z"
+		"lastPublishTime": "2023-08-07T23:28:23Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

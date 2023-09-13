@@ -120,8 +120,6 @@
 								}
 							],
 							"policy": {
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
@@ -146,8 +144,6 @@
 								}
 							],
 							"policy": {
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
@@ -172,8 +168,6 @@
 								}
 							],
 							"policy": {
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
@@ -337,8 +331,6 @@
 					}
 				],
 				"policy": {
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
@@ -526,7 +518,7 @@
 			"name": "Siweb"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-01-31T17:59:13Z"
+		"lastPublishTime": "2023-08-07T23:28:29Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

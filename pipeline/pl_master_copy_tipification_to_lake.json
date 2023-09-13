@@ -40,8 +40,6 @@
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
@@ -168,7 +166,7 @@
 			"name": "amsmx_finance_creditnotes"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-01-16T21:13:47Z"
+		"lastPublishTime": "2023-08-07T23:28:34Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

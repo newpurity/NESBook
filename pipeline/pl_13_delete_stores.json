@@ -111,7 +111,7 @@
 			"name": "Siweb"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-06-05T21:26:52Z"
+		"lastPublishTime": "2023-08-07T23:28:21Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
