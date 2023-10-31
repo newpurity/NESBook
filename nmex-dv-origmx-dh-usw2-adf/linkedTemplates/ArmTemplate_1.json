@@ -7,6 +7,26 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
+		"ls_op_adls2_lake_latam_mwsAuthToken": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"mwsAuthToken\"de \"ls_op_adls2_lake_latam\""
+		},
+		"ls_op_adls2_lake_latam_secretKey": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"secretKey\"de \"ls_op_adls2_lake_latam\""
+		},
+		"ls_op_adls2_lake_latam_properties_typeProperties_endpoint": {
+			"type": "string",
+			"defaultValue": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
+		},
+		"ls_op_adls2_lake_latam_properties_typeProperties_accessKeyId": {
+			"type": "string",
+			"defaultValue": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
+		},
+		"nmex_service_api_rest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().url_base}"
+		},
 		"nmex-origmx-dh-usw2-ithub-shared-ir_properties_typeProperties_linkedInfo_resourceId": {
 			"type": "string",
 			"defaultValue": "/subscriptions/65538c2c-2fb6-4d89-8819-b3a38f8c63e2/resourcegroups/nams-pp-bsimaster-adi-usea-rgp/providers/Microsoft.DataFactory/factories/nams-pp-bsimaster-adi-usea-adf/integrationruntimes/nams-pp-bsimgd-shared-usea-ir"
@@ -16,6 +36,53 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_op_adls2_lake_latam')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AmazonMWS",
+				"typeProperties": {
+					"endpoint": "[parameters('ls_op_adls2_lake_latam_properties_typeProperties_endpoint')]",
+					"marketplaceID": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam",
+					"sellerID": "ls_op_adls2_lake_latamls_op_adls2_lake_latam",
+					"mwsAuthToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_op_adls2_lake_latam_mwsAuthToken')]"
+					},
+					"accessKeyId": "[parameters('ls_op_adls2_lake_latam_properties_typeProperties_accessKeyId')]",
+					"secretKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_op_adls2_lake_latam_secretKey')]"
+					},
+					"useEncryptedEndpoints": true,
+					"useHostVerification": true,
+					"usePeerVerification": true
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/nmex_service_api_rest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"url_base": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('nmex_service_api_rest_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tg_mx_sc_tb_mx_sa_dashboardtc')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
@@ -88,6 +155,34 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/tr_drivin_daily_api')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-03-14T14:12:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								23
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/nmex-origmx-dh-usw2-ithub-shared-ir')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -147,8 +242,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_conteudo_email": {
@@ -177,49 +271,11 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-04-03T23:14:07Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/nmex-pp-origenesmx-ithub-ir')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AFS_Monitoring')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AFS_AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "NESTLE_VETERINARIOS"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 1, 'Month'), 'yyyyMM'), '01.csv')",
-							"type": "Expression"
-						},
-						"folderPath": "MonitoringDomain/F_MonitoringAnswer",
-						"container": "206"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "\"MTA_MTDR_PRD_ID\";\"MTD_MTDR_ID\";\"MTA_ID\";\"Answer_Date\";\"Answer_Time\";\"Date_Int\";\"USR_ID\";\"USR_ST_ID\";\"CUS_ID\";\"CUS_ST_ID\";\"APP_ID\";\"Digitally_Processed\";\"MTDR_ID\";\"PRD_ID\";\"PRD_ST_ID\";\"ST_ID\";\"Answer_As_Text\";\"Answer_As_Number\";\"Answer_As_DateInt\";\"Answer_As_OptionID\";\"Answer_As_OptionText\";\"URL_To_Photo\";\"User_Action\";\"Target_Description\";\"Target_Value\";\"Automatic_Answer\";\"Header_TimeStamp\";\"Row_TimeStamp\";\"CUS_PRD_ST_ID\";\"Last_Known\";\"Is_Listed\";\"LTP_HIE_HIN_PRD_Version_ID\";\"Is_PowerProduct\";\"PPP_HIE_HIN_PRD_Version_ID\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"MTD_ID\";\"Answer_DateTime\";\"AD_ID\";\"Automatic_Answer_As_Text\";\"Is_Edited\"",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/DestinationDataSetProductos')]",
@@ -535,76 +591,6 @@
 						"type": "HttpServerLocation"
 					}
 				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_ar_sftp_ncdt')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_ar_sftp_ncdt",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"parhost": "200.38.155.5",
-						"parport": 22,
-						"paruser": "nestle_reportes_cliente",
-						"parkey": "sftp-pass-nestletp"
-					}
-				},
-				"parameters": {
-					"par_directory": {
-						"type": "string"
-					},
-					"par_filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "SftpLocation",
-						"fileName": {
-							"value": "@if(equals(dataset().par_filename,'0'),null , dataset().par_filename)\r\n\r\n",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().par_directory",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/nmex_rest_dataset_api')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "nmex_service_api_rest",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"url_base": {
-							"value": "@dataset().url_dataset_post_rest_api",
-							"type": "Expression"
-						}
-					}
-				},
-				"parameters": {
-					"url_dataset_post_rest_api": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "RestResource",
-				"typeProperties": {
-					"relativeUrl": ""
-				},
-				"schema": []
 			},
 			"dependsOn": []
 		}

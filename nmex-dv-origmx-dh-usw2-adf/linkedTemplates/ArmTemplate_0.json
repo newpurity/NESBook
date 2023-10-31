@@ -7,9 +7,9 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
-		"AFS_AzureBlobStorage_connectionString": {
+		"AzureSqlDatabase1_connectionString": {
 			"type": "secureString",
-			"metadata": "Cadena protegida para \"connectionString\"de \"AFS_AzureBlobStorage\""
+			"metadata": "Cadena protegida para \"connectionString\"de \"AzureSqlDatabase1\""
 		},
 		"Sftp1_password": {
 			"type": "secureString",
@@ -30,6 +30,10 @@
 		"ls_ar_sftp_ncdt_2_password": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"password\"de \"ls_ar_sftp_ncdt_2\""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://nmexprconstoresdhusw2key.vault.azure.net/"
 		},
 		"RestService1_properties_typeProperties_url": {
 			"type": "string",
@@ -94,10 +98,6 @@
 		"ls_ar_sftp_ncdt_2_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "@{linkedService().paruser}"
-		},
-		"nmex_service_api_rest_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "@{linkedService().url_base}"
 		}
 	},
 	"variables": {
@@ -122,14 +122,13 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-06-01T06:24:57Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -145,8 +144,6 @@
 						"type": "SetVariable",
 						"dependsOn": [],
 						"policy": {
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
@@ -161,8 +158,6 @@
 						"type": "SetVariable",
 						"dependsOn": [],
 						"policy": {
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
@@ -245,8 +240,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFileName": {
@@ -278,7 +272,7 @@
 					"name": "amsmx_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2022-12-12T22:29:00Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -299,14 +293,13 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-04-10T14:31:13Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -321,8 +314,6 @@
 						"type": "SetVariable",
 						"dependsOn": [],
 						"policy": {
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
 						},
@@ -337,8 +328,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"teste": {
@@ -349,7 +339,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-06-01T06:24:57Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -627,8 +617,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_id_workspace": {
@@ -647,7 +636,7 @@
 					"name": "amsla_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2022-12-05T16:20:14Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -746,8 +735,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parEnvironment": {
@@ -782,7 +770,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2022-12-12T22:29:00Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
@@ -803,26 +791,38 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_professional/facts"
 				},
 				"annotations": [],
-				"lastPublishTime": "2022-09-27T18:05:28Z"
+				"lastPublishTime": "2023-08-07T23:28:15Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AFS_AzureBlobStorage')]",
+			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureBlobStorage",
+				"type": "AzureKeyVault",
 				"typeProperties": {
-					"connectionString": "[parameters('AFS_AzureBlobStorage_connectionString')]"
+					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -1074,26 +1074,6 @@
 						"type": "SecureString",
 						"value": "[parameters('ls_ar_sftp_ncdt_2_password')]"
 					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/nmex_service_api_rest')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"parameters": {
-					"url_base": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"type": "RestService",
-				"typeProperties": {
-					"url": "[parameters('nmex_service_api_rest_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []

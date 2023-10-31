@@ -7,6 +7,11 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
+		"AFS_AzureBlobStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Cadena protegida para \"connectionString\"de \"AFS_AzureBlobStorage\"",
+			"defaultValue": "DefaultEndpointsProtocol=https;AccountName=rehnprd206datalake;"
+		},
 		"AzureBlobStorage2_connectionString": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"connectionString\"de \"AzureBlobStorage2\""
@@ -60,6 +65,98 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_ar_sftp_ncdt')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_ar_sftp_ncdt",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"parhost": "200.38.155.5",
+						"parport": 22,
+						"paruser": "nestle_reportes_cliente",
+						"parkey": "sftp-pass-nestletp"
+					}
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "SftpLocation",
+						"fileName": {
+							"value": "@if(equals(dataset().par_filename,'0'),null , dataset().par_filename)\r\n\r\n",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/nmex_rest_dataset_api')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "nmex_service_api_rest",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"url_base": {
+							"value": "@dataset().url_dataset_post_rest_api",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"url_dataset_post_rest_api": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {
+					"relativeUrl": ""
+				},
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AFS_AzureBlobStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AFS_AzureBlobStorage_connectionString')]",
+					"accountKey": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "lk_nmexdvorigmxdhusw2key",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "datalakeafs",
+						"secretVersion": "b09820ccb19344f1823065fdda05fb6a"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -284,6 +381,72 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Update_Sell_Out_NPP')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Sell Out Weekly",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out Semanal NPP"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					},
+					{
+						"name": "Sell Out Monthly",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out  Monthly NPP"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "amsmx_veterinarios"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-09-13T04:50:08Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_01_bronze_layer')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -342,11 +505,51 @@
 							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
 							"type": "LinkedServiceReference"
 						}
+					},
+					{
+						"name": "clean_bronze",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "load_bronze_layer",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/117_failure_clean_bronze",
+							"baseParameters": {
+								"par_IdClient": {
+									"value": "@pipeline().parameters.par_IdClient",
+									"type": "Expression"
+								},
+								"par_IdRetailer": {
+									"value": "@pipeline().parameters.par_IdRetailer",
+									"type": "Expression"
+								},
+								"par_IdLog": {
+									"value": "@pipeline().parameters.par_IdLog",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdClient": {
@@ -386,7 +589,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-01-31T17:59:12Z"
+				"lastPublishTime": "2023-10-06T17:46:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -462,8 +665,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdClient": {
@@ -510,7 +712,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-01-31T17:59:12Z"
+				"lastPublishTime": "2023-08-07T23:28:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -590,8 +792,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdClient": {
@@ -639,7 +840,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-01-31T17:59:12Z"
+				"lastPublishTime": "2023-08-07T23:28:21Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -693,6 +894,10 @@
 								"par_CustomViewsList": {
 									"value": "@pipeline().parameters.par_CustomViewsList",
 									"type": "Expression"
+								},
+								"par_EnableIncremental": {
+									"value": "@pipeline().parameters.par_EnableIncremental",
+									"type": "Expression"
 								}
 							}
 						},
@@ -703,8 +908,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdClient": {
@@ -734,516 +938,17 @@
 					"par_CustomViewsList": {
 						"type": "string",
 						"defaultValue": "45,46"
+					},
+					"par_EnableIncremental": {
+						"type": "string",
+						"defaultValue": "true"
 					}
 				},
 				"folder": {
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-06-05T21:26:52Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_10_update_attributes')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Run_notebook_view_attribues",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/Production/DatabricksMX/sl_siweb/execution/410_update_table_attributes",
-							"baseParameters": {
-								"par_IdClient": {
-									"value": "@pipeline().parameters.par_IdClient",
-									"type": "Expression"
-								},
-								"par_IdLog": {
-									"value": "@pipeline().parameters.par_IdLog",
-									"type": "Expression"
-								},
-								"par_MailList": {
-									"value": "@pipeline().parameters.par_MailList",
-									"type": "Expression"
-								},
-								"par_User": {
-									"value": "@pipeline().parameters.par_User",
-									"type": "Expression"
-								},
-								"par_Destiny": {
-									"value": "@pipeline().parameters.par_Destiny",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_IdClient": {
-						"type": "string"
-					},
-					"par_IdLog": {
-						"type": "string"
-					},
-					"par_MailList": {
-						"type": "string"
-					},
-					"par_User": {
-						"type": "string"
-					},
-					"par_Destiny": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "Siweb"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-05-25T22:10:59Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_11_delete_transactions_catalogs')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DeleteTxCat",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/114_delete_data",
-							"baseParameters": {
-								"par_Table": {
-									"value": "@pipeline().parameters.par_Table",
-									"type": "Expression"
-								},
-								"par_CalendarDay": {
-									"value": "@pipeline().parameters.par_CalendarDay",
-									"type": "Expression"
-								},
-								"par_CreationDate": {
-									"value": "@pipeline().parameters.par_CreationDate",
-									"type": "Expression"
-								},
-								"par_EndDate": {
-									"value": "@pipeline().parameters.par_EndDate",
-									"type": "Expression"
-								},
-								"par_IdCustomer": {
-									"value": "@pipeline().parameters.par_IdCustomer",
-									"type": "Expression"
-								},
-								"par_IdDynamicInformationType": {
-									"value": "@pipeline().parameters.par_IdDynamicInformationType",
-									"type": "Expression"
-								},
-								"par_IdFileMapping": {
-									"value": "@pipeline().parameters.par_IdFileMapping",
-									"type": "Expression"
-								},
-								"par_IdLog": {
-									"value": "@pipeline().parameters.par_IdLog",
-									"type": "Expression"
-								},
-								"par_IdProducts": {
-									"value": "@pipeline().parameters.par_IdProducts",
-									"type": "Expression"
-								},
-								"par_IdProductsCategoriesSegmentation": {
-									"value": "@pipeline().parameters.par_IdProductsCategoriesSegmentation",
-									"type": "Expression"
-								},
-								"par_IdRetailer": {
-									"value": "@pipeline().parameters.par_IdRetailer",
-									"type": "Expression"
-								},
-								"par_IdStores": {
-									"value": "@pipeline().parameters.par_IdStores",
-									"type": "Expression"
-								},
-								"par_Reason": {
-									"value": "@pipeline().parameters.par_Reason",
-									"type": "Expression"
-								},
-								"par_StartDate": {
-									"value": "@pipeline().parameters.par_StartDate",
-									"type": "Expression"
-								},
-								"par_TypeCalendarDay": {
-									"value": "@pipeline().parameters.par_TypeCalendarDay",
-									"type": "Expression"
-								},
-								"par_User": {
-									"value": "@pipeline().parameters.par_User",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_Table": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdCustomer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdRetailer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdDynamicInformationType": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdFileMapping": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdProducts": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdProductsCategoriesSegmentation": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdStores": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_TypeCalendarDay": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_StartDate": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_EndDate": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_CalendarDay": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_CreationDate": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_Reason": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdLog": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_User": {
-						"type": "string",
-						"defaultValue": "-"
-					}
-				},
-				"folder": {
-					"name": "Siweb"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-03-06T17:52:44Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_12_delete_products')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DeleteProducts",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/115_delete_products",
-							"baseParameters": {
-								"par_IdCustomer": {
-									"value": "@pipeline().parameters.par_IdCustomer",
-									"type": "Expression"
-								},
-								"par_IdLog": {
-									"value": "@pipeline().parameters.par_IdLog",
-									"type": "Expression"
-								},
-								"par_IdRetailer": {
-									"value": "@pipeline().parameters.par_IdRetailer",
-									"type": "Expression"
-								},
-								"par_IdRetailerProducts": {
-									"value": "@pipeline().parameters.par_IdRetailerProducts",
-									"type": "Expression"
-								},
-								"par_LoadUserLoadDate": {
-									"value": "@pipeline().parameters.par_LoadUserLoadDate",
-									"type": "Expression"
-								},
-								"par_Reason": {
-									"value": "@pipeline().parameters.par_Reason",
-									"type": "Expression"
-								},
-								"par_RemoveAll": {
-									"value": "@pipeline().parameters.par_RemoveAll",
-									"type": "Expression"
-								},
-								"par_RemoveTransactions": {
-									"value": "@pipeline().parameters.par_RemoveTransactions",
-									"type": "Expression"
-								},
-								"par_User": {
-									"value": "@pipeline().parameters.par_User",
-									"type": "Expression"
-								},
-								"par_UserEmail": {
-									"value": "@pipeline().parameters.par_UserEmail",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_IdCustomer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdRetailer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdRetailerProducts": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_LoadUserLoadDate": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_UserEmail": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_Reason": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_RemoveAll": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_RemoveTransactions": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdLog": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_User": {
-						"type": "string",
-						"defaultValue": "-"
-					}
-				},
-				"folder": {
-					"name": "Siweb"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-04-13T04:47:26Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_13_delete_stores')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "DeleteStores",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/116_delete_stores",
-							"baseParameters": {
-								"par_IdCustomer": {
-									"value": "@pipeline().parameters.par_IdCustomer",
-									"type": "Expression"
-								},
-								"par_IdLog": {
-									"value": "@pipeline().parameters.par_IdLog",
-									"type": "Expression"
-								},
-								"par_IdRetailer": {
-									"value": "@pipeline().parameters.par_IdRetailer",
-									"type": "Expression"
-								},
-								"par_IdStores": {
-									"value": "@pipeline().parameters.par_IdStores",
-									"type": "Expression"
-								},
-								"par_LoadUserLoadDate": {
-									"value": "@pipeline().parameters.par_LoadUserLoadDate",
-									"type": "Expression"
-								},
-								"par_Reason": {
-									"value": "@pipeline().parameters.par_Reason",
-									"type": "Expression"
-								},
-								"par_RemoveAll": {
-									"value": "@pipeline().parameters.par_RemoveAll",
-									"type": "Expression"
-								},
-								"par_RemoveTransactions": {
-									"value": "@pipeline().parameters.par_RemoveTransactions",
-									"type": "Expression"
-								},
-								"par_User": {
-									"value": "@pipeline().parameters.par_User",
-									"type": "Expression"
-								},
-								"par_UserEmail": {
-									"value": "@pipeline().parameters.par_UserEmail",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_IdCustomer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdRetailer": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdStores": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_LoadUserLoadDate": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_UserEmail": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_Reason": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_RemoveAll": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_RemoveTransactions": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_IdLog": {
-						"type": "string",
-						"defaultValue": "-"
-					},
-					"par_User": {
-						"type": "string",
-						"defaultValue": "-"
-					}
-				},
-				"folder": {
-					"name": "Siweb"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-06-05T21:26:52Z"
+				"lastPublishTime": "2023-09-20T16:21:28Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"

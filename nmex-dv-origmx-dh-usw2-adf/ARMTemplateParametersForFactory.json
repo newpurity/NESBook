@@ -6,12 +6,15 @@
 			"value": "nmex-dv-origmx-dh-usw2-adf"
 		},
 		"AFS_AzureBlobStorage_connectionString": {
-			"value": ""
+			"value": "DefaultEndpointsProtocol=https;AccountName=rehnprd206datalake;"
 		},
 		"AzureBlobStorage2_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage3_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
 		"IC3_connectionString": {
@@ -35,11 +38,20 @@
 		"ls_ar_sftp_ncdt_2_password": {
 			"value": ""
 		},
+		"ls_op_adls2_lake_latam_mwsAuthToken": {
+			"value": ""
+		},
+		"ls_op_adls2_lake_latam_secretKey": {
+			"value": ""
+		},
 		"ls_or_adls2_retailersmx_connectionString": {
 			"value": ""
 		},
 		"AzureBlobStorage_MayoreoDigital_Dev_properties_typeProperties_serviceEndpoint": {
 			"value": "https://nmexpporigdsdh79sta.blob.core.windows.net/"
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://nmexprconstoresdhusw2key.vault.azure.net/"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"value": "https://prod-00-nams-pr-baisein-wrpa5gaht7mno-internal.westus2.environments.microsoftazurelogicapps.net:443/workflows/ceca053c86ba428e9c4e9d71134fa0c9/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=tMCGaXFb_ItzhjbxFqTzY1HvqDexzZZt75G3Eq0gzc4"
@@ -104,6 +116,12 @@
 		"ls_op_adls2_lake_extdata_properties_typeProperties_url": {
 			"value": "https://nmexppextdatadh607sta.dfs.core.windows.net/"
 		},
+		"ls_op_adls2_lake_latam_properties_typeProperties_endpoint": {
+			"value": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
+		},
+		"ls_op_adls2_lake_latam_properties_typeProperties_accessKeyId": {
+			"value": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
+		},
 		"ls_op_adls2_lake_origenesmx_properties_typeProperties_url": {
 			"value": "https://nmexdvorigmxdhusw2sta.dfs.core.windows.net/"
 		},
@@ -118,6 +136,54 @@
 		},
 		"tg_alice_copy_bl_to_bl_atp_files_properties_pl_copy_blob_to_blob_atp_files_parameters_par_Destination_Folder": {
 			"value": "inbound/fact/mail/atp/atp_files"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"value": "dev"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"value": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"value": "FORMS_OTAbiertas.xlsx"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"value": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"value": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"value": "25"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"value": "dev"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"value": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"value": "FORMS_People&MHE.xlsx"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"value": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"value": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"value": "25"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
 		},
 		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 			"value": "dev"
@@ -346,6 +412,9 @@
 		},
 		"tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
 			"value": "OUTBOUND_LIVE"
+		},
+		"tg_nixtla_model_execution_main_properties_typeProperties_scope": {
+			"value": "/subscriptions/a6c9f13d-be73-4227-b485-c7a16289be08/resourceGroups/nmex-pp-origenesmx-dh-usea-rgp/providers/Microsoft.Storage/storageAccounts/nmexpporigdsdh79sta"
 		},
 		"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename": {
 			"value": "@triggerBody().fileName"
