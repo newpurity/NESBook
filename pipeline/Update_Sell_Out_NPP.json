@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Notebook1",
+				"name": "Sell Out Weekly",
 				"type": "DatabricksNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -16,6 +16,29 @@
 				"userProperties": [],
 				"typeProperties": {
 					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out Semanal NPP"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0130-211945-mcv1mi12"
+					}
+				}
+			},
+			{
+				"name": "Sell Out Monthly",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out  Monthly NPP"
 				},
 				"linkedServiceName": {
 					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
