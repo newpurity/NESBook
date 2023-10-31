@@ -19,7 +19,10 @@
 				},
 				"linkedServiceName": {
 					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0130-211945-mcv1mi12"
+					}
 				}
 			},
 			{
@@ -117,7 +120,7 @@
 			"name": "amsmx_nixtla"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:24Z"
+		"lastPublishTime": "2023-10-05T20:14:03Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

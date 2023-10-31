@@ -1,0 +1,32 @@
+{
+	"name": "tg_sc_drivin_daily",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_api_drivin_daily",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2023-10-13T19:59:00",
+				"timeZone": "Central America Standard Time",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						22
+					]
+				}
+			}
+		}
+	}
+}
