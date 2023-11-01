@@ -1,0 +1,36 @@
+{
+	"name": "tg_mx_npp_biblia_weekly",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Sell_Out_Biblia_NPP",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 1,
+				"startTime": "2023-10-31T17:18:00",
+				"timeZone": "Central Standard Time (Mexico)",
+				"schedule": {
+					"minutes": [
+						50
+					],
+					"hours": [
+						12
+					],
+					"weekDays": [
+						"Thursday",
+						"Wednesday"
+					]
+				}
+			}
+		}
+	}
+}
