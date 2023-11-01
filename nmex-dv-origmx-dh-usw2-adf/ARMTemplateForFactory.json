@@ -9,8 +9,7 @@
 		},
 		"AFS_AzureBlobStorage_connectionString": {
 			"type": "secureString",
-			"metadata": "Cadena protegida para \"connectionString\"de \"AFS_AzureBlobStorage\"",
-			"defaultValue": "DefaultEndpointsProtocol=https;AccountName=rehnprd206datalake;"
+			"metadata": "Cadena protegida para \"connectionString\"de \"AFS_AzureBlobStorage\""
 		},
 		"AzureBlobStorage2_connectionString": {
 			"type": "secureString",
@@ -19,10 +18,6 @@
 		"AzureBlobStorage3_connectionString": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"connectionString\"de \"AzureBlobStorage3\""
-		},
-		"AzureSqlDatabase1_connectionString": {
-			"type": "secureString",
-			"metadata": "Cadena protegida para \"connectionString\"de \"AzureSqlDatabase1\""
 		},
 		"IC3_connectionString": {
 			"type": "secureString",
@@ -52,14 +47,6 @@
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"password\"de \"ls_ar_sftp_ncdt_2\""
 		},
-		"ls_op_adls2_lake_latam_mwsAuthToken": {
-			"type": "secureString",
-			"metadata": "Cadena protegida para \"mwsAuthToken\"de \"ls_op_adls2_lake_latam\""
-		},
-		"ls_op_adls2_lake_latam_secretKey": {
-			"type": "secureString",
-			"metadata": "Cadena protegida para \"secretKey\"de \"ls_op_adls2_lake_latam\""
-		},
 		"ls_or_adls2_retailersmx_connectionString": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"connectionString\"de \"ls_or_adls2_retailersmx\""
@@ -67,10 +54,6 @@
 		"AzureBlobStorage_MayoreoDigital_Dev_properties_typeProperties_serviceEndpoint": {
 			"type": "string",
 			"defaultValue": "https://nmexpporigdsdh79sta.blob.core.windows.net/"
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://nmexprconstoresdhusw2key.vault.azure.net/"
 		},
 		"HttpServer1_properties_typeProperties_url": {
 			"type": "string",
@@ -156,14 +139,6 @@
 			"type": "string",
 			"defaultValue": "https://nmexppextdatadh607sta.dfs.core.windows.net/"
 		},
-		"ls_op_adls2_lake_latam_properties_typeProperties_endpoint": {
-			"type": "string",
-			"defaultValue": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
-		},
-		"ls_op_adls2_lake_latam_properties_typeProperties_accessKeyId": {
-			"type": "string",
-			"defaultValue": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam"
-		},
 		"ls_op_adls2_lake_origenesmx_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://nmexdvorigmxdhusw2sta.dfs.core.windows.net/"
@@ -183,70 +158,6 @@
 		"tg_alice_copy_bl_to_bl_atp_files_properties_pl_copy_blob_to_blob_atp_files_parameters_par_Destination_Folder": {
 			"type": "string",
 			"defaultValue": "inbound/fact/mail/atp/atp_files"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
-			"type": "string",
-			"defaultValue": "/inbound/catalogs/supplychain/logistics/"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName": {
-			"type": "string",
-			"defaultValue": "FORMS_OTAbiertas.xlsx"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
-			"type": "string",
-			"defaultValue": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
-			"type": "string",
-			"defaultValue": "Shared Documents"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
-			"type": "string",
-			"defaultValue": "25"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID": {
-			"type": "string",
-			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
-		},
-		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret": {
-			"type": "string",
-			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
-			"type": "string",
-			"defaultValue": "/inbound/catalogs/supplychain/logistics/"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName": {
-			"type": "string",
-			"defaultValue": "FORMS_People&MHE.xlsx"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
-			"type": "string",
-			"defaultValue": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
-			"type": "string",
-			"defaultValue": "Shared Documents"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
-			"type": "string",
-			"defaultValue": "25"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID": {
-			"type": "string",
-			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
-		},
-		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret": {
-			"type": "string",
-			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
 		},
 		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 			"type": "string",
@@ -551,10 +462,6 @@
 		"tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
 			"type": "string",
 			"defaultValue": "OUTBOUND_LIVE"
-		},
-		"tg_nixtla_model_execution_main_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/a6c9f13d-be73-4227-b485-c7a16289be08/resourceGroups/nmex-pp-origenesmx-dh-usea-rgp/providers/Microsoft.Storage/storageAccounts/nmexpporigdsdh79sta"
 		},
 		"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename": {
 			"type": "string",
@@ -941,7 +848,7 @@
 					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/GilSalinas_NestleVeterinarios_BaseLiquidacion_origin')]",
@@ -977,75 +884,9 @@
 					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/Update_Sell_Out_NPP')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Sell Out Weekly",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out Semanal NPP"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
-						}
-					},
-					{
-						"name": "Sell Out Monthly",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Sell Out  Monthly NPP"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "amsmx_veterinarios"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-09-13T04:50:08Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
@@ -1187,7 +1028,7 @@
 					"name": "amsmx_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -1214,7 +1055,7 @@
 					"name": "amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -1254,7 +1095,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -1651,6 +1492,10 @@
 								"par_IsATM": {
 									"value": "@pipeline().parameters.par_IsATM",
 									"type": "Expression"
+								},
+								"par_FilesToProcess": {
+									"value": "@pipeline().parameters.par_FilesToProcess",
+									"type": "Expression"
 								}
 							}
 						},
@@ -1763,6 +1608,9 @@
 					},
 					"par_CustomViewsList": {
 						"type": "string"
+					},
+					"par_FilesToProcess": {
+						"type": "string"
 					}
 				},
 				"variables": {
@@ -1783,7 +1631,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:29Z"
+				"lastPublishTime": "2023-07-07T17:28:31Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]",
@@ -1845,46 +1693,9 @@
 								"par_IsATM": {
 									"value": "@pipeline().parameters.par_IsATM",
 									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "clean_bronze",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "load_bronze_layer",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/117_failure_clean_bronze",
-							"baseParameters": {
-								"par_IdClient": {
-									"value": "@pipeline().parameters.par_IdClient",
-									"type": "Expression"
 								},
-								"par_IdRetailer": {
-									"value": "@pipeline().parameters.par_IdRetailer",
-									"type": "Expression"
-								},
-								"par_IdLog": {
-									"value": "@pipeline().parameters.par_IdLog",
+								"par_FilesToProcess": {
+									"value": "@pipeline().parameters.par_FilesToProcess",
 									"type": "Expression"
 								}
 							}
@@ -1930,13 +1741,17 @@
 					"par_IsATM": {
 						"type": "string",
 						"defaultValue": "false"
+					},
+					"par_FilesToProcess": {
+						"type": "string",
+						"defaultValue": "fileName"
 					}
 				},
 				"folder": {
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-06T17:46:19Z"
+				"lastPublishTime": "2023-07-07T17:28:31Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2059,7 +1874,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:23Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2187,7 +2002,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:21Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2241,10 +2056,6 @@
 								"par_CustomViewsList": {
 									"value": "@pipeline().parameters.par_CustomViewsList",
 									"type": "Expression"
-								},
-								"par_EnableIncremental": {
-									"value": "@pipeline().parameters.par_EnableIncremental",
-									"type": "Expression"
 								}
 							}
 						},
@@ -2285,17 +2096,13 @@
 					"par_CustomViewsList": {
 						"type": "string",
 						"defaultValue": "45,46"
-					},
-					"par_EnableIncremental": {
-						"type": "string",
-						"defaultValue": "true"
 					}
 				},
 				"folder": {
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-09-20T16:21:28Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2374,7 +2181,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:21Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2546,7 +2353,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:22Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2670,7 +2477,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:21Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2794,7 +2601,7 @@
 					"name": "Siweb"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:21Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr_siweb')]"
@@ -2985,7 +2792,7 @@
 					}
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
@@ -2999,7 +2806,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy AFS__Last_Month",
+						"name": "Copy AFS",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -3058,114 +2865,6 @@
 								"parameters": {}
 							}
 						]
-					},
-					{
-						"name": "Copy AFS_Current_Month",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"maxConcurrentConnections": 0
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".csv"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "AFS_Monitoring_2",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "Dev_AFS_Prod",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "Fail1",
-						"type": "Fail",
-						"dependsOn": [
-							{
-								"activity": "Copy AFS_Current_Month",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"message": "No se cargo el file",
-							"errorCode": "001"
-						}
-					},
-					{
-						"name": "Notebook1",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Copy AFS__Last_Month",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/DatabricksMX/md_algoritmos/execution/AFS_Purina_Share of Shelf"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
-						}
 					}
 				],
 				"policy": {
@@ -3174,322 +2873,12 @@
 				"folder": {
 					"name": "amsmx_veterinarios"
 				},
-				"annotations": []
+				"annotations": [],
+				"lastPublishTime": "2023-07-04T23:19:24Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/AFS_Monitoring')]",
-				"[concat(variables('factoryId'), '/datasets/Dev_AFS_Prod')]",
-				"[concat(variables('factoryId'), '/datasets/AFS_Monitoring_2')]",
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_api_drivin_daily')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Lookup1",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "DelimitedText1",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "ForEach1",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Lookup1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Lookup1').output.value\n",
-								"type": "Expression"
-							},
-							"isSequential": true,
-							"activities": [
-								{
-									"name": "Token",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Proveedor",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "par_header_key",
-										"value": {
-											"value": "@item().Prop_1",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Set variable Fecha Hoy",
-									"type": "SetVariable",
-									"dependsOn": [
-										{
-											"activity": "Token",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "var_set_fecha_hoy",
-										"value": {
-											"value": "@formatDateTime(pipeline().TriggerTime,'yyyy-MM-dd')",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Execute Pipeline1",
-									"type": "ExecutePipeline",
-									"dependsOn": [
-										{
-											"activity": "Set variable Fecha Hoy",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"pipeline": {
-											"referenceName": "pl_extract_origenes_copy1",
-											"type": "PipelineReference"
-										},
-										"waitOnCompletion": true,
-										"parameters": {
-											"par_url": "https://external.driv.in/",
-											"par_stardate": {
-												"value": "@variables('var_set_fecha_hoy')",
-												"type": "Expression"
-											},
-											"par_enddate": {
-												"value": "@variables('var_set_fecha_hoy')",
-												"type": "Expression"
-											},
-											"par_header_key": {
-												"value": "@variables('par_header_key')",
-												"type": "Expression"
-											},
-											"par_provee": {
-												"value": "@variables('par_provee')",
-												"type": "Expression"
-											}
-										}
-									}
-								},
-								{
-									"name": "Proveedor",
-									"type": "SetVariable",
-									"dependsOn": [],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "par_provee",
-										"value": {
-											"value": "@item().Prop_0",
-											"type": "Expression"
-										}
-									}
-								},
-								{
-									"name": "Switch1",
-									"type": "Switch",
-									"dependsOn": [
-										{
-											"activity": "Execute Pipeline1",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"userProperties": [],
-									"typeProperties": {
-										"on": {
-											"value": "@if(contains(variables('par_provee'),'Velbus'),'Velbus',if(contains(variables('par_provee'),'Oplays'),'Oplays','Default'))",
-											"type": "Expression"
-										},
-										"cases": [
-											{
-												"value": "Velbus",
-												"activities": [
-													{
-														"name": "Silver Velbus",
-														"type": "DatabricksNotebook",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.12:00:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_tb_mx_sc_drivin_velbus"
-														},
-														"linkedServiceName": {
-															"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-															"type": "LinkedServiceReference",
-															"parameters": {
-																"par_cluster": "0130-211945-mcv1mi12"
-															}
-														}
-													}
-												]
-											},
-											{
-												"value": "Oplays",
-												"activities": [
-													{
-														"name": "Silver Oplays",
-														"type": "DatabricksNotebook",
-														"dependsOn": [],
-														"policy": {
-															"timeout": "0.12:00:00",
-															"retry": 0,
-															"retryIntervalInSeconds": 30,
-															"secureOutput": false,
-															"secureInput": false
-														},
-														"userProperties": [],
-														"typeProperties": {
-															"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_tb_mx_sc_drivin_oplays"
-														},
-														"linkedServiceName": {
-															"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-															"type": "LinkedServiceReference",
-															"parameters": {
-																"par_cluster": "0130-211945-mcv1mi12"
-															}
-														}
-													}
-												]
-											}
-										],
-										"defaultActivities": [
-											{
-												"name": "Silver Generico",
-												"type": "DatabricksNotebook",
-												"dependsOn": [],
-												"policy": {
-													"timeout": "0.12:00:00",
-													"retry": 0,
-													"retryIntervalInSeconds": 30,
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_mx_tb_drivin_apis"
-												},
-												"linkedServiceName": {
-													"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-													"type": "LinkedServiceReference",
-													"parameters": {
-														"par_cluster": "0130-211945-mcv1mi12"
-													}
-												}
-											}
-										]
-									}
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"par_cont": {
-						"type": "string",
-						"defaultValue": "dev"
-					},
-					"par_folder": {
-						"type": "string",
-						"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
-					}
-				},
-				"variables": {
-					"par_stardate": {
-						"type": "String"
-					},
-					"par_enddate": {
-						"type": "String"
-					},
-					"par_header_key": {
-						"type": "String"
-					},
-					"var_set_fecha_hoy": {
-						"type": "String"
-					},
-					"par_provee": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sc_drivin"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-10-17T16:07:36Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
-				"[concat(variables('factoryId'), '/pipelines/pl_extract_origenes_copy1')]",
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
+				"[concat(variables('factoryId'), '/datasets/Dev_AFS_Prod')]"
 			]
 		},
 		{
@@ -3585,7 +2974,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
@@ -4031,7 +3420,7 @@
 					"name": "amsmx_sales/amsmx_common_db"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:25Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]",
@@ -4158,281 +3547,10 @@
 					"name": "amsmx_sales/amsmx_common_db"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_common_generic_api_test')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Set variable Fecha Hoy",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_set_fecha_hoy",
-							"value": {
-								"value": "@formatDateTime(pipeline().TriggerTime,'yyyyMMdd')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Get ADF_parameters_apis",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "ds_adls_datascience_csv",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_directory": "datastore/sales/adf_parameters/",
-									"par_filename": "ADF_parameters_mayoreo_apis.csv",
-									"par_delimiter": ",",
-									"par_encoding": "UTF-8",
-									"par_header": true
-								}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "Filter ADF_parameters_apis",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "Get ADF_parameters_apis",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get ADF_parameters_apis').output.value",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@equals(string(item().retailer),pipeline().parameters.par_retailer)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "ForEach type retailer",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Set variable Fecha Hoy",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "Filter ADF_parameters_apis",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Filter ADF_parameters_apis').output.value",
-								"type": "Expression"
-							},
-							"isSequential": false,
-							"activities": [
-								{
-									"name": "Notebook API generic bronze layer",
-									"type": "DatabricksNotebook",
-									"dependsOn": [
-										{
-											"activity": "Copy API Data_copy1",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"notebookPath": "/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_apis_generic/execution/0010.Execution_Extract_MX_Sales_Mayoreo_API_Generic",
-										"baseParameters": {
-											"parFechaExecution": {
-												"value": "@variables('var_set_fecha_hoy')",
-												"type": "Expression"
-											},
-											"parFilePath": {
-												"value": "@concat(item().cont,item().blob_path)",
-												"type": "Expression"
-											},
-											"parRetailer": {
-												"value": "@item().retailer",
-												"type": "Expression"
-											},
-											"parRetailerType": {
-												"value": "@item().tipo",
-												"type": "Expression"
-											},
-											"parTableType": {
-												"value": "@item().tb_type",
-												"type": "Expression"
-											}
-										}
-									},
-									"linkedServiceName": {
-										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-										"type": "LinkedServiceReference",
-										"parameters": {
-											"par_cluster": "0130-211945-mcv1mi12"
-										}
-									}
-								},
-								{
-									"name": "Copy API Data_copy1",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "RestSource",
-											"httpRequestTimeout": "01:00:00",
-											"requestInterval": "00.00:00:00.010",
-											"requestMethod": "GET",
-											"additionalHeaders": {
-												"api-key": {
-													"value": "@item().header_key",
-													"type": "Expression"
-												},
-												"Content-type": "application/json",
-												"Authorization": {
-													"value": "@variables('var_api_token')",
-													"type": "Expression"
-												}
-											}
-										},
-										"sink": {
-											"type": "JsonSink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
-											},
-											"formatSettings": {
-												"type": "JsonWriteSettings"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "ar_rest_api_generic_auth",
-											"type": "DatasetReference",
-											"parameters": {
-												"par_url_complete": {
-													"value": "@if(empty(item().range_date),item().url,concat(item().url,formatDateTime(addDays(pipeline().TriggerTime,int(item().range_date)),item().date_format),item().header_content_type,if(equals(item().range_date,'-2'),'',formatDateTime(pipeline().TriggerTime,item().date_format))))",
-													"type": "Expression"
-												}
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "json_api_web",
-											"type": "DatasetReference",
-											"parameters": {
-												"FileName": {
-													"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
-													"type": "Expression"
-												},
-												"ContName": {
-													"value": "@item().cont",
-													"type": "Expression"
-												},
-												"FoldPath": {
-													"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"par_retailer": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_set_fecha_hoy": {
-						"type": "String"
-					},
-					"var_test": {
-						"type": "String"
-					},
-					"var_api_token": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sales/amsmx_common_db"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-09-20T16:21:28Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]",
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
-				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
-				"[concat(variables('factoryId'), '/datasets/json_api_web')]"
 			]
 		},
 		{
@@ -4504,7 +3622,7 @@
 					"name": "amsmx_sales/amsmx_common_db"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -5014,7 +4132,7 @@
 					"name": "amsmx_sales/amsmx_common_db"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_common_generic_databricks_notebook')]",
@@ -5143,7 +4261,7 @@
 					"name": "amsmx_sales/amsmx_common_db"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]",
@@ -5443,7 +4561,7 @@
 					"name": "amsla_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -5874,7 +4992,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:25Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -5946,7 +5064,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
@@ -6014,7 +5132,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -6336,7 +5454,7 @@
 					"name": "amsmx_supply_alice/pl_extract/SharePoint Catalogs"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_ar_rest_shp_binary')]",
@@ -6473,7 +5591,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -6852,7 +5970,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:30Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
@@ -7236,7 +6354,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:29Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
@@ -7458,7 +6576,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_ar_rest_shp_binary')]",
@@ -7609,7 +6727,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -7759,7 +6877,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:18Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -7794,10 +6912,7 @@
 						},
 						"linkedServiceName": {
 							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
+							"type": "LinkedServiceReference"
 						}
 					},
 					{
@@ -7912,7 +7027,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-05T20:14:03Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8062,7 +7177,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8212,7 +7327,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8362,7 +7477,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8512,7 +7627,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8662,7 +7777,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8812,7 +7927,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:18Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -8962,7 +8077,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -9112,7 +8227,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -9262,7 +8377,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -9385,7 +8500,7 @@
 					"name": "amsla_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:16Z"
+				"lastPublishTime": "2023-07-06T16:03:15Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/Binary1_flash_source')]",
@@ -9814,7 +8929,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
@@ -10055,7 +9170,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_extdata_binary')]",
@@ -10249,7 +9364,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_extdata_binary')]",
@@ -10445,7 +9560,7 @@
 					}
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
@@ -10610,7 +9725,7 @@
 					"name": "amsmx_palantir"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -10765,722 +9880,11 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_sc_nmex_devorigmx_generic')]",
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_extract_api_drivin')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Set variable DRIVIN",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/pods?start_date=',pipeline().parameters.par_stardate,'&end_date=',pipeline().parameters.par_enddate)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "POST",
-								"requestBody": "{}",
-								"additionalHeaders": {
-									"Content-type": {
-										"value": "@pipeline().parameters.par_header_content_type",
-										"type": "Expression"
-									},
-									"X-API-Key": {
-										"value": "@pipeline().parameters.par_header_key",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'DRIVIN')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Set variable DRIVIN Vehicles",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv_vehiculos",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/vehicles')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn Vehicles",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN Vehicles",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"X-API-Key": "bbf7fb1a-d859-46a1-a615-b861ed0e7e49",
-									"Content-Type": {
-										"value": "@pipeline().parameters.par_header_content_type",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv_vehiculos')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_VEHICLES_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'VEHICLES')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Set variable DRIVIN Esquemas",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv_esquemas",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/schemas')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn Esquemas",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN Esquemas",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"X-API-Key": "bbf7fb1a-d859-46a1-a615-b861ed0e7e49",
-									"Content-Type": "application/json"
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv_esquemas')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ESQUEMAS_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'ESQUEMAS')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Set variable DRIVIN Results",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv_results",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/results?date=',pipeline().parameters.par_enddate)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn Results",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN Results",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"X-API-Key": {
-										"value": "@pipeline().parameters.par_header_key",
-										"type": "Expression"
-									},
-									"Content-Type": {
-										"value": "@pipeline().parameters.par_header_content_type",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv_results')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_RESULTS_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'RESULTS')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Set variable Fecha Hoy",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_set_fecha_hoy",
-							"value": {
-								"value": "@convertTimeZone(utcNow(),'UTC','Central Standard Time (Mexico)','yyyy-MM-dd')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Set variable DRIVIN Addresses",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv_addresses",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/addresses')",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn Addresses",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN Addresses",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"Content-type": {
-										"value": "@pipeline().parameters.par_header_content_type",
-										"type": "Expression"
-									},
-									"X-API-Key": "4c2468a0-381c-443a-b8de-9caff69f050c"
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv_addresses')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ADDRESSES_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'ADDRESSES')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
-						"name": "Set variable DRIVIN Routes",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_driv_rutas",
-							"value": {
-								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/routes?date=',pipeline().parameters.par_enddate)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy DrivIn Routes",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "Set variable DRIVIN Routes",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "RestSource",
-								"httpRequestTimeout": "00:01:40",
-								"requestInterval": "00.00:00:00.010",
-								"requestMethod": "GET",
-								"additionalHeaders": {
-									"X-API-Key": {
-										"value": "@pipeline().parameters.par_header_key",
-										"type": "Expression"
-									}
-								}
-							},
-							"sink": {
-								"type": "JsonSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								},
-								"formatSettings": {
-									"type": "JsonWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ar_rest_api_generic_auth",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_url_complete": {
-										"value": "@variables('var_driv_rutas')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "json_api_web",
-								"type": "DatasetReference",
-								"parameters": {
-									"FileName": {
-										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ROUTES_','.json')",
-										"type": "Expression"
-									},
-									"ContName": {
-										"value": "@pipeline().parameters.par_cont",
-										"type": "Expression"
-									},
-									"FoldPath": {
-										"value": "@concat(pipeline().parameters.par_folder,'ROUTES')",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"par_url": {
-						"type": "string",
-						"defaultValue": "https://external.driv.in/"
-					},
-					"par_stardate": {
-						"type": "string"
-					},
-					"par_enddate": {
-						"type": "string"
-					},
-					"par_header_content_type": {
-						"type": "string",
-						"defaultValue": "application/json"
-					},
-					"par_header_key": {
-						"type": "string"
-					},
-					"FileName": {
-						"type": "string",
-						"defaultValue": "JSON"
-					},
-					"par_cont": {
-						"type": "string",
-						"defaultValue": "dev"
-					},
-					"par_folder": {
-						"type": "string",
-						"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
-					},
-					"par_url_login": {
-						"type": "string",
-						"defaultValue": "https://central.cevisur.com.mx:8443/nestle/api/auth/login"
-					}
-				},
-				"variables": {
-					"var_riv_ventas": {
-						"type": "String"
-					},
-					"var_nie_ventas": {
-						"type": "String"
-					},
-					"var_driv": {
-						"type": "String"
-					},
-					"var_supplier": {
-						"type": "String"
-					},
-					"var_cevi_login": {
-						"type": "String"
-					},
-					"var_cevi_ventas": {
-						"type": "String"
-					},
-					"var_cevi_inventario": {
-						"type": "String"
-					},
-					"var_cevi_clientes": {
-						"type": "String"
-					},
-					"var_cevi_produtos": {
-						"type": "String"
-					},
-					"var_riv_inventario": {
-						"type": "String"
-					},
-					"var_nie_inventarios": {
-						"type": "String"
-					},
-					"var_nie_clientes": {
-						"type": "String"
-					},
-					"var_nie_productos": {
-						"type": "String"
-					},
-					"var_set_fecha_hoy": {
-						"type": "String"
-					},
-					"var_cevi_facturas": {
-						"type": "String"
-					},
-					"var_url_default": {
-						"type": "String"
-					},
-					"var_driv_direccion": {
-						"type": "String"
-					},
-					"var_driv_rutas": {
-						"type": "String"
-					},
-					"var_driv_vehiculos": {
-						"type": "String"
-					},
-					"var_driv_results": {
-						"type": "String"
-					},
-					"var_driv_esquemas": {
-						"type": "String"
-					},
-					"var_driv_clientes": {
-						"type": "String"
-					},
-					"var_driv_addresses": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sc_drivin/HistoricoDrivIn"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-10-17T16:07:35Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
-				"[concat(variables('factoryId'), '/datasets/json_api_web')]"
 			]
 		},
 		{
@@ -13077,7 +11481,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/API_Web"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
@@ -14590,7 +12994,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/API_Web"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
@@ -15284,7 +13688,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/API_Web"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
@@ -21143,7 +19547,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:29Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_load_tablas_api_inb_out_alice')]",
@@ -21376,7 +19780,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:22Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]"
@@ -21614,7 +20018,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_sc_nmex_devorigmx_generic')]",
@@ -21768,7 +20172,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:27Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_sc_nmex_devorigmx_generic')]",
@@ -22056,7 +20460,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:24Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
@@ -22234,7 +20638,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:24Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_csv')]",
@@ -22302,7 +20706,7 @@
 					"name": "amsmx_professional/catalogs"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -22369,7 +20773,7 @@
 					"name": "amsmx_professional/catalogs"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -22436,7 +20840,7 @@
 					"name": "amsmx_professional/catalogs"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -22503,7 +20907,7 @@
 					"name": "amsmx_professional/catalogs"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:25Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -22532,1603 +20936,9 @@
 					"name": "amsmx_professional/facts"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_extract_origenes_copy1')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Switch Supplier",
-						"type": "Switch",
-						"dependsOn": [
-							{
-								"activity": "Set variable Fecha Hoy",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "RIVERA",
-									"activities": [
-										{
-											"name": "Set variable RIVERA Ventas",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_riv_ventas",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Ventas.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Copy RIVERA Ventas",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable RIVERA Ventas",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"api-key": {
-															"value": "@pipeline().parameters.par_header_key",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_riv_ventas')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Set variable RIVERA Inventarios",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_riv_inventario",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Inventario.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Copy RIVERA Inventario",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable RIVERA Inventarios",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"api-key": {
-															"value": "@pipeline().parameters.par_header_key",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_riv_inventario')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"value": "NIETO",
-									"activities": [
-										{
-											"name": "Set variable NIETO Ventas",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_nie_ventas",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'?event=VENTAS&access_token=',pipeline().parameters.par_header_key)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable NIETO Inventarios",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_nie_inventarios",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'?event=INVENTARIOS&access_token=',pipeline().parameters.par_header_key)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable NIETO Clientes",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_nie_clientes",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'?event=CLIENTES&access_token=',pipeline().parameters.par_header_key)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable NIETO Productos",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_nie_productos",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'?event=PRODUCTOS&access_token=',pipeline().parameters.par_header_key)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Copy NIETO Ventas",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable NIETO Ventas",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET"
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_nie_ventas')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_NIETO_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy NIETO Clientes",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable NIETO Clientes",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET"
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_nie_clientes')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_NIETO_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy NIETO Productos",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable NIETO Productos",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET"
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_nie_productos')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_NIETO_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy NIETO Inventario",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable NIETO Inventarios",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.23:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:05:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET"
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_nie_inventarios')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_NIETO_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Set variable NIETO Almacenes",
-											"type": "SetVariable",
-											"dependsOn": [],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_nie_almacenes",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'?event=ALMACENES&access_token=',pipeline().parameters.par_header_key)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Copy NIETO Almacenes",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable NIETO Almacenes",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET"
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_nie_almacenes')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_NIETO_ALMACENES_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'ALMACENES')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										}
-									]
-								},
-								{
-									"value": "DRIVIN",
-									"activities": [
-										{
-											"name": "Execute Pipeline Drivin",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_extract_api_drivin",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"par_url": "https://external.driv.in/",
-													"par_stardate": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"par_enddate": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"par_header_content_type": "application/json",
-													"par_header_key": {
-														"value": "@pipeline().parameters.par_header_key",
-														"type": "Expression"
-													},
-													"FileName": "JSON",
-													"par_cont": "dev",
-													"par_folder": "/inbound/ext_api_files_new/DRIVIN/"
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "CEVISUR",
-									"activities": [
-										{
-											"name": "Set variable CEVISUR Token",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "CEVISUR Login",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_login",
-												"value": {
-													"value": "@activity('CEVISUR Login').output.token",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable CEVISUR Ventas",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Token",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_ventas",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'nestle/api/pedidos/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable CEVISUR Inventarios",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Token",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_inventario",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'nestle/api/inventario/existencias/actuales')",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable CEVISUR Clientes",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Token",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_clientes",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'nestle/api/clientes/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Set variable CEVISUR Productos",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Token",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_produtos",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'nestle/api/articulos')",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "CEVISUR Login",
-											"type": "WebActivity",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"url": {
-													"value": "@pipeline().parameters.par_url_login",
-													"type": "Expression"
-												},
-												"method": "POST",
-												"headers": {
-													"Content-type": {
-														"value": "@pipeline().parameters.par_header_content_type",
-														"type": "Expression"
-													}
-												},
-												"body": {
-													"username": "0PM067",
-													"password": "5P%LZ19xeM%v"
-												}
-											}
-										},
-										{
-											"name": "Copy CEVISUR Ventas",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Ventas",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"Content-type": {
-															"value": "@pipeline().parameters.par_header_content_type",
-															"type": "Expression"
-														},
-														"Authorization": {
-															"value": "@concat('Bearer ',variables('var_cevi_login'))",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_cevi_ventas')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Set variable CEVISUR Facturas",
-											"type": "SetVariable",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Token",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"variableName": "var_cevi_facturas",
-												"value": {
-													"value": "@concat(pipeline().parameters.par_url,'nestle/api/facturas/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
-													"type": "Expression"
-												}
-											}
-										},
-										{
-											"name": "Copy CEVISUR Clientes",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Clientes",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"Content-type": {
-															"value": "@pipeline().parameters.par_header_content_type",
-															"type": "Expression"
-														},
-														"Authorization": {
-															"value": "@concat('Bearer ',variables('var_cevi_login'))",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_cevi_clientes')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy CEVISUR Inventario",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Inventarios",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"Content-type": {
-															"value": "@pipeline().parameters.par_header_content_type",
-															"type": "Expression"
-														},
-														"Authorization": {
-															"value": "@concat('Bearer ',variables('var_cevi_login'))",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_cevi_inventario')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy CEVISUR Productos",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Productos",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"Content-type": {
-															"value": "@pipeline().parameters.par_header_content_type",
-															"type": "Expression"
-														},
-														"Authorization": {
-															"value": "@concat('Bearer ',variables('var_cevi_login'))",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_cevi_produtos')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										},
-										{
-											"name": "Copy CEVISUR Facturas",
-											"type": "Copy",
-											"dependsOn": [
-												{
-													"activity": "Set variable CEVISUR Facturas",
-													"dependencyConditions": [
-														"Succeeded"
-													]
-												}
-											],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"source": {
-													"type": "RestSource",
-													"httpRequestTimeout": "00:01:40",
-													"requestInterval": "00.00:00:00.010",
-													"requestMethod": "GET",
-													"additionalHeaders": {
-														"Content-type": {
-															"value": "@pipeline().parameters.par_header_content_type",
-															"type": "Expression"
-														},
-														"Authorization": {
-															"value": "@concat('Bearer ',variables('var_cevi_login'))",
-															"type": "Expression"
-														}
-													}
-												},
-												"sink": {
-													"type": "JsonSink",
-													"storeSettings": {
-														"type": "AzureBlobFSWriteSettings"
-													},
-													"formatSettings": {
-														"type": "JsonWriteSettings"
-													}
-												},
-												"enableStaging": false
-											},
-											"inputs": [
-												{
-													"referenceName": "ar_rest_api_generic_auth",
-													"type": "DatasetReference",
-													"parameters": {
-														"par_url_complete": {
-															"value": "@variables('var_cevi_facturas')",
-															"type": "Expression"
-														}
-													}
-												}
-											],
-											"outputs": [
-												{
-													"referenceName": "json_api_web",
-													"type": "DatasetReference",
-													"parameters": {
-														"FileName": {
-															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_FACTURAS_',variables('var_set_fecha_hoy'),'.json')",
-															"type": "Expression"
-														},
-														"ContName": {
-															"value": "@pipeline().parameters.par_cont",
-															"type": "Expression"
-														},
-														"FoldPath": {
-															"value": "@concat(pipeline().parameters.par_folder,'FACTURAS')",
-															"type": "Expression"
-														}
-													}
-												}
-											]
-										}
-									]
-								}
-							],
-							"defaultActivities": [
-								{
-									"name": "Unknown Provider",
-									"description": "Return if no URL is found.",
-									"type": "Wait",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"waitTimeInSeconds": 1
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "Switch Bronze Layer",
-						"type": "Switch",
-						"dependsOn": [
-							{
-								"activity": "Switch Supplier",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "NIETO",
-									"activities": [
-										{
-											"name": "Notebook Load NIETO Bronze",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_nieto",
-												"baseParameters": {
-													"parFechaExecution": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"parFileNameTitle": "NIETO",
-													"parFilePath": {
-														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
-														"type": "Expression"
-													}
-												}
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "RIVERA",
-									"activities": [
-										{
-											"name": "Notebook RIVERA Bronze",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_rivera",
-												"baseParameters": {
-													"parFechaExecution": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"parFileNameTitle": "RIVERA",
-													"parFilePath": {
-														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
-														"type": "Expression"
-													}
-												}
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "DRIVIN",
-									"activities": [
-										{
-											"name": "Notebook Load DRIVIN Bronze",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_drivin",
-												"baseParameters": {
-													"parFechaExecution": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"parFileNameTitle": "DRIVIN",
-													"parFilePath": {
-														"value": "@concat(variables('par_cont'),variables('par_folder'))",
-														"type": "Expression"
-													}
-												}
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "CEVISUR",
-									"activities": [
-										{
-											"name": "Notebook Load CEVISUR Bronze",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_cevisur",
-												"baseParameters": {
-													"parFechaExecution": {
-														"value": "@variables('var_set_fecha_hoy')",
-														"type": "Expression"
-													},
-													"parFileNameTitle": "CEVISUR",
-													"parFilePath": {
-														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
-														"type": "Expression"
-													}
-												}
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								}
-							]
-						}
-					},
-					{
-						"name": "Set variable Fecha Hoy",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_set_fecha_hoy",
-							"value": {
-								"value": "@pipeline().parameters.par_stardate",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"par_url": {
-						"type": "string"
-					},
-					"par_stardate": {
-						"type": "string"
-					},
-					"par_enddate": {
-						"type": "string"
-					},
-					"par_header_content_type": {
-						"type": "string",
-						"defaultValue": "application/json"
-					},
-					"par_header_key": {
-						"type": "string"
-					},
-					"FileName": {
-						"type": "string",
-						"defaultValue": "JSON"
-					},
-					"par_cont": {
-						"type": "string",
-						"defaultValue": "dev"
-					},
-					"par_folder": {
-						"type": "string",
-						"defaultValue": "inbound/ext_api_files_new/DRIVIN/"
-					},
-					"par_url_login": {
-						"type": "string"
-					},
-					"par_provee": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_riv_ventas": {
-						"type": "String"
-					},
-					"var_nie_ventas": {
-						"type": "String"
-					},
-					"var_driv": {
-						"type": "String"
-					},
-					"var_supplier": {
-						"type": "String"
-					},
-					"var_cevi_login": {
-						"type": "String"
-					},
-					"var_cevi_ventas": {
-						"type": "String"
-					},
-					"var_cevi_inventario": {
-						"type": "String"
-					},
-					"var_cevi_clientes": {
-						"type": "String"
-					},
-					"var_cevi_produtos": {
-						"type": "String"
-					},
-					"var_riv_inventario": {
-						"type": "String"
-					},
-					"var_nie_inventarios": {
-						"type": "String"
-					},
-					"var_nie_clientes": {
-						"type": "String"
-					},
-					"var_nie_productos": {
-						"type": "String"
-					},
-					"var_set_fecha_hoy": {
-						"type": "String"
-					},
-					"var_cevi_facturas": {
-						"type": "String"
-					},
-					"var_url_default": {
-						"type": "String"
-					},
-					"var_driv_direccion": {
-						"type": "String"
-					},
-					"var_driv_rutas": {
-						"type": "String"
-					},
-					"var_driv_vehiculos": {
-						"type": "String"
-					},
-					"var_driv_grupo_vehiculos": {
-						"type": "String"
-					},
-					"var_nie_almacenes": {
-						"type": "String"
-					},
-					"par_cont": {
-						"type": "String",
-						"defaultValue": "dev"
-					},
-					"par_folder": {
-						"type": "String",
-						"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sc_drivin/HistoricoDrivIn"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-10-17T16:07:36Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ar_rest_api_generic_auth')]",
-				"[concat(variables('factoryId'), '/datasets/json_api_web')]",
-				"[concat(variables('factoryId'), '/pipelines/pl_extract_api_drivin')]",
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
-			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_extract_p_ic3')]",
@@ -24270,7 +21080,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:24Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/IC3_SQL_TO_LAKE')]",
@@ -24419,7 +21229,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -24650,7 +21460,7 @@
 					"name": "amsmx_ndg"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
@@ -24718,7 +21528,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -24872,7 +21682,7 @@
 					"name": "amsmx_sales"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:33Z"
+				"lastPublishTime": "2023-07-06T16:03:29Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]",
@@ -25013,7 +21823,7 @@
 					"name": "amsmx_ndg"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:28Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
@@ -25170,7 +21980,7 @@
 					"name": "amsmx_ndg"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
+				"lastPublishTime": "2023-07-06T16:03:23Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
@@ -25769,7 +22579,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -26104,7 +22914,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:30Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_common_tabla_lx03')]",
@@ -26155,7 +22965,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -26195,7 +23005,7 @@
 					"name": "amsmx_palantir"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -26271,7 +23081,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_extract_p_ic3')]",
@@ -26457,7 +23267,7 @@
 					"name": "amsmx_finance_creditnotes"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:34Z"
+				"lastPublishTime": "2023-07-06T16:03:28Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_common_shp_copy-multiplefilestodatalakehourfilter')]",
@@ -26782,7 +23592,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:26Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_csv')]",
@@ -27100,7 +23910,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:28Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_extract_move_blob_to_blob')]",
@@ -27458,7 +24268,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:31Z"
+				"lastPublishTime": "2023-07-06T16:03:28Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_extract_move_blob_to_blob')]",
@@ -27557,7 +24367,7 @@
 					"name": "amsmx_mayoreodigital"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_ore')]",
@@ -27588,10 +24398,7 @@
 						},
 						"linkedServiceName": {
 							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
+							"type": "LinkedServiceReference"
 						}
 					},
 					{
@@ -27692,119 +24499,10 @@
 					"name": "amsmx_nixtla"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-05T20:14:03Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_nixtla_model_execution')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Main",
-						"description": "Ejecuta el main del proyecto",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/luis.guaso@mx.nestle.com/Nixtla/src/data/main"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
-						}
-					},
-					{
-						"name": "Model",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Main",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/luis.guaso@mx.nestle.com/Nixtla/src/models/ML_ST_FR/ML_TS"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference",
-							"parameters": {
-								"par_cluster": "0130-211945-mcv1mi12"
-							}
-						}
-					},
-					{
-						"name": "Send Email Completed Pipeline",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Model",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_send_email_notification_alice",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"par_conteudo_email": "El Pipeline se ejecutó correctamente",
-								"par_lista_email": "luis.patino@mx.nestle.com;Yair.Atristain@mx.nestle.com;",
-								"par_project_name": "Nixtla",
-								"par_status_msg": "Sucesso",
-								"par_fecha": {
-									"value": "@utcnow()",
-									"type": "Expression"
-								},
-								"par_runid": {
-									"value": "@pipeline().RunId",
-									"type": "Expression"
-								}
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"folder": {
-					"name": "amsmx_nixtla"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-10-05T20:14:03Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]",
-				"[concat(variables('factoryId'), '/pipelines/pl_send_email_notification_alice')]"
 			]
 		},
 		{
@@ -27895,7 +24593,7 @@
 					"name": "amsmx_mayoreodigital"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_ore')]",
@@ -27991,7 +24689,7 @@
 					"name": "amsmx_mayoreodigital"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:21Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataSetProductos')]",
@@ -28168,7 +24866,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:23Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28235,7 +24933,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28302,7 +25000,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28396,7 +25094,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28490,7 +25188,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28584,7 +25282,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28624,7 +25322,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28804,7 +25502,7 @@
 					"name": "amsmx_sales"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_adls_datascience_csv')]",
@@ -28926,7 +25624,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:20Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -28966,7 +25664,7 @@
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-07-06T16:03:17Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -29035,7 +25733,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/nmex-pp-origenesmx-ithub-ir')]"
@@ -29285,7 +25983,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:32Z"
+				"lastPublishTime": "2023-07-06T16:03:28Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_extract_move_blob_to_blob')]",
@@ -29312,46 +26010,6 @@
 						"type": "AzureBlobStorageLocation",
 						"fileName": {
 							"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 1, 'Month'), 'yyyyMM'), '01.csv')",
-							"type": "Expression"
-						},
-						"folderPath": "MonitoringDomain/F_MonitoringAnswer",
-						"container": "206"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "\"MTA_MTDR_PRD_ID\";\"MTD_MTDR_ID\";\"MTA_ID\";\"Answer_Date\";\"Answer_Time\";\"Date_Int\";\"USR_ID\";\"USR_ST_ID\";\"CUS_ID\";\"CUS_ST_ID\";\"APP_ID\";\"Digitally_Processed\";\"MTDR_ID\";\"PRD_ID\";\"PRD_ST_ID\";\"ST_ID\";\"Answer_As_Text\";\"Answer_As_Number\";\"Answer_As_DateInt\";\"Answer_As_OptionID\";\"Answer_As_OptionText\";\"URL_To_Photo\";\"User_Action\";\"Target_Description\";\"Target_Value\";\"Automatic_Answer\";\"Header_TimeStamp\";\"Row_TimeStamp\";\"CUS_PRD_ST_ID\";\"Last_Known\";\"Is_Listed\";\"LTP_HIE_HIN_PRD_Version_ID\";\"Is_PowerProduct\";\"PPP_HIE_HIN_PRD_Version_ID\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"MTD_ID\";\"Answer_DateTime\";\"AD_ID\";\"Automatic_Answer_As_Text\";\"Is_Edited\"",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AFS_AzureBlobStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AFS_Monitoring_2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AFS_AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "NESTLE_VETERINARIOS"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 0, 'Month'), 'yyyyMM'), '01.csv')",
 							"type": "Expression"
 						},
 						"folderPath": "MonitoringDomain/F_MonitoringAnswer",
@@ -29492,7 +26150,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "token_proveedores.csv",
+						"fileName": "fechas_drivin2.csv",
 						"folderPath": "inbound/api/drivin",
 						"container": "dev"
 					},
@@ -31103,21 +27761,10 @@
 				"annotations": [],
 				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"connectionString": "[parameters('AFS_AzureBlobStorage_connectionString')]",
-					"accountKey": {
-						"type": "AzureKeyVaultSecret",
-						"store": {
-							"referenceName": "lk_nmexdvorigmxdhusw2key",
-							"type": "LinkedServiceReference"
-						},
-						"secretName": "datalakeafs",
-						"secretVersion": "b09820ccb19344f1823065fdda05fb6a"
-					}
+					"connectionString": "[parameters('AFS_AzureBlobStorage_connectionString')]"
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/lk_nmexdvorigmxdhusw2key')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage2')]",
@@ -31176,32 +27823,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/integrationRuntimes/nmex-origmx-dh-usw2-ithub-shared-ir')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureKeyVault",
-				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
-				}
-			},
-			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/HttpServer1')]",
@@ -31606,33 +28227,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ls_op_adls2_lake_latam')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AmazonMWS",
-				"typeProperties": {
-					"endpoint": "[parameters('ls_op_adls2_lake_latam_properties_typeProperties_endpoint')]",
-					"marketplaceID": "ls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latamls_op_adls2_lake_latam",
-					"sellerID": "ls_op_adls2_lake_latamls_op_adls2_lake_latam",
-					"mwsAuthToken": {
-						"type": "SecureString",
-						"value": "[parameters('ls_op_adls2_lake_latam_mwsAuthToken')]"
-					},
-					"accessKeyId": "[parameters('ls_op_adls2_lake_latam_properties_typeProperties_accessKeyId')]",
-					"secretKey": {
-						"type": "SecureString",
-						"value": "[parameters('ls_op_adls2_lake_latam_secretKey')]"
-					},
-					"useEncryptedEndpoints": true,
-					"useHostVerification": true,
-					"usePeerVerification": true
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/ls_op_adls2_lake_origenesmx')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -31733,84 +28327,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_copy_blob_to_blob_atp_files')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_alice_retrival_FORMS_OTAbiertas_shpt')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_common_shp",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"parEnvironment": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment')]",
-							"parAdlsDestinationFolder": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder')]",
-							"parFileName": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName')]",
-							"parShpSiteUrl": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl')]",
-							"parShpRelativeFolderPath": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath')]",
-							"parModifiedLastNHours": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours')]",
-							"parClientID": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID')]",
-							"parClientSecret": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2023-09-28T08:00:00",
-						"timeZone": "Central Standard Time (Mexico)"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_common_shp')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_alice_retrival_FORMS_People_MHE_shpt')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_common_shp",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"parEnvironment": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment')]",
-							"parAdlsDestinationFolder": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder')]",
-							"parFileName": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName')]",
-							"parShpSiteUrl": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl')]",
-							"parShpRelativeFolderPath": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath')]",
-							"parModifiedLastNHours": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours')]",
-							"parClientID": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID')]",
-							"parClientSecret": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Hour",
-						"interval": 1,
-						"startTime": "2023-09-28T08:00:00",
-						"timeZone": "Central Standard Time (Mexico)"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_common_shp')]"
 			]
 		},
 		{
@@ -32495,48 +29011,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tg_mx_npp_sell_out_weekly')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Update_Sell_Out_NPP",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2023-09-11T04:46:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								7
-							],
-							"weekDays": [
-								"Thursday",
-								"Wednesday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/Update_Sell_Out_NPP')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/tg_mx_sc_tb_mx_sa_dashboardtc')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -32695,37 +29169,6 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tg_nixtla_model_execution_main')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_nixtla_model_execution",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/datascience/blobs/dev/sales/automatic_execution/success.csv",
-					"blobPathEndsWith": ".csv",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('tg_nixtla_model_execution_main_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_nixtla_model_execution')]"
-			]
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/tg_pl_alice_fact_historical')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -32807,44 +29250,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pl_sales_refresh_power_bi')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_sc_drivin_daily')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_api_drivin_daily",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-10-13T19:59:00",
-						"timeZone": "Central America Standard Time",
-						"schedule": {
-							"minutes": [
-								30
-							],
-							"hours": [
-								22
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_api_drivin_daily')]"
 			]
 		},
 		{
@@ -32941,7 +29346,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/tr_afs_npp_1')]",
+			"name": "[concat(parameters('factoryName'), '/tr_afs_npp')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -32959,7 +29364,7 @@
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
-						"frequency": "Month",
+						"frequency": "Day",
 						"interval": 1,
 						"startTime": "2023-07-02T13:51:00",
 						"timeZone": "Central Standard Time (Mexico)",
@@ -32969,50 +29374,6 @@
 							],
 							"hours": [
 								17
-							],
-							"monthDays": [
-								1
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_afs_npp')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_afs_npp_2')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_afs_npp",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2023-07-04T17:15:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								8
-							],
-							"weekDays": [
-								"Monday"
 							]
 						}
 					}
@@ -33232,7 +29593,15 @@
 			"properties": {
 				"annotations": [],
 				"runtimeState": "Stopped",
-				"pipelines": [],
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_daily_DRIVIN",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
 				"type": "ScheduleTrigger",
 				"typeProperties": {
 					"recurrence": {
@@ -33251,7 +29620,9 @@
 					}
 				}
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_daily_DRIVIN')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tr_ecomm')]",

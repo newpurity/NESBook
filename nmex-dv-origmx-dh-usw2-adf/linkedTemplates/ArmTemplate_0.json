@@ -7,9 +7,9 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
-		"AzureSqlDatabase1_connectionString": {
+		"AFS_AzureBlobStorage_connectionString": {
 			"type": "secureString",
-			"metadata": "Cadena protegida para \"connectionString\"de \"AzureSqlDatabase1\""
+			"metadata": "Cadena protegida para \"connectionString\"de \"AFS_AzureBlobStorage\""
 		},
 		"Sftp1_password": {
 			"type": "secureString",
@@ -30,10 +30,6 @@
 		"ls_ar_sftp_ncdt_2_password": {
 			"type": "secureString",
 			"metadata": "Cadena protegida para \"password\"de \"ls_ar_sftp_ncdt_2\""
-		},
-		"AzureKeyVault1_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://nmexprconstoresdhusw2key.vault.azure.net/"
 		},
 		"RestService1_properties_typeProperties_url": {
 			"type": "string",
@@ -98,6 +94,10 @@
 		"ls_ar_sftp_ncdt_2_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "@{linkedService().paruser}"
+		},
+		"nmex_service_api_rest_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().url_base}"
 		}
 	},
 	"variables": {
@@ -128,7 +128,7 @@
 					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -272,7 +272,7 @@
 					"name": "amsmx_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -299,7 +299,7 @@
 					"name": "amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -339,7 +339,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -636,7 +636,7 @@
 					"name": "amsla_data-load-tool"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -770,7 +770,7 @@
 					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
@@ -797,32 +797,19 @@
 					"name": "amsmx_professional/facts"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:15Z"
+				"lastPublishTime": "2023-07-06T16:03:13Z"
 			},
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/AzureKeyVault1')]",
+			"name": "[concat(parameters('factoryName'), '/AFS_AzureBlobStorage')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"type": "AzureKeyVault",
+				"type": "AzureBlobStorage",
 				"typeProperties": {
-					"baseUrl": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase1')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('AzureSqlDatabase1_connectionString')]"
+					"connectionString": "[parameters('AFS_AzureBlobStorage_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -1074,6 +1061,26 @@
 						"type": "SecureString",
 						"value": "[parameters('ls_ar_sftp_ncdt_2_password')]"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/nmex_service_api_rest')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"url_base": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('nmex_service_api_rest_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
 				}
 			},
 			"dependsOn": []
