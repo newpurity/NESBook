@@ -28,14 +28,7 @@
 			{
 				"name": "Sell Out Monthly",
 				"type": "DatabricksNotebook",
-				"dependsOn": [
-					{
-						"activity": "Sell Out Weekly",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
