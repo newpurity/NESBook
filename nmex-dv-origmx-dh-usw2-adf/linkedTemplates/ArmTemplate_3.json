@@ -13,6 +13,189 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/pl_04_create_datasets')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "create_datasets",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/Production/DatabricksMX/sl_siweb/execution/400_materialize_views",
+							"baseParameters": {
+								"par_IdClient": {
+									"value": "@pipeline().parameters.par_IdClient",
+									"type": "Expression"
+								},
+								"par_IdLog": {
+									"value": "@pipeline().parameters.par_IdLog",
+									"type": "Expression"
+								},
+								"par_MailList": {
+									"value": "@pipeline().parameters.par_MailList",
+									"type": "Expression"
+								},
+								"par_User": {
+									"value": "@pipeline().parameters.par_User",
+									"type": "Expression"
+								},
+								"par_DynamicInformationTypesList": {
+									"value": "@pipeline().parameters.par_DynamicInformationTypesList",
+									"type": "Expression"
+								},
+								"par_SqlViewsList": {
+									"value": "@pipeline().parameters.par_SqlViewsList",
+									"type": "Expression"
+								},
+								"par_CustomViewsList": {
+									"value": "@pipeline().parameters.par_CustomViewsList",
+									"type": "Expression"
+								},
+								"par_EnableIncremental": {
+									"value": "@pipeline().parameters.par_EnableIncremental",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_IdClient": {
+						"type": "string",
+						"defaultValue": "1"
+					},
+					"par_IdLog": {
+						"type": "string",
+						"defaultValue": "-"
+					},
+					"par_MailList": {
+						"type": "string",
+						"defaultValue": "ygarcia@thestoreintelligence.com"
+					},
+					"par_User": {
+						"type": "string",
+						"defaultValue": "ygarcia"
+					},
+					"par_DynamicInformationTypesList": {
+						"type": "string",
+						"defaultValue": "-"
+					},
+					"par_SqlViewsList": {
+						"type": "string",
+						"defaultValue": "-"
+					},
+					"par_CustomViewsList": {
+						"type": "string",
+						"defaultValue": "45,46"
+					},
+					"par_EnableIncremental": {
+						"type": "string",
+						"defaultValue": "true"
+					}
+				},
+				"folder": {
+					"name": "Siweb"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-09-20T16:21:28Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_10_update_attributes')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Run_notebook_view_attribues",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/Production/DatabricksMX/sl_siweb/execution/410_update_table_attributes",
+							"baseParameters": {
+								"par_IdClient": {
+									"value": "@pipeline().parameters.par_IdClient",
+									"type": "Expression"
+								},
+								"par_IdLog": {
+									"value": "@pipeline().parameters.par_IdLog",
+									"type": "Expression"
+								},
+								"par_MailList": {
+									"value": "@pipeline().parameters.par_MailList",
+									"type": "Expression"
+								},
+								"par_User": {
+									"value": "@pipeline().parameters.par_User",
+									"type": "Expression"
+								},
+								"par_Destiny": {
+									"value": "@pipeline().parameters.par_Destiny",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_IdClient": {
+						"type": "string"
+					},
+					"par_IdLog": {
+						"type": "string"
+					},
+					"par_MailList": {
+						"type": "string"
+					},
+					"par_User": {
+						"type": "string"
+					},
+					"par_Destiny": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "Siweb"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:21Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_11_delete_transactions_catalogs')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -106,8 +289,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_Table": {
@@ -253,8 +435,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdCustomer": {
@@ -376,8 +557,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdCustomer": {
@@ -463,8 +643,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_db_type_path": {
@@ -919,8 +1098,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parTableName_Load": {
@@ -990,8 +1168,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -1134,8 +1311,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -1283,8 +1459,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -1328,7 +1503,10 @@
 						},
 						"linkedServiceName": {
 							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
 						}
 					},
 					{
@@ -1432,8 +1610,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -1444,7 +1621,7 @@
 					"name": "amsmx_supply_alice"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-10-05T20:14:03Z"
 			},
 			"dependsOn": []
 		},
@@ -1581,8 +1758,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -1730,8 +1906,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -1879,8 +2054,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2028,8 +2202,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2177,8 +2350,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2326,8 +2498,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2475,8 +2646,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2624,8 +2794,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2773,8 +2942,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -2786,235 +2954,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_datasets')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Switch1",
-						"type": "Switch",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@pipeline().parameters.Area",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "Catalogs",
-									"activities": [
-										{
-											"name": "Notebook1",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/000_materialize_catalogs"
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "Nesmovil",
-									"activities": [
-										{
-											"name": "Notebook2",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/003_materialize_nesmovil"
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "Sindicadas",
-									"activities": [
-										{
-											"name": "Notebook5",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/005_materialize_sindicadas_unificadas"
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "SellIn",
-									"activities": [
-										{
-											"name": "Notebook3",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/001_materialize_sellin"
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								},
-								{
-									"value": "SellOut",
-									"activities": [
-										{
-											"name": "Notebook4",
-											"type": "DatabricksNotebook",
-											"dependsOn": [],
-											"policy": {
-												"timeout": "0.12:00:00",
-												"retry": 0,
-												"retryIntervalInSeconds": 30,
-												"secureOutput": false,
-												"secureInput": false
-											},
-											"userProperties": [],
-											"typeProperties": {
-												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/002_materialize_sellout"
-											},
-											"linkedServiceName": {
-												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-												"type": "LinkedServiceReference"
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"Area": {
-						"type": "string"
-					}
-				},
-				"folder": {
-					"name": "amsmx_palantir"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_extract_mx_np_cat_allowance')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "load_layer_silver",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_allowance/execution/0010_np_cat_allowance_load_silver_layer"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "load_layer_gold",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "load_layer_silver",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_allowance/execution/0020_np_cat_allowance_load_gold_layer"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsmx_professional/catalogs"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
 			},
 			"dependsOn": []
 		}

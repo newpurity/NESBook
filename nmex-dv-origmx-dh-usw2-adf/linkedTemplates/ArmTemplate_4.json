@@ -13,6 +13,233 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/pl_datasets')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Switch1",
+						"type": "Switch",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@pipeline().parameters.Area",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "Catalogs",
+									"activities": [
+										{
+											"name": "Notebook1",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/000_materialize_catalogs"
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "Nesmovil",
+									"activities": [
+										{
+											"name": "Notebook2",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/003_materialize_nesmovil"
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "Sindicadas",
+									"activities": [
+										{
+											"name": "Notebook5",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/005_materialize_sindicadas_unificadas"
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "SellIn",
+									"activities": [
+										{
+											"name": "Notebook3",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/001_materialize_sellin"
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "SellOut",
+									"activities": [
+										{
+											"name": "Notebook4",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/Production/DatabricksMX/sl_palantir_copy/002_materialize_sellout"
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"Area": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "amsmx_palantir"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:24Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_extract_mx_np_cat_allowance')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "load_layer_silver",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_allowance/execution/0010_np_cat_allowance_load_silver_layer"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "load_layer_gold",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "load_layer_silver",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/paulo.vieira@mx.nestle.com/sl_professional/catalog/cat_allowance/execution/0020_np_cat_allowance_load_gold_layer"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "amsmx_professional/catalogs"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:26Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_extract_mx_np_cat_base_gpr')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -67,8 +294,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_professional/catalogs"
@@ -133,8 +359,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_professional/catalogs"
@@ -199,8 +424,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_professional/catalogs"
@@ -334,8 +558,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parDateTimeUTC": {
@@ -411,8 +634,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -1000,8 +1222,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaExec": {
@@ -1047,8 +1268,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -1086,8 +1306,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_palantir"
@@ -1120,7 +1339,10 @@
 						},
 						"linkedServiceName": {
 							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
 						}
 					},
 					{
@@ -1205,8 +1427,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"outputnotebok": {
@@ -1222,7 +1443,143 @@
 					"name": "amsmx_nixtla"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
+				"lastPublishTime": "2023-10-05T20:14:03Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_nixtla_model_execution')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Main",
+						"description": "Ejecuta el main del proyecto",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/luis.guaso@mx.nestle.com/Nixtla/src/data/main"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					},
+					{
+						"name": "Model",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Main",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/luis.guaso@mx.nestle.com/Nixtla/src/models/ML_ST_FR/ML_TS"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					},
+					{
+						"name": "Send Email Completed Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Bussines delta View",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_send_email_notification_alice",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"par_conteudo_email": "El Pipeline se ejecutó correctamente",
+								"par_lista_email": "luis.patino@mx.nestle.com;Yair.Atristain@mx.nestle.com;",
+								"par_project_name": "Nixtla",
+								"par_status_msg": "Sucesso",
+								"par_fecha": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								},
+								"par_runid": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Bussines delta View",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Model",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/yair.atristain@mx.nestle.com/Nixtla/src/models/ML_ST_FR/Business View"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "amsmx_nixtla"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-31T22:36:25Z"
 			},
 			"dependsOn": []
 		},
@@ -1389,8 +1746,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1455,8 +1811,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1521,8 +1876,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1614,8 +1968,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1707,8 +2060,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1800,8 +2152,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1839,8 +2190,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
@@ -1959,129 +2309,13 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ventas_test"
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_sales_stock_market')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Extraccion",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/lucio.montelongo@mx.nestle.com/DatabricksMX/sl_stock_market/execution/0010.Stock_Market_Price_Extract"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsmx_ventas_test"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AFS_Monitoring')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AFS_AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "NESTLE_VETERINARIOS"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 1, 'Month'), 'yyyyMM'), '01.csv')",
-							"type": "Expression"
-						},
-						"folderPath": "MonitoringDomain/F_MonitoringAnswer",
-						"container": "206"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "\"MTA_MTDR_PRD_ID\";\"MTD_MTDR_ID\";\"MTA_ID\";\"Answer_Date\";\"Answer_Time\";\"Date_Int\";\"USR_ID\";\"USR_ST_ID\";\"CUS_ID\";\"CUS_ST_ID\";\"APP_ID\";\"Digitally_Processed\";\"MTDR_ID\";\"PRD_ID\";\"PRD_ST_ID\";\"ST_ID\";\"Answer_As_Text\";\"Answer_As_Number\";\"Answer_As_DateInt\";\"Answer_As_OptionID\";\"Answer_As_OptionText\";\"URL_To_Photo\";\"User_Action\";\"Target_Description\";\"Target_Value\";\"Automatic_Answer\";\"Header_TimeStamp\";\"Row_TimeStamp\";\"CUS_PRD_ST_ID\";\"Last_Known\";\"Is_Listed\";\"LTP_HIE_HIN_PRD_Version_ID\";\"Is_PowerProduct\";\"PPP_HIE_HIN_PRD_Version_ID\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"MTD_ID\";\"Answer_DateTime\";\"AD_ID\";\"Automatic_Answer_As_Text\";\"Is_Edited\"",
-						"type": "String"
-					}
-				]
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/AFS_Monitoring_2')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AFS_AzureBlobStorage",
-					"type": "LinkedServiceReference"
-				},
-				"folder": {
-					"name": "NESTLE_VETERINARIOS"
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@concat('F_MonitoringAnswer_', formatDateTime(subtractFromTime(utcNow(), 0, 'Month'), 'yyyyMM'), '01.csv')",
-							"type": "Expression"
-						},
-						"folderPath": "MonitoringDomain/F_MonitoringAnswer",
-						"container": "206"
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": [
-					{
-						"name": "\"MTA_MTDR_PRD_ID\";\"MTD_MTDR_ID\";\"MTA_ID\";\"Answer_Date\";\"Answer_Time\";\"Date_Int\";\"USR_ID\";\"USR_ST_ID\";\"CUS_ID\";\"CUS_ST_ID\";\"APP_ID\";\"Digitally_Processed\";\"MTDR_ID\";\"PRD_ID\";\"PRD_ST_ID\";\"ST_ID\";\"Answer_As_Text\";\"Answer_As_Number\";\"Answer_As_DateInt\";\"Answer_As_OptionID\";\"Answer_As_OptionText\";\"URL_To_Photo\";\"User_Action\";\"Target_Description\";\"Target_Value\";\"Automatic_Answer\";\"Header_TimeStamp\";\"Row_TimeStamp\";\"CUS_PRD_ST_ID\";\"Last_Known\";\"Is_Listed\";\"LTP_HIE_HIN_PRD_Version_ID\";\"Is_PowerProduct\";\"PPP_HIE_HIN_PRD_Version_ID\";\"Sys_IsDeleted\";\"Sys_LastChange\";\"MTD_ID\";\"Answer_DateTime\";\"AD_ID\";\"Automatic_Answer_As_Text\";\"Is_Edited\"",
-						"type": "String"
-					}
-				]
 			},
 			"dependsOn": []
 		}

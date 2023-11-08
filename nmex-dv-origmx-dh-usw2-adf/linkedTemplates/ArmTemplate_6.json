@@ -13,6 +13,113 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_extdata_binary')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_extdata",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "externaldata"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"par_directory": {
+						"type": "string"
+					},
+					"par_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().par_filename",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().par_directory",
+							"type": "Expression"
+						},
+						"fileSystem": "dev"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary_sink')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_op_adls2_lake_origenesmx",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"parContName": {
+						"type": "string"
+					},
+					"parPathDestination": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Binary",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": {
+							"value": "@dataset().parPathDestination",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().parContName",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_adsl2_origenesmx_binary_source')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -528,8 +635,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
@@ -1006,8 +1112,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_IdClient": {
@@ -1237,8 +1342,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"start_date": {
@@ -1436,8 +1540,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_veterinarios"
@@ -1533,8 +1636,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -1542,7 +1644,10 @@
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:27Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
+				"[concat(variables('factoryId'), '/datasets/ds_adsl2_extdata_binary')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_common_generic_api_login')]",
@@ -1645,8 +1750,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_retailer": {
@@ -1665,6 +1769,274 @@
 				"lastPublishTime": "2023-08-07T23:28:26Z"
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_generic_api_test')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable Fecha Hoy",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_set_fecha_hoy",
+							"value": {
+								"value": "@formatDateTime(pipeline().TriggerTime,'yyyyMMdd')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Get ADF_parameters_apis",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_adls_datascience_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": "datastore/sales/adf_parameters/",
+									"par_filename": "ADF_parameters_mayoreo_apis.csv",
+									"par_delimiter": ",",
+									"par_encoding": "UTF-8",
+									"par_header": true
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Filter ADF_parameters_apis",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "Get ADF_parameters_apis",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get ADF_parameters_apis').output.value",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@equals(string(item().retailer),pipeline().parameters.par_retailer)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ForEach type retailer",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Set variable Fecha Hoy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Filter ADF_parameters_apis",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Filter ADF_parameters_apis').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "Notebook API generic bronze layer",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Copy API Data_copy1",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_apis_generic/execution/0010.Execution_Extract_MX_Sales_Mayoreo_API_Generic",
+										"baseParameters": {
+											"parFechaExecution": {
+												"value": "@variables('var_set_fecha_hoy')",
+												"type": "Expression"
+											},
+											"parFilePath": {
+												"value": "@concat(item().cont,item().blob_path)",
+												"type": "Expression"
+											},
+											"parRetailer": {
+												"value": "@item().retailer",
+												"type": "Expression"
+											},
+											"parRetailerType": {
+												"value": "@item().tipo",
+												"type": "Expression"
+											},
+											"parTableType": {
+												"value": "@item().tb_type",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference",
+										"parameters": {
+											"par_cluster": "0130-211945-mcv1mi12"
+										}
+									}
+								},
+								{
+									"name": "Copy API Data_copy1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "RestSource",
+											"httpRequestTimeout": "01:00:00",
+											"requestInterval": "00.00:00:00.010",
+											"requestMethod": "GET",
+											"additionalHeaders": {
+												"api-key": {
+													"value": "@item().header_key",
+													"type": "Expression"
+												},
+												"Content-type": "application/json",
+												"Authorization": {
+													"value": "@variables('var_api_token')",
+													"type": "Expression"
+												}
+											}
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ar_rest_api_generic_auth",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_url_complete": {
+													"value": "@if(empty(item().range_date),item().url,concat(item().url,formatDateTime(addDays(pipeline().TriggerTime,int(item().range_date)),item().date_format),item().header_content_type,if(equals(item().range_date,'-2'),'',formatDateTime(pipeline().TriggerTime,item().date_format))))",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "json_api_web",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
+													"type": "Expression"
+												},
+												"ContName": {
+													"value": "@item().cont",
+													"type": "Expression"
+												},
+												"FoldPath": {
+													"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_retailer": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_set_fecha_hoy": {
+						"type": "String"
+					},
+					"var_test": {
+						"type": "String"
+					},
+					"var_api_token": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_sales/amsmx_common_db"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-09-20T16:21:28Z"
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/json_api_web')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_common_generic_parquet_copy')]",
@@ -1775,8 +2147,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_db_sol_path": {
@@ -1851,8 +2222,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -1860,7 +2230,10 @@
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:27Z"
 			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]",
+				"[concat(variables('factoryId'), '/datasets/ds_adsl2_extdata_binary')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_common_shp')]",
@@ -2126,8 +2499,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parEnvironment": {
@@ -2181,1107 +2553,9 @@
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:27Z"
 			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-multiplefilestodatalakehourfilter')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Copy files of any size from SharePoint  to Data Lake, including copy all files matching a startswith condition of a folder and files modified in the last x hours.\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
-				"activities": [
-					{
-						"name": "ForEachFile",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "FilterFiles",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('FilterFiles').output.Value",
-								"type": "Expression"
-							},
-							"batchCount": 10,
-							"activities": [
-								{
-									"name": "Copy File",
-									"type": "Copy",
-									"dependsOn": [
-										{
-											"activity": "Filename Copy",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "BinarySource",
-											"storeSettings": {
-												"type": "HttpReadSettings",
-												"requestMethod": "GET",
-												"additionalHeaders": {
-													"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-													"type": "Expression"
-												},
-												"requestTimeout": ""
-											},
-											"formatSettings": {
-												"type": "BinaryReadSettings"
-											}
-										},
-										"sink": {
-											"type": "BinarySink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "ds_ar_rest_shp_binary",
-											"type": "DatasetReference",
-											"parameters": {
-												"par_Url": {
-													"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',item().Name,''')/$value')",
-													"type": "Expression"
-												}
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "ds_adsl2_origenesmx_binary",
-											"type": "DatasetReference",
-											"parameters": {
-												"par_directory": {
-													"value": "@concat(pipeline().parameters.parAdlsDestinationFolder,'/',pipeline().parameters.par_UtcNowVar)",
-													"type": "Expression"
-												},
-												"par_filename": {
-													"value": "@item().Name",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								},
-								{
-									"name": "Filename Copy",
-									"type": "SetVariable",
-									"dependsOn": [],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "var_FileTipificationNameOut",
-										"value": {
-											"value": "@item().Name",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "GetShpClientId",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientID",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "GetShpSecret",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientSecret",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "FilterFiles",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "ReadSharepointFolder",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('ReadSharepointFolder').output['d']['results']",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileName),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHours),-1),\n            'hour'\n        )\n    )\n)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "ReadSharepointFolder",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "GetSharepointBearerToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPath,''')/Files')",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {
-								"Authorization": {
-									"value": "@{concat('Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-									"type": "Expression"
-								},
-								"Accept": "application/json;odata=verbose"
-							}
-						}
-					},
-					{
-						"name": "GetSharepointBearerToken",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "GetShpClientId",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "GetShpSecret",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/x-www-form-urlencoded"
-							},
-							"body": {
-								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Carga Tipification COMP - Inbound",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "ForEachFile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/02_inbound_tipification_new_archivo",
-							"baseParameters": {
-								"parArchivoNombreAtual": {
-									"value": "@variables('var_FileTipificationNameOut')",
-									"type": "Expression"
-								},
-								"parDateTimeUTC": {
-									"value": "@pipeline().parameters.par_UtcNowVar",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "pl_common_process_tipification",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Carga Tipification COMP - Inbound",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_process_tipification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"parEnvironment": {
-						"type": "string",
-						"defaultValue": "dev"
-					},
-					"parAdlsDestinationFolder": {
-						"type": "string"
-					},
-					"parFileName": {
-						"type": "string"
-					},
-					"parShpSiteUrl": {
-						"type": "string"
-					},
-					"parShpRelativeFolderPath": {
-						"type": "string"
-					},
-					"parModifiedLastNHours": {
-						"type": "string"
-					},
-					"parNewFileName": {
-						"type": "string"
-					},
-					"parClientID": {
-						"type": "string"
-					},
-					"parClientSecret": {
-						"type": "string"
-					},
-					"par_UtcNowVar": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_FileTipificationNameOut": {
-						"type": "String"
-					},
-					"varNombreArchivoAtual": {
-						"type": "String"
-					},
-					"varNombreNewArchivo": {
-						"type": "String"
-					},
-					"varPathUTCArchivoAnterior": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:30Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-multiplefilestodatalakehourfilter_generica')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Copy files of any size from SharePoint  to Data Lake, including copy all files matching a startswith condition of a folder and files modified in the last x hours.\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
-				"activities": [
-					{
-						"name": "ForEachFile",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "FilterFiles",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('FilterFiles').output.Value",
-								"type": "Expression"
-							},
-							"batchCount": 10,
-							"activities": [
-								{
-									"name": "Copy File",
-									"type": "Copy",
-									"dependsOn": [
-										{
-											"activity": "Filename Copy",
-											"dependencyConditions": [
-												"Succeeded"
-											]
-										}
-									],
-									"policy": {
-										"timeout": "7.00:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "BinarySource",
-											"storeSettings": {
-												"type": "HttpReadSettings",
-												"requestMethod": "GET",
-												"additionalHeaders": {
-													"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-													"type": "Expression"
-												},
-												"requestTimeout": ""
-											},
-											"formatSettings": {
-												"type": "BinaryReadSettings"
-											}
-										},
-										"sink": {
-											"type": "BinarySink",
-											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "ds_ar_rest_shp_binary",
-											"type": "DatasetReference",
-											"parameters": {
-												"par_Url": {
-													"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',item().Name,''')/$value')",
-													"type": "Expression"
-												}
-											}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "ds_adsl2_origenesmx_binary",
-											"type": "DatasetReference",
-											"parameters": {
-												"par_directory": {
-													"value": "@concat(pipeline().parameters.parAdlsDestinationFolder,'/',pipeline().parameters.par_UtcNowVar)",
-													"type": "Expression"
-												},
-												"par_filename": {
-													"value": "@item().Name",
-													"type": "Expression"
-												}
-											}
-										}
-									]
-								},
-								{
-									"name": "Filename Copy",
-									"type": "SetVariable",
-									"dependsOn": [],
-									"policy": {
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"variableName": "var_FileTipificationNameOut",
-										"value": {
-											"value": "@item().Name",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						}
-					},
-					{
-						"name": "GetShpClientId",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientID",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "GetShpSecret",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientSecret",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "FilterFiles",
-						"type": "Filter",
-						"dependsOn": [
-							{
-								"activity": "ReadSharepointFolder",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('ReadSharepointFolder').output['d']['results']",
-								"type": "Expression"
-							},
-							"condition": {
-								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileName),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHours),-1),\n            'hour'\n        )\n    )\n)",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "ReadSharepointFolder",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "GetSharepointBearerToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPath,''')/Files')",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {
-								"Authorization": {
-									"value": "@{concat('Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-									"type": "Expression"
-								},
-								"Accept": "application/json;odata=verbose"
-							}
-						}
-					},
-					{
-						"name": "GetSharepointBearerToken",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "GetShpClientId",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "GetShpSecret",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/x-www-form-urlencoded"
-							},
-							"body": {
-								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Carga Tipification COMP - Inbound",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "ForEachFile",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/02_inbound_tipification_new_archivo",
-							"baseParameters": {
-								"parArchivoNombreAtual": {
-									"value": "@variables('var_FileTipificationNameOut')",
-									"type": "Expression"
-								},
-								"parDateTimeUTC": {
-									"value": "@pipeline().parameters.par_UtcNowVar",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "pl_common_process_tipification",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "Carga Tipification COMP - Inbound",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_process_tipification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"parEnvironment": {
-						"type": "string",
-						"defaultValue": "dev"
-					},
-					"parAdlsDestinationFolder": {
-						"type": "string"
-					},
-					"parFileName": {
-						"type": "string"
-					},
-					"parShpSiteUrl": {
-						"type": "string"
-					},
-					"parShpRelativeFolderPath": {
-						"type": "string"
-					},
-					"parModifiedLastNHours": {
-						"type": "string"
-					},
-					"parNewFileName": {
-						"type": "string"
-					},
-					"parClientID": {
-						"type": "string"
-					},
-					"parClientSecret": {
-						"type": "string"
-					},
-					"par_UtcNowVar": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_FileTipificationNameOut": {
-						"type": "String"
-					},
-					"varNombreArchivoAtual": {
-						"type": "String"
-					},
-					"varNombreNewArchivo": {
-						"type": "String"
-					},
-					"varPathUTCArchivoAnterior": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:29Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-sharepointsinglefiletodatalake')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"description": "Direct copy of sharepoint file to datalake\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
-				"activities": [
-					{
-						"name": "GetShpClientId",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientID",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "GetShpSecret",
-						"type": "WebActivity",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": {
-								"value": "@pipeline().parameters.parClientSecret",
-								"type": "Expression"
-							},
-							"method": "GET",
-							"headers": {},
-							"authentication": {
-								"type": "MSI",
-								"resource": "https://vault.azure.net"
-							}
-						}
-					},
-					{
-						"name": "GetSharepointBearerToken",
-						"type": "WebActivity",
-						"dependsOn": [
-							{
-								"activity": "GetShpClientId",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							},
-							{
-								"activity": "GetShpSecret",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": true,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
-							"method": "POST",
-							"headers": {
-								"Content-Type": "application/x-www-form-urlencoded"
-							},
-							"body": {
-								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Copy File",
-						"type": "Copy",
-						"dependsOn": [
-							{
-								"activity": "GetSharepointBearerToken",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": true
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "HttpReadSettings",
-									"requestMethod": "GET",
-									"additionalHeaders": {
-										"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-										"type": "Expression"
-									},
-									"requestTimeout": ""
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_ar_rest_shp_binary",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_Url": {
-										"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',pipeline().parameters.parFileName,''')/$value')",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ds_adsl2_origenesmx_binary",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_directory": {
-										"value": "@concat(pipeline().parameters.parAdlsDestinationFolder, '/', pipeline().parameters.parUTCNow)",
-										"type": "Expression"
-									},
-									"par_filename": {
-										"value": "@pipeline().parameters.parFileName",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"parEnvironment": {
-						"type": "string"
-					},
-					"parAdlsDestinationFolder": {
-						"type": "string",
-						"defaultValue": "inbound/credit_notes/files_transfer"
-					},
-					"parFileName": {
-						"type": "string"
-					},
-					"parShpSiteUrl": {
-						"type": "string",
-						"defaultValue": "https://nestle.sharepoint.com/teams/MXFillOutBillingReference"
-					},
-					"parShpRelativeFolderPath": {
-						"type": "string",
-						"defaultValue": "Shared Documents/Archivos tipificación"
-					},
-					"parNewFileName": {
-						"type": "string"
-					},
-					"parClientID": {
-						"type": "string",
-						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-mxbilingrebates/?api-version=7.0"
-					},
-					"parClientSecret": {
-						"type": "string",
-						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-mxbilingrebates/?api-version=7.0"
-					},
-					"parUTCNow": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"varUTCNow": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:27Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_common_unzip_flash_test')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get Metadata1",
-						"type": "GetMetadata",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"dataset": {
-								"referenceName": "Binary1_flash_source",
-								"type": "DatasetReference",
-								"parameters": {}
-							},
-							"fieldList": [
-								"childItems"
-							],
-							"storeSettings": {
-								"type": "AzureBlobStorageReadSettings",
-								"recursive": true,
-								"enablePartitionDiscovery": false
-							},
-							"formatSettings": {
-								"type": "BinaryReadSettings"
-							}
-						}
-					},
-					{
-						"name": "ForEach1",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Get Metadata1",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get Metadata1').output.childItems",
-								"type": "Expression"
-							},
-							"activities": [
-								{
-									"name": "Copy data1",
-									"type": "Copy",
-									"dependsOn": [],
-									"policy": {
-										"timeout": "0.12:00:00",
-										"retry": 0,
-										"retryIntervalInSeconds": 30,
-										"secureOutput": false,
-										"secureInput": false
-									},
-									"userProperties": [],
-									"typeProperties": {
-										"source": {
-											"type": "BinarySource",
-											"storeSettings": {
-												"type": "AzureBlobStorageReadSettings",
-												"recursive": false,
-												"deleteFilesAfterCompletion": false
-											},
-											"formatSettings": {
-												"type": "BinaryReadSettings",
-												"compressionProperties": {
-													"type": "ZipDeflateReadSettings"
-												}
-											}
-										},
-										"sink": {
-											"type": "BinarySink",
-											"storeSettings": {
-												"type": "AzureBlobStorageWriteSettings",
-												"copyBehavior": "PreserveHierarchy"
-											}
-										},
-										"enableStaging": false
-									},
-									"inputs": [
-										{
-											"referenceName": "Binary1_flash_source",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									],
-									"outputs": [
-										{
-											"referenceName": "Binary1",
-											"type": "DatasetReference",
-											"parameters": {}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsla_data-load-tool"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:16Z"
-			},
-			"dependsOn": []
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_adsl2_origenesmx_binary')]"
+			]
 		}
 	]
 }

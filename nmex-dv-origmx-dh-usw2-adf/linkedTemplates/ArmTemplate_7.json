@@ -13,6 +13,1102 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-multiplefilestodatalakehourfilter')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Copy files of any size from SharePoint  to Data Lake, including copy all files matching a startswith condition of a folder and files modified in the last x hours.\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
+				"activities": [
+					{
+						"name": "ForEachFile",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "FilterFiles",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('FilterFiles').output.Value",
+								"type": "Expression"
+							},
+							"batchCount": 10,
+							"activities": [
+								{
+									"name": "Copy File",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Filename Copy",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "HttpReadSettings",
+												"requestMethod": "GET",
+												"additionalHeaders": {
+													"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+													"type": "Expression"
+												},
+												"requestTimeout": ""
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_ar_rest_shp_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_Url": {
+													"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',item().Name,''')/$value')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_adsl2_origenesmx_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_directory": {
+													"value": "@concat(pipeline().parameters.parAdlsDestinationFolder,'/',pipeline().parameters.par_UtcNowVar)",
+													"type": "Expression"
+												},
+												"par_filename": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Filename Copy",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "var_FileTipificationNameOut",
+										"value": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "GetShpClientId",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientID",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetShpSecret",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientSecret",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "FilterFiles",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "ReadSharepointFolder",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('ReadSharepointFolder').output['d']['results']",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileName),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHours),-1),\n            'hour'\n        )\n    )\n)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ReadSharepointFolder",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetSharepointBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPath,''')/Files')",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {
+								"Authorization": {
+									"value": "@{concat('Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+									"type": "Expression"
+								},
+								"Accept": "application/json;odata=verbose"
+							}
+						}
+					},
+					{
+						"name": "GetSharepointBearerToken",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetShpClientId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "GetShpSecret",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": {
+								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Carga Tipification COMP - Inbound",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ForEachFile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/02_inbound_tipification_new_archivo",
+							"baseParameters": {
+								"parArchivoNombreAtual": {
+									"value": "@variables('var_FileTipificationNameOut')",
+									"type": "Expression"
+								},
+								"parDateTimeUTC": {
+									"value": "@pipeline().parameters.par_UtcNowVar",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "pl_common_process_tipification",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Carga Tipification COMP - Inbound",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_process_tipification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"parEnvironment": {
+						"type": "string",
+						"defaultValue": "dev"
+					},
+					"parAdlsDestinationFolder": {
+						"type": "string"
+					},
+					"parFileName": {
+						"type": "string"
+					},
+					"parShpSiteUrl": {
+						"type": "string"
+					},
+					"parShpRelativeFolderPath": {
+						"type": "string"
+					},
+					"parModifiedLastNHours": {
+						"type": "string"
+					},
+					"parNewFileName": {
+						"type": "string"
+					},
+					"parClientID": {
+						"type": "string"
+					},
+					"parClientSecret": {
+						"type": "string"
+					},
+					"par_UtcNowVar": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_FileTipificationNameOut": {
+						"type": "String"
+					},
+					"varNombreArchivoAtual": {
+						"type": "String"
+					},
+					"varNombreNewArchivo": {
+						"type": "String"
+					},
+					"varPathUTCArchivoAnterior": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:30Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-multiplefilestodatalakehourfilter_generica')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Copy files of any size from SharePoint  to Data Lake, including copy all files matching a startswith condition of a folder and files modified in the last x hours.\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
+				"activities": [
+					{
+						"name": "ForEachFile",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "FilterFiles",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('FilterFiles').output.Value",
+								"type": "Expression"
+							},
+							"batchCount": 10,
+							"activities": [
+								{
+									"name": "Copy File",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Filename Copy",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "HttpReadSettings",
+												"requestMethod": "GET",
+												"additionalHeaders": {
+													"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+													"type": "Expression"
+												},
+												"requestTimeout": ""
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_ar_rest_shp_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_Url": {
+													"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',item().Name,''')/$value')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_adsl2_origenesmx_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_directory": {
+													"value": "@concat(pipeline().parameters.parAdlsDestinationFolder,'/',pipeline().parameters.par_UtcNowVar)",
+													"type": "Expression"
+												},
+												"par_filename": {
+													"value": "@item().Name",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Filename Copy",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "var_FileTipificationNameOut",
+										"value": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "GetShpClientId",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientID",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetShpSecret",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientSecret",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "FilterFiles",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "ReadSharepointFolder",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('ReadSharepointFolder').output['d']['results']",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileName),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHours),-1),\n            'hour'\n        )\n    )\n)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ReadSharepointFolder",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetSharepointBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPath,''')/Files')",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {
+								"Authorization": {
+									"value": "@{concat('Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+									"type": "Expression"
+								},
+								"Accept": "application/json;odata=verbose"
+							}
+						}
+					},
+					{
+						"name": "GetSharepointBearerToken",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetShpClientId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "GetShpSecret",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": {
+								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Carga Tipification COMP - Inbound",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ForEachFile",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/02_inbound_tipification_new_archivo",
+							"baseParameters": {
+								"parArchivoNombreAtual": {
+									"value": "@variables('var_FileTipificationNameOut')",
+									"type": "Expression"
+								},
+								"parDateTimeUTC": {
+									"value": "@pipeline().parameters.par_UtcNowVar",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "pl_common_process_tipification",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Carga Tipification COMP - Inbound",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_process_tipification",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"parEnvironment": {
+						"type": "string",
+						"defaultValue": "dev"
+					},
+					"parAdlsDestinationFolder": {
+						"type": "string"
+					},
+					"parFileName": {
+						"type": "string"
+					},
+					"parShpSiteUrl": {
+						"type": "string"
+					},
+					"parShpRelativeFolderPath": {
+						"type": "string"
+					},
+					"parModifiedLastNHours": {
+						"type": "string"
+					},
+					"parNewFileName": {
+						"type": "string"
+					},
+					"parClientID": {
+						"type": "string"
+					},
+					"parClientSecret": {
+						"type": "string"
+					},
+					"par_UtcNowVar": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_FileTipificationNameOut": {
+						"type": "String"
+					},
+					"varNombreArchivoAtual": {
+						"type": "String"
+					},
+					"varNombreNewArchivo": {
+						"type": "String"
+					},
+					"varPathUTCArchivoAnterior": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:29Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-sharepointsinglefiletodatalake')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Direct copy of sharepoint file to datalake\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
+				"activities": [
+					{
+						"name": "GetShpClientId",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientID",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetShpSecret",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientSecret",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetSharepointBearerToken",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetShpClientId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "GetShpSecret",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": {
+								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy File",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "GetSharepointBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "BinarySource",
+								"storeSettings": {
+									"type": "HttpReadSettings",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+										"type": "Expression"
+									},
+									"requestTimeout": ""
+								},
+								"formatSettings": {
+									"type": "BinaryReadSettings"
+								}
+							},
+							"sink": {
+								"type": "BinarySink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_ar_rest_shp_binary",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_Url": {
+										"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',pipeline().parameters.parFileName,''')/$value')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_adsl2_origenesmx_binary",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": {
+										"value": "@concat(pipeline().parameters.parAdlsDestinationFolder, '/', pipeline().parameters.parUTCNow)",
+										"type": "Expression"
+									},
+									"par_filename": {
+										"value": "@pipeline().parameters.parFileName",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"parEnvironment": {
+						"type": "string"
+					},
+					"parAdlsDestinationFolder": {
+						"type": "string",
+						"defaultValue": "inbound/credit_notes/files_transfer"
+					},
+					"parFileName": {
+						"type": "string"
+					},
+					"parShpSiteUrl": {
+						"type": "string",
+						"defaultValue": "https://nestle.sharepoint.com/teams/MXFillOutBillingReference"
+					},
+					"parShpRelativeFolderPath": {
+						"type": "string",
+						"defaultValue": "Shared Documents/Archivos tipificación"
+					},
+					"parNewFileName": {
+						"type": "string"
+					},
+					"parClientID": {
+						"type": "string",
+						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-mxbilingrebates/?api-version=7.0"
+					},
+					"parClientSecret": {
+						"type": "string",
+						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-mxbilingrebates/?api-version=7.0"
+					},
+					"parUTCNow": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"varUTCNow": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:27Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_unzip_flash_test')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "Binary1_flash_source",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobStorageReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "BinaryReadSettings"
+							}
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Get Metadata1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get Metadata1').output.childItems",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Copy data1",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "AzureBlobStorageReadSettings",
+												"recursive": false,
+												"deleteFilesAfterCompletion": false
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings",
+												"compressionProperties": {
+													"type": "ZipDeflateReadSettings"
+												}
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings",
+												"copyBehavior": "PreserveHierarchy"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "Binary1_flash_source",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "Binary1",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "amsla_data-load-tool"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:16Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_copy_blob_to_blob_atp_files')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -214,8 +1310,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_Folder": {
@@ -406,8 +1501,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_Folder": {
@@ -614,8 +1708,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"start_date": {
@@ -768,8 +1861,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_container": {
@@ -787,6 +1879,714 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:27Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_extract_api_drivin')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable DRIVIN",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/pods?start_date=',pipeline().parameters.par_stardate,'&end_date=',pipeline().parameters.par_enddate)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "POST",
+								"requestBody": "{}",
+								"additionalHeaders": {
+									"Content-type": {
+										"value": "@pipeline().parameters.par_header_content_type",
+										"type": "Expression"
+									},
+									"X-API-Key": {
+										"value": "@pipeline().parameters.par_header_key",
+										"type": "Expression"
+									}
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'DRIVIN')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Set variable DRIVIN Vehicles",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv_vehiculos",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/vehicles')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn Vehicles",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN Vehicles",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"X-API-Key": "bbf7fb1a-d859-46a1-a615-b861ed0e7e49",
+									"Content-Type": {
+										"value": "@pipeline().parameters.par_header_content_type",
+										"type": "Expression"
+									}
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv_vehiculos')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_VEHICLES_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'VEHICLES')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Set variable DRIVIN Esquemas",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv_esquemas",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/schemas')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn Esquemas",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN Esquemas",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"X-API-Key": "bbf7fb1a-d859-46a1-a615-b861ed0e7e49",
+									"Content-Type": "application/json"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv_esquemas')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ESQUEMAS_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'ESQUEMAS')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Set variable DRIVIN Results",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv_results",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/results?date=',pipeline().parameters.par_enddate)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn Results",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN Results",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"X-API-Key": {
+										"value": "@pipeline().parameters.par_header_key",
+										"type": "Expression"
+									},
+									"Content-Type": {
+										"value": "@pipeline().parameters.par_header_content_type",
+										"type": "Expression"
+									}
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv_results')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_RESULTS_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'RESULTS')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Set variable Fecha Hoy",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_set_fecha_hoy",
+							"value": {
+								"value": "@convertTimeZone(utcNow(),'UTC','Central Standard Time (Mexico)','yyyy-MM-dd')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set variable DRIVIN Addresses",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv_addresses",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/addresses')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn Addresses",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN Addresses",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"Content-type": {
+										"value": "@pipeline().parameters.par_header_content_type",
+										"type": "Expression"
+									},
+									"X-API-Key": "4c2468a0-381c-443a-b8de-9caff69f050c"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv_addresses')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ADDRESSES_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'ADDRESSES')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					},
+					{
+						"name": "Set variable DRIVIN Routes",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_driv_rutas",
+							"value": {
+								"value": "@concat(pipeline().parameters.par_url,'api/external/v2/routes?date=',pipeline().parameters.par_enddate)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Copy DrivIn Routes",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "Set variable DRIVIN Routes",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"additionalHeaders": {
+									"X-API-Key": {
+										"value": "@pipeline().parameters.par_header_key",
+										"type": "Expression"
+									}
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ar_rest_api_generic_auth",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_url_complete": {
+										"value": "@variables('var_driv_rutas')",
+										"type": "Expression"
+									}
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "json_api_web",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": {
+										"value": "@concat(pipeline().parameters.FileName,'_DRIVIN_ROUTES_','.json')",
+										"type": "Expression"
+									},
+									"ContName": {
+										"value": "@pipeline().parameters.par_cont",
+										"type": "Expression"
+									},
+									"FoldPath": {
+										"value": "@concat(pipeline().parameters.par_folder,'ROUTES')",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_url": {
+						"type": "string",
+						"defaultValue": "https://external.driv.in/"
+					},
+					"par_stardate": {
+						"type": "string"
+					},
+					"par_enddate": {
+						"type": "string"
+					},
+					"par_header_content_type": {
+						"type": "string",
+						"defaultValue": "application/json"
+					},
+					"par_header_key": {
+						"type": "string"
+					},
+					"FileName": {
+						"type": "string",
+						"defaultValue": "JSON"
+					},
+					"par_cont": {
+						"type": "string",
+						"defaultValue": "dev"
+					},
+					"par_folder": {
+						"type": "string",
+						"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
+					},
+					"par_url_login": {
+						"type": "string",
+						"defaultValue": "https://central.cevisur.com.mx:8443/nestle/api/auth/login"
+					}
+				},
+				"variables": {
+					"var_riv_ventas": {
+						"type": "String"
+					},
+					"var_nie_ventas": {
+						"type": "String"
+					},
+					"var_driv": {
+						"type": "String"
+					},
+					"var_supplier": {
+						"type": "String"
+					},
+					"var_cevi_login": {
+						"type": "String"
+					},
+					"var_cevi_ventas": {
+						"type": "String"
+					},
+					"var_cevi_inventario": {
+						"type": "String"
+					},
+					"var_cevi_clientes": {
+						"type": "String"
+					},
+					"var_cevi_produtos": {
+						"type": "String"
+					},
+					"var_riv_inventario": {
+						"type": "String"
+					},
+					"var_nie_inventarios": {
+						"type": "String"
+					},
+					"var_nie_clientes": {
+						"type": "String"
+					},
+					"var_nie_productos": {
+						"type": "String"
+					},
+					"var_set_fecha_hoy": {
+						"type": "String"
+					},
+					"var_cevi_facturas": {
+						"type": "String"
+					},
+					"var_url_default": {
+						"type": "String"
+					},
+					"var_driv_direccion": {
+						"type": "String"
+					},
+					"var_driv_rutas": {
+						"type": "String"
+					},
+					"var_driv_vehiculos": {
+						"type": "String"
+					},
+					"var_driv_results": {
+						"type": "String"
+					},
+					"var_driv_esquemas": {
+						"type": "String"
+					},
+					"var_driv_clientes": {
+						"type": "String"
+					},
+					"var_driv_addresses": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_sc_drivin/HistoricoDrivIn"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-17T16:07:35Z"
 			},
 			"dependsOn": []
 		},
@@ -1366,8 +3166,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_url": {
@@ -7241,8 +9040,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_search_type": {
@@ -7535,8 +9333,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFileNameCopy": {
@@ -7772,8 +9569,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFileNameCopy": {
@@ -8055,8 +9851,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFolderName": {
@@ -8239,8 +10034,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"varFilesCopy": {
@@ -8393,8 +10187,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"varUTCNow": {
@@ -8623,8 +10416,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"ErrorMessage": {
@@ -8767,8 +10559,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_ndg"
@@ -8917,8 +10708,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"ErrorMessage": {
@@ -9243,8 +11033,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parFechaAtual_Carga": {
@@ -9264,505 +11053,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:30Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_mayoreodigital')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy_ore",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "SftpReadSettings",
-									"recursive": false,
-									"deleteFilesAfterCompletion": false,
-									"disableChunking": false
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_ore",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_ore",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "HugogallardoTestingtbMayoreoDigitalLiquidaciones",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Copy_ore",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugogallardo.MayoreoDigital.26072022"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsmx_mayoreodigital"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_proceso_liquidaciones')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Upload MayoreoDigital Liquidaciones",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "SftpReadSettings",
-									"recursive": true,
-									"disableChunking": false
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataset_ore",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationDataset_ore",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "HugogallardoTestingtbMayoreoDigitalLiquidaciones",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Upload MayoreoDigital Liquidaciones",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugogallardo.MayoreoDigital.26072022"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsmx_mayoreodigital"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_proceso_productos')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy Cat Productos",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "SftpReadSettings",
-									"recursive": true,
-									"disableChunking": false
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "SourceDataSetProductos",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DestinationProductos",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					},
-					{
-						"name": "tb_Productos_Load_Notebook",
-						"type": "DatabricksNotebook",
-						"dependsOn": [
-							{
-								"activity": "Copy Cat Productos",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/Repos/hugo.gallardo@mx.nestle.com/DatabricksMX/sl_mayoreodigital/execution/hugogallardo.MayoreoDigital.Productos.03082022"
-						},
-						"linkedServiceName": {
-							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-							"type": "LinkedServiceReference"
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"folder": {
-					"name": "amsmx_mayoreodigital"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:24Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_sales_refresh_power_bi')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get ADF_parameters_sharepoint",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "ds_adls_datascience_csv",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_directory": "datastore/sales/adf_parameters/",
-									"par_filename": "ADF_parameters_sharepoint.csv",
-									"par_delimiter": ",",
-									"par_encoding": "UTF-8",
-									"par_header": true
-								}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "ForEach look up value",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Get ADF_parameters_sharepoint",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get ADF_parameters_sharepoint').output.value",
-								"type": "Expression"
-							},
-							"isSequential": true,
-							"activities": [
-								{
-									"name": "If Condition1",
-									"type": "IfCondition",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"expression": {
-											"value": "@equals(item().blob_filename,pipeline().parameters.par_blob_filename)",
-											"type": "Expression"
-										},
-										"ifTrueActivities": [
-											{
-												"name": "Execute Pipeline Power BI refresh",
-												"type": "ExecutePipeline",
-												"dependsOn": [
-													{
-														"activity": "Set variable workspace_id",
-														"dependencyConditions": [
-															"Succeeded"
-														]
-													},
-													{
-														"activity": "Set variable dataset_id",
-														"dependencyConditions": [
-															"Succeeded"
-														]
-													}
-												],
-												"userProperties": [],
-												"typeProperties": {
-													"pipeline": {
-														"referenceName": "pl_common_generic_refresh_power_bi_dataset",
-														"type": "PipelineReference"
-													},
-													"waitOnCompletion": true,
-													"parameters": {
-														"par_id_workspace": {
-															"value": "@variables('var_workspace_id')",
-															"type": "Expression"
-														},
-														"par_id_dataset": {
-															"value": "@variables('var_dataset_id')",
-															"type": "Expression"
-														}
-													}
-												}
-											},
-											{
-												"name": "Set variable workspace_id",
-												"type": "SetVariable",
-												"dependsOn": [],
-												"policy": {
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"variableName": "var_workspace_id",
-													"value": {
-														"value": "@string(item().workspace_id)",
-														"type": "Expression"
-													}
-												}
-											},
-											{
-												"name": "Set variable dataset_id",
-												"type": "SetVariable",
-												"dependsOn": [],
-												"policy": {
-													"secureOutput": false,
-													"secureInput": false
-												},
-												"userProperties": [],
-												"typeProperties": {
-													"variableName": "var_dataset_id",
-													"value": {
-														"value": "@string(item().dataset_id)",
-														"type": "Expression"
-													}
-												}
-											}
-										]
-									}
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_blob_filename": {
-						"type": "string"
-					},
-					"par_blob_path": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_workspace_id": {
-						"type": "String"
-					},
-					"var_dataset_id": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sales"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:26Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_mx_npp_sell_out_weekly')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Update_Sell_Out_NPP",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2023-09-11T04:46:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								7
-							],
-							"weekDays": [
-								"Thursday",
-								"Wednesday"
-							]
-						}
-					}
-				}
 			},
 			"dependsOn": []
 		}

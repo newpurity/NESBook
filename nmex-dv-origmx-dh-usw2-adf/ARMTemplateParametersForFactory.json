@@ -137,6 +137,54 @@
 		"tg_alice_copy_bl_to_bl_atp_files_properties_pl_copy_blob_to_blob_atp_files_parameters_par_Destination_Folder": {
 			"value": "inbound/fact/mail/atp/atp_files"
 		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"value": "dev"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"value": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"value": "FORMS_OTAbiertas.xlsx"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"value": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"value": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"value": "25"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"value": "dev"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"value": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"value": "FORMS_People&MHE.xlsx"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"value": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"value": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"value": "25"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"value": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
+		},
 		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 			"value": "dev"
 		},
@@ -364,6 +412,9 @@
 		},
 		"tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
 			"value": "OUTBOUND_LIVE"
+		},
+		"tg_nixtla_model_execution_main_properties_typeProperties_scope": {
+			"value": "/subscriptions/a6c9f13d-be73-4227-b485-c7a16289be08/resourceGroups/nmex-pp-origenesmx-dh-usea-rgp/providers/Microsoft.Storage/storageAccounts/nmexpporigdsdh79sta"
 		},
 		"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename": {
 			"value": "@triggerBody().fileName"

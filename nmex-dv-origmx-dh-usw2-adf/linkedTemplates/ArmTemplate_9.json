@@ -7,6 +7,14 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
+		"tr_palantir_nesmovil_properties_pl_datasets_parameters_Area": {
+			"type": "string",
+			"defaultValue": "Nesmovil"
+		},
+		"tr_sabana_alcances_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/a6c9f13d-be73-4227-b485-c7a16289be08/resourceGroups/nmex-pp-origenesmx-dh-usea-rgp/providers/Microsoft.Storage/storageAccounts/nmexpporigdsdh79sta"
+		},
 		"tg_alice_copy_bl_to_bl_atp_files_properties_pl_copy_blob_to_blob_atp_files_parameters_par_Folder": {
 			"type": "string",
 			"defaultValue": "logica-app/atp"
@@ -18,6 +26,70 @@
 		"tg_alice_copy_bl_to_bl_atp_files_properties_pl_copy_blob_to_blob_atp_files_parameters_par_Destination_Folder": {
 			"type": "string",
 			"defaultValue": "inbound/fact/mail/atp/atp_files"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"type": "string",
+			"defaultValue": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"type": "string",
+			"defaultValue": "FORMS_OTAbiertas.xlsx"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"type": "string",
+			"defaultValue": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"type": "string",
+			"defaultValue": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"type": "string",
+			"defaultValue": "25"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"type": "string",
+			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"type": "string",
+			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder": {
+			"type": "string",
+			"defaultValue": "/inbound/catalogs/supplychain/logistics/"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName": {
+			"type": "string",
+			"defaultValue": "FORMS_People&MHE.xlsx"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl": {
+			"type": "string",
+			"defaultValue": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath": {
+			"type": "string",
+			"defaultValue": "Shared Documents"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours": {
+			"type": "string",
+			"defaultValue": "25"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID": {
+			"type": "string",
+			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0"
+		},
+		"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret": {
+			"type": "string",
+			"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
 		},
 		"tg_mx_sc_tb_mx_sc_alice_api_live_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_search_type": {
 			"type": "string",
@@ -82,124 +154,3091 @@
 		"tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
 			"type": "string",
 			"defaultValue": "OUTBOUND_LIVE"
-		},
-		"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename": {
-			"type": "string",
-			"defaultValue": "@triggerBody().fileName"
-		},
-		"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_path": {
-			"type": "string",
-			"defaultValue": "@triggerBody().folderPath"
-		},
-		"tg_sales_powerbi_refresh_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/a6c9f13d-be73-4227-b485-c7a16289be08/resourceGroups/nmex-pp-origenesmx-dh-usea-rgp/providers/Microsoft.Storage/storageAccounts/nmexpporigdsdh79sta"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_search_type": {
-			"type": "string",
-			"defaultValue": "FIN_DESCARGA"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url": {
-			"type": "string",
-			"defaultValue": "https://www.rcontrol.com.mx/rcSuite/GetUserToken?arg00=Origenes02&arg01=Temporal1"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_folder": {
-			"type": "string",
-			"defaultValue": "/inbound/ext_api_files/"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url_base": {
-			"type": "string",
-			"defaultValue": "https://www.rcontrol.com.mx/japi/"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_cont": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_status": {
-			"type": "string",
-			"defaultValue": "SI9"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_function": {
-			"type": "string",
-			"defaultValue": "get_shipment_info_inb"
-		},
-		"tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
-			"type": "string",
-			"defaultValue": "INBOUND_HISTORICO"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_search_type": {
-			"type": "string",
-			"defaultValue": "DESPACHO_REAL"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url": {
-			"type": "string",
-			"defaultValue": "https://www.rcontrol.com.mx/rcSuite/GetUserToken?arg00=Origenes02&arg01=Temporal1"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_folder": {
-			"type": "string",
-			"defaultValue": "/inbound/ext_api_files/"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url_base": {
-			"type": "string",
-			"defaultValue": "https://www.rcontrol.com.mx/japi/"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_cont": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_function": {
-			"type": "string",
-			"defaultValue": "get_shipment_info_outb"
-		},
-		"tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
-			"type": "string",
-			"defaultValue": "OUTBOUND_HISTORICO"
-		},
-		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle": {
-			"type": "string",
-			"defaultValue": "ageing"
-		},
-		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination": {
-			"type": "string",
-			"defaultValue": "inbound/alice/"
-		},
-		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy": {
-			"type": "string",
-			"defaultValue": "inbound/alice/"
-		},
-		"tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
-			"type": "string",
-			"defaultValue": "AGEING*"
-		},
-		"tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
-			"type": "string",
-			"defaultValue": "dev"
-		},
-		"tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle": {
-			"type": "string",
-			"defaultValue": "atp"
-		},
-		"tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination": {
-			"type": "string",
-			"defaultValue": "inbound/fact/mail/atp/atp_files/"
-		},
-		"tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy": {
-			"type": "string",
-			"defaultValue": "inbound/fact/mail/atp/atp_files/"
-		},
-		"tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
-			"type": "string",
-			"defaultValue": "GATP*"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_palantir_nesmovil')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_datasets",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Area": "[parameters('tr_palantir_nesmovil_properties_pl_datasets_parameters_Area')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-04-21T19:00:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								8
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_sabana_alcances')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Trigger que desencadena cuando se agrega el txt de SabanaAlcances",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_sales_sabana_alcances",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/datascience/blobs/datastore/sales/sabanas/alcances/",
+					"blobPathEndsWith": "SabanaAlcances.txt",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('tr_sabana_alcances_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_stock_market')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Trigger que desencadena la extraccion de precio de las acciones de Nestle y los principales autoservcios de Mexico",
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_sales_stock_market",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-05-05T17:08:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								22
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_generic_api')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable Fecha Hoy",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_set_fecha_hoy",
+							"value": {
+								"value": "@formatDateTime(pipeline().TriggerTime,'yyyyMMdd')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Get ADF_parameters_apis",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_adls_datascience_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": "datastore/sales/adf_parameters/",
+									"par_filename": "ADF_parameters_mayoreo_apis.csv",
+									"par_delimiter": ",",
+									"par_encoding": "UTF-8",
+									"par_header": true
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Filter ADF_parameters_apis",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "Get ADF_parameters_apis",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get ADF_parameters_apis').output.value",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@equals(string(item().retailer),pipeline().parameters.par_retailer)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ForEach type retailer",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Set variable Fecha Hoy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "If Condition API Login",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Filter ADF_parameters_apis').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "Copy API Data",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "RestSource",
+											"httpRequestTimeout": "00:05:00",
+											"requestInterval": "00.00:00:00.010",
+											"requestMethod": "GET"
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ar_rest_api_generic_auth",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_url_complete": {
+													"value": "@concat(item().url,item().header_key)",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "json_api_web",
+											"type": "DatasetReference",
+											"parameters": {
+												"FileName": {
+													"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
+													"type": "Expression"
+												},
+												"ContName": {
+													"value": "@item().cont",
+													"type": "Expression"
+												},
+												"FoldPath": {
+													"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Notebook API generic bronze layer",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Copy API Data",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_apis_generic/execution/0010.Execution_Extract_MX_Sales_Mayoreo_API_Generic",
+										"baseParameters": {
+											"parFechaExecution": {
+												"value": "@variables('var_set_fecha_hoy')",
+												"type": "Expression"
+											},
+											"parFilePath": {
+												"value": "@concat(item().cont,item().blob_path)",
+												"type": "Expression"
+											},
+											"parRetailer": {
+												"value": "@item().retailer",
+												"type": "Expression"
+											},
+											"parRetailerType": {
+												"value": "@item().tipo",
+												"type": "Expression"
+											},
+											"parTableType": {
+												"value": "@item().tb_type",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference"
+									}
+								},
+								{
+									"name": "Notebook  Setup API generic silver layer",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Notebook API generic bronze layer",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": {
+											"value": "@concat('/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_',item().retailer,'/setup/002',item().nb_id,'.Setup_',item().nb_name)",
+											"type": "Expression"
+										},
+										"baseParameters": {
+											"parFechaExecution": {
+												"value": "@variables('var_set_fecha_hoy')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference",
+										"parameters": {
+											"par_cluster": "0130-211945-mcv1mi12"
+										}
+									}
+								},
+								{
+									"name": "Notebook  Exec API generic silver layer",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "Notebook  Setup API generic silver layer",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": {
+											"value": "@concat('/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_',item().retailer,'/execution/002',item().nb_id,'.Exec_',item().nb_name)",
+											"type": "Expression"
+										},
+										"baseParameters": {
+											"parFechaExecution": {
+												"value": "@variables('var_set_fecha_hoy')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "If Condition API Login",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Filter ADF_parameters_apis",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Filter ADF_parameters_apis').output.value[0]['login'],'TRUE')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute Pipeline API Login",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_common_generic_api_login",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_retailer": {
+												"value": "@activity('Filter ADF_parameters_apis').output.value[0]['retailer']",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Notebook  Setup API generic sgold layer",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "ForEach type retailer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "@concat('/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_marvin','/setup/0030.Setup_Load_SO_Mayoreo_Dataset_Marvin')",
+								"type": "Expression"
+							},
+							"baseParameters": {
+								"parFechaExecution": {
+									"value": "@variables('var_set_fecha_hoy')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					},
+					{
+						"name": "Notebook  Exec API generic gold layer",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Notebook  Setup API generic sgold layer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "@concat('/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_nieto/execution/0031.Exec_Load_SO_Mayoreo_Nieto_Marvin')",
+								"type": "Expression"
+							},
+							"baseParameters": {
+								"parFechaExecution": {
+									"value": "@variables('var_set_fecha_hoy')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_retailer": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_set_fecha_hoy": {
+						"type": "String"
+					},
+					"var_test": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_sales/amsmx_common_db"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_generic_databricks_notebooks_solution')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Setup_Extract_DB_Notebook",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_generic_databricks_notebook",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"par_db_type_path": {
+									"value": "@concat('setup/001',pipeline().parameters.par_id,'.Setup_')",
+									"type": "Expression"
+								},
+								"par_db_etl_path": "Extract_",
+								"par_db_folder_path": {
+									"value": "@pipeline().parameters.par_db_folder_path",
+									"type": "Expression"
+								},
+								"par_db_sol_path": {
+									"value": "@pipeline().parameters.par_db_sol_path",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Setup_Transform_DB_Notebook",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Exec_Extract_DB_Notebook",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_generic_databricks_notebook",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"par_db_type_path": {
+									"value": "@concat('setup/002',pipeline().parameters.par_id,'.Setup_')",
+									"type": "Expression"
+								},
+								"par_db_etl_path": "Transform_",
+								"par_db_folder_path": {
+									"value": "@pipeline().parameters.par_db_folder_path",
+									"type": "Expression"
+								},
+								"par_db_sol_path": {
+									"value": "@pipeline().parameters.par_db_sol_path",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Exec_Extract_DB_Notebook",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Setup_Extract_DB_Notebook",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_generic_databricks_notebook",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"par_db_type_path": {
+									"value": "@concat('execution/001',pipeline().parameters.par_id,'.Exec_')",
+									"type": "Expression"
+								},
+								"par_db_etl_path": "Extract_",
+								"par_db_folder_path": {
+									"value": "@pipeline().parameters.par_db_folder_path",
+									"type": "Expression"
+								},
+								"par_db_sol_path": {
+									"value": "@pipeline().parameters.par_db_sol_path",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Exec_Transform_DB_Notebook",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Setup_Transform_DB_Notebook",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "pl_common_generic_databricks_notebook",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"par_db_type_path": {
+									"value": "@concat('execution/002',pipeline().parameters.par_id,'.Exec_')",
+									"type": "Expression"
+								},
+								"par_db_etl_path": "Transform_",
+								"par_db_folder_path": {
+									"value": "@pipeline().parameters.par_db_folder_path",
+									"type": "Expression"
+								},
+								"par_db_sol_path": {
+									"value": "@pipeline().parameters.par_db_sol_path",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Get ADF_parameters_gold_layer",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_adls_datascience_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": "datastore/sales/adf_parameters/",
+									"par_filename": "ADF_parameters_gold_layer.csv",
+									"par_delimiter": ",",
+									"par_encoding": "UTF-8",
+									"par_header": true
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Filter ADF_parameters_gold_layer",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "Get ADF_parameters_gold_layer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get ADF_parameters_gold_layer').output.value",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@equals(string(item().solution),pipeline().parameters.par_solution)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ForEach Gold Layer",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Exec_Transform_DB_Notebook",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Filter ADF_parameters_gold_layer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Filter ADF_parameters_gold_layer').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "If Condition Gold Layer",
+									"type": "IfCondition",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"expression": {
+											"value": "@greater(activity('Filter ADF_parameters_gold_layer').output.FilteredItemsCount,0)",
+											"type": "Expression"
+										},
+										"ifTrueActivities": [
+											{
+												"name": "Setup_Load_DB_Notebook",
+												"type": "ExecutePipeline",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"pipeline": {
+														"referenceName": "pl_common_generic_databricks_notebook",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true,
+													"parameters": {
+														"par_db_type_path": {
+															"value": "@concat('setup/003',item().id_gold,'.Setup_')",
+															"type": "Expression"
+														},
+														"par_db_etl_path": "Load_",
+														"par_db_folder_path": {
+															"value": "@pipeline().parameters.par_db_folder_path",
+															"type": "Expression"
+														},
+														"par_db_sol_path": {
+															"value": "@string(item().db_sol_path)",
+															"type": "Expression"
+														}
+													}
+												}
+											},
+											{
+												"name": "Exec_Load_DB_Notebook",
+												"type": "ExecutePipeline",
+												"dependsOn": [
+													{
+														"activity": "Setup_Load_DB_Notebook",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"userProperties": [],
+												"typeProperties": {
+													"pipeline": {
+														"referenceName": "pl_common_generic_databricks_notebook",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true,
+													"parameters": {
+														"par_db_type_path": {
+															"value": "@concat('execution/003',item().id_gold,'.Exec_')",
+															"type": "Expression"
+														},
+														"par_db_etl_path": "Load_",
+														"par_db_folder_path": {
+															"value": "@pipeline().parameters.par_db_folder_path",
+															"type": "Expression"
+														},
+														"par_db_sol_path": {
+															"value": "@string(item().db_sol_path)",
+															"type": "Expression"
+														}
+													}
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Get ADF_parameters_powerbi_service",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_adls_datascience_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": "datastore/sales/adf_parameters/",
+									"par_filename": "ADF_parameters_powerbi_service.csv",
+									"par_delimiter": ",",
+									"par_encoding": "UTF-8",
+									"par_header": true
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "Filter ADF_parameters_powerbi_service",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "Get ADF_parameters_powerbi_service",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Get ADF_parameters_powerbi_service').output.value",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@equals(string(item().solution),pipeline().parameters.par_solution)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ForEach PowerBI Service",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Filter ADF_parameters_powerbi_service",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "ForEach Gold Layer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Filter ADF_parameters_powerbi_service').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "If Condition PowerBI Service",
+									"type": "IfCondition",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"expression": {
+											"value": "@greater(activity('Filter ADF_parameters_powerbi_service').output.FilteredItemsCount,0)",
+											"type": "Expression"
+										},
+										"ifTrueActivities": [
+											{
+												"name": "PowerBi Service",
+												"type": "ExecutePipeline",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"pipeline": {
+														"referenceName": "pl_common_generic_refresh_power_bi_dataset",
+														"type": "PipelineReference"
+													},
+													"waitOnCompletion": true,
+													"parameters": {
+														"par_id_workspace": {
+															"value": "@string(item().workspace_id)",
+															"type": "Expression"
+														},
+														"par_id_dataset": {
+															"value": "@string(item().dataset_id)",
+															"type": "Expression"
+														}
+													}
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "If Condition Copy Parquet",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "ForEach Gold Layer",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(pipeline().parameters.par_parquet,'TRUE')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute Pipeline Copy Parquet",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_common_generic_parquet_copy",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"par_db_sol_path": {
+												"value": "@pipeline().parameters.par_db_sol_path",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_db_folder_path": {
+						"type": "string"
+					},
+					"par_db_sol_path": {
+						"type": "string"
+					},
+					"par_solution": {
+						"type": "string"
+					},
+					"par_id": {
+						"type": "string"
+					},
+					"par_parquet": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_id": {
+						"type": "String"
+					},
+					"var_test": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_sales/amsmx_common_db"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_verify_file_sharepoint')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ForEachFileVerifyBiling",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "FilterFilesBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('FilterFilesBiling').output.Value",
+								"type": "Expression"
+							},
+							"batchCount": 10,
+							"activities": [
+								{
+									"name": "Sharepoint Biling",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "varSHPBilingFilename",
+										"value": {
+											"value": "@item().Name",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "GetShpClientIdBiling",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientIDBiling",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetShpSecretBiling",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientSecretBiling",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "FilterFilesBiling",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "ReadSharepointFolderBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('ReadSharepointFolderBiling').output['d']['results']",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileNameBiling),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHoursBiling),-1),\n            'hour'\n        )\n    )\n)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "ReadSharepointFolderBiling",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetSharepointBearerTokenBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@concat(pipeline().parameters.parShpSiteUrlBiling,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrlBiling,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPathBiling,''')/Files')",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {
+								"Authorization": {
+									"value": "@{concat('Bearer ', activity('GetSharepointBearerTokenBiling').output.access_token)}",
+									"type": "Expression"
+								},
+								"Accept": "application/json;odata=verbose"
+							}
+						}
+					},
+					{
+						"name": "GetSharepointBearerTokenBiling",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetShpClientIdBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "GetShpSecretBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": {
+								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientIdBiling').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecretBiling').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Search File Version",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Search File Version').output.firstRow.Version,'Atual')",
+								"type": "Expression"
+							},
+							"ifFalseActivities": [
+								{
+									"name": "pl_common_shp_copy-sharepointsinglefiletodatalake",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "pl_common_shp_copy-sharepointsinglefiletodatalake",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"parFileName": {
+												"value": "@variables('varSHPBilingFilename')",
+												"type": "Expression"
+											},
+											"parNewFileName": {
+												"value": "@variables('varSHPBilingFilename')",
+												"type": "Expression"
+											},
+											"parUTCNow": {
+												"value": "@variables('varUTCNow')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Carga Biling Tipification Delta Table",
+									"type": "DatabricksNotebook",
+									"dependsOn": [
+										{
+											"activity": "pl_common_shp_copy-sharepointsinglefiletodatalake",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/06_tipification_shp_transfer",
+										"baseParameters": {
+											"parArchivoNombreAtual": {
+												"value": "@activity('Search File Version').output.firstRow.ActualNombreArchivo",
+												"type": "Expression"
+											},
+											"parDateTimeUTC": {
+												"value": "@variables('varUTCNow')",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceName": {
+										"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+										"type": "LinkedServiceReference"
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Verify File Version",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "VAR UTC NOW",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/rafael.medeiros2@br.nestle.com/sl_creditnotes_tipification/03_verify_file_version_tipification",
+							"baseParameters": {
+								"parFileOutputName": {
+									"value": "@variables('varSHPBilingFilename')",
+									"type": "Expression"
+								},
+								"parNowDateTimeUTC": {
+									"value": "@variables('varUTCNow')",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "Search File Version",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Verify File Version",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_adsl2_origenesmx_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"par_directory": "inbound/credit_notes/files_tipification/01_FileVersionControl",
+									"par_filename": "FileVersionTipificationControl.csv",
+									"par_delimeter": ","
+								}
+							}
+						}
+					},
+					{
+						"name": "VAR UTC NOW",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "ForEachFileVerifyBiling",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "varUTCNow",
+							"value": {
+								"value": "@utcnow()",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"parClientSecretBiling": {
+						"type": "String",
+						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-mxbilingrebates/?api-version=7.0"
+					},
+					"parClientIDBiling": {
+						"type": "String",
+						"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-mxbilingrebates/?api-version=7.0"
+					},
+					"parShpSiteUrlBiling": {
+						"type": "String",
+						"defaultValue": "https://nestle.sharepoint.com/teams/MXFillOutBillingReference"
+					},
+					"parShpRelativeFolderPathBiling": {
+						"type": "String",
+						"defaultValue": "Shared Documents/Archivos tipificación"
+					},
+					"parFileNameBiling": {
+						"type": "String",
+						"defaultValue": "tipificacion"
+					},
+					"parModifiedLastNHoursBiling": {
+						"type": "String",
+						"defaultValue": "200"
+					}
+				},
+				"variables": {
+					"varSHPBilingFilename": {
+						"type": "String"
+					},
+					"varSHPTrabajoFilename": {
+						"type": "String"
+					},
+					"varUTCNow": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_finance_creditnotes"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_extract_api_origenes')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Switch Supplier",
+						"type": "Switch",
+						"dependsOn": [
+							{
+								"activity": "Set variable Fecha Hoy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "RIVERA",
+									"activities": [
+										{
+											"name": "Set variable RIVERA Ventas",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_riv_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Ventas.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy RIVERA Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable RIVERA Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"api-key": {
+															"value": "@pipeline().parameters.par_header_key",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_riv_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable RIVERA Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_riv_inventario",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Inventario.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy RIVERA Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable RIVERA Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"api-key": {
+															"value": "@pipeline().parameters.par_header_key",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_riv_inventario')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"value": "NIETO",
+									"activities": [
+										{
+											"name": "Set variable NIETO Ventas",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=VENTAS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_inventarios",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=INVENTARIOS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Clientes",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_clientes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=CLIENTES&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Productos",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_productos",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=PRODUCTOS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy NIETO Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Clientes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Clientes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_clientes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Productos",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Productos",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_productos')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.23:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:05:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_inventarios')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable NIETO Almacenes",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_almacenes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=ALMACENES&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy NIETO Almacenes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Almacenes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_almacenes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_ALMACENES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'ALMACENES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"value": "DRIVIN",
+									"activities": [
+										{
+											"name": "Execute Pipeline Drivin",
+											"type": "ExecutePipeline",
+											"dependsOn": [],
+											"userProperties": [],
+											"typeProperties": {
+												"pipeline": {
+													"referenceName": "pl_extract_api_origenes_drivin",
+													"type": "PipelineReference"
+												},
+												"waitOnCompletion": true,
+												"parameters": {
+													"par_url": {
+														"value": "@pipeline().parameters.par_url",
+														"type": "Expression"
+													},
+													"par_stardate": {
+														"value": "@pipeline().parameters.par_stardate",
+														"type": "Expression"
+													},
+													"par_enddate": {
+														"value": "@pipeline().parameters.par_enddate",
+														"type": "Expression"
+													},
+													"par_header_content_type": {
+														"value": "@pipeline().parameters.par_header_content_type",
+														"type": "Expression"
+													},
+													"par_header_key": {
+														"value": "@pipeline().parameters.par_header_key",
+														"type": "Expression"
+													},
+													"FileName": {
+														"value": "@pipeline().parameters.FileName",
+														"type": "Expression"
+													},
+													"par_cont": {
+														"value": "@pipeline().parameters.par_cont",
+														"type": "Expression"
+													},
+													"par_folder": {
+														"value": "@pipeline().parameters.par_folder",
+														"type": "Expression"
+													},
+													"par_url_login": {
+														"value": "@pipeline().parameters.par_url_login",
+														"type": "Expression"
+													}
+												}
+											}
+										}
+									]
+								},
+								{
+									"value": "CEVISUR",
+									"activities": [
+										{
+											"name": "Set variable CEVISUR Token",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "CEVISUR Login",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_login",
+												"value": {
+													"value": "@activity('CEVISUR Login').output.token",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Ventas",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/pedidos/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_inventario",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/inventario/existencias/actuales')",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Clientes",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_clientes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/clientes/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Productos",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_produtos",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/articulos')",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "CEVISUR Login",
+											"type": "WebActivity",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"url": {
+													"value": "@pipeline().parameters.par_url_login",
+													"type": "Expression"
+												},
+												"method": "POST",
+												"headers": {
+													"Content-type": {
+														"value": "@pipeline().parameters.par_header_content_type",
+														"type": "Expression"
+													}
+												},
+												"body": {
+													"username": "0PM067",
+													"password": "5P%LZ19xeM%v"
+												}
+											}
+										},
+										{
+											"name": "Copy CEVISUR Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable CEVISUR Facturas",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_facturas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/facturas/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy CEVISUR Clientes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Clientes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_clientes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_inventario')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Productos",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Productos",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_produtos')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Facturas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Facturas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_facturas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_FACTURAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'FACTURAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								}
+							],
+							"defaultActivities": [
+								{
+									"name": "Unknown Provider",
+									"description": "Return if no URL is found.",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Set variable Fecha Hoy",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_set_fecha_hoy",
+							"value": {
+								"value": "@formatDateTime(pipeline().TriggerTime,'yyyy-MM-dd')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Switch Bronze Layer",
+						"type": "Switch",
+						"dependsOn": [
+							{
+								"activity": "Switch Supplier",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "NIETO",
+									"activities": [
+										{
+											"name": "Notebook Load NIETO Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_nieto",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "NIETO",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "RIVERA",
+									"activities": [
+										{
+											"name": "Notebook RIVERA Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_rivera",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "RIVERA",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "DRIVIN",
+									"activities": [
+										{
+											"name": "Notebook Load DRIVIN Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_drivin",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "DRIVIN",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "CEVISUR",
+									"activities": [
+										{
+											"name": "Notebook Load CEVISUR Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_cevisur",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "CEVISUR",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_url": {
+						"type": "string"
+					},
+					"par_stardate": {
+						"type": "string"
+					},
+					"par_enddate": {
+						"type": "string"
+					},
+					"par_header_content_type": {
+						"type": "string",
+						"defaultValue": "application/json"
+					},
+					"par_header_key": {
+						"type": "string"
+					},
+					"FileName": {
+						"type": "string",
+						"defaultValue": "JSON"
+					},
+					"par_cont": {
+						"type": "string",
+						"defaultValue": "dev"
+					},
+					"par_folder": {
+						"type": "string",
+						"defaultValue": "/inbound/ext_api_files_new/PROVIDER/"
+					},
+					"par_url_login": {
+						"type": "string",
+						"defaultValue": "https://central.cevisur.com.mx:8443/nestle/api/auth/login"
+					}
+				},
+				"variables": {
+					"var_riv_ventas": {
+						"type": "String"
+					},
+					"var_nie_ventas": {
+						"type": "String"
+					},
+					"var_driv": {
+						"type": "String"
+					},
+					"var_supplier": {
+						"type": "String"
+					},
+					"var_cevi_login": {
+						"type": "String"
+					},
+					"var_cevi_ventas": {
+						"type": "String"
+					},
+					"var_cevi_inventario": {
+						"type": "String"
+					},
+					"var_cevi_clientes": {
+						"type": "String"
+					},
+					"var_cevi_produtos": {
+						"type": "String"
+					},
+					"var_riv_inventario": {
+						"type": "String"
+					},
+					"var_nie_inventarios": {
+						"type": "String"
+					},
+					"var_nie_clientes": {
+						"type": "String"
+					},
+					"var_nie_productos": {
+						"type": "String"
+					},
+					"var_set_fecha_hoy": {
+						"type": "String"
+					},
+					"var_cevi_facturas": {
+						"type": "String"
+					},
+					"var_url_default": {
+						"type": "String"
+					},
+					"var_driv_direccion": {
+						"type": "String"
+					},
+					"var_driv_rutas": {
+						"type": "String"
+					},
+					"var_driv_vehiculos": {
+						"type": "String"
+					},
+					"var_driv_grupo_vehiculos": {
+						"type": "String"
+					},
+					"var_nie_almacenes": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_finance_creditnotes/Utils/API_Web"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:31Z"
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/pl_extract_api_origenes_BKP_2023-04-20')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
@@ -1602,8 +4641,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_url": {
@@ -1833,8 +4871,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"parPathCopy": {
@@ -1858,6 +4895,1595 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:31Z"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pl_extract_origenes_copy1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Switch Supplier",
+						"type": "Switch",
+						"dependsOn": [
+							{
+								"activity": "Set variable Fecha Hoy",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "RIVERA",
+									"activities": [
+										{
+											"name": "Set variable RIVERA Ventas",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_riv_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Ventas.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy RIVERA Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable RIVERA Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"api-key": {
+															"value": "@pipeline().parameters.par_header_key",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_riv_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable RIVERA Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_riv_inventario",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'SRM/creative/Procesos/ApiLayouts/Inventario.php?fecha=',pipeline().parameters.par_stardate,'&fechafin=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy RIVERA Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable RIVERA Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"api-key": {
+															"value": "@pipeline().parameters.par_header_key",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_riv_inventario')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_RIVERA_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"value": "NIETO",
+									"activities": [
+										{
+											"name": "Set variable NIETO Ventas",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=VENTAS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_inventarios",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=INVENTARIOS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Clientes",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_clientes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=CLIENTES&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable NIETO Productos",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_productos",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=PRODUCTOS&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy NIETO Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Clientes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Clientes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_clientes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Productos",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Productos",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_productos')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy NIETO Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.23:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:05:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_inventarios')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable NIETO Almacenes",
+											"type": "SetVariable",
+											"dependsOn": [],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_nie_almacenes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'?event=ALMACENES&access_token=',pipeline().parameters.par_header_key)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy NIETO Almacenes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable NIETO Almacenes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET"
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_nie_almacenes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_NIETO_ALMACENES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'ALMACENES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								},
+								{
+									"value": "DRIVIN",
+									"activities": [
+										{
+											"name": "Execute Pipeline Drivin",
+											"type": "ExecutePipeline",
+											"dependsOn": [],
+											"userProperties": [],
+											"typeProperties": {
+												"pipeline": {
+													"referenceName": "pl_extract_api_drivin",
+													"type": "PipelineReference"
+												},
+												"waitOnCompletion": true,
+												"parameters": {
+													"par_url": "https://external.driv.in/",
+													"par_stardate": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"par_enddate": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"par_header_content_type": "application/json",
+													"par_header_key": {
+														"value": "@pipeline().parameters.par_header_key",
+														"type": "Expression"
+													},
+													"FileName": "JSON",
+													"par_cont": "dev",
+													"par_folder": "/inbound/ext_api_files_new/DRIVIN/"
+												}
+											}
+										}
+									]
+								},
+								{
+									"value": "CEVISUR",
+									"activities": [
+										{
+											"name": "Set variable CEVISUR Token",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "CEVISUR Login",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_login",
+												"value": {
+													"value": "@activity('CEVISUR Login').output.token",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Ventas",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_ventas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/pedidos/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Inventarios",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_inventario",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/inventario/existencias/actuales')",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Clientes",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_clientes",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/clientes/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Set variable CEVISUR Productos",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_produtos",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/articulos')",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "CEVISUR Login",
+											"type": "WebActivity",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"url": {
+													"value": "@pipeline().parameters.par_url_login",
+													"type": "Expression"
+												},
+												"method": "POST",
+												"headers": {
+													"Content-type": {
+														"value": "@pipeline().parameters.par_header_content_type",
+														"type": "Expression"
+													}
+												},
+												"body": {
+													"username": "0PM067",
+													"password": "5P%LZ19xeM%v"
+												}
+											}
+										},
+										{
+											"name": "Copy CEVISUR Ventas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Ventas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_ventas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_VENTAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'VENTAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Set variable CEVISUR Facturas",
+											"type": "SetVariable",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Token",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"variableName": "var_cevi_facturas",
+												"value": {
+													"value": "@concat(pipeline().parameters.par_url,'nestle/api/facturas/search?startDate=',pipeline().parameters.par_stardate,'&endDate=',pipeline().parameters.par_enddate)",
+													"type": "Expression"
+												}
+											}
+										},
+										{
+											"name": "Copy CEVISUR Clientes",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Clientes",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_clientes')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_CLIENTES_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'CLIENTES')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Inventario",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Inventarios",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_inventario')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_INVENTARIO_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'INVENTARIO')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Productos",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Productos",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_produtos')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_PRODUCTOS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'PRODUCTOS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										},
+										{
+											"name": "Copy CEVISUR Facturas",
+											"type": "Copy",
+											"dependsOn": [
+												{
+													"activity": "Set variable CEVISUR Facturas",
+													"dependencyConditions": [
+														"Succeeded"
+													]
+												}
+											],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"source": {
+													"type": "RestSource",
+													"httpRequestTimeout": "00:01:40",
+													"requestInterval": "00.00:00:00.010",
+													"requestMethod": "GET",
+													"additionalHeaders": {
+														"Content-type": {
+															"value": "@pipeline().parameters.par_header_content_type",
+															"type": "Expression"
+														},
+														"Authorization": {
+															"value": "@concat('Bearer ',variables('var_cevi_login'))",
+															"type": "Expression"
+														}
+													}
+												},
+												"sink": {
+													"type": "JsonSink",
+													"storeSettings": {
+														"type": "AzureBlobFSWriteSettings"
+													},
+													"formatSettings": {
+														"type": "JsonWriteSettings"
+													}
+												},
+												"enableStaging": false
+											},
+											"inputs": [
+												{
+													"referenceName": "ar_rest_api_generic_auth",
+													"type": "DatasetReference",
+													"parameters": {
+														"par_url_complete": {
+															"value": "@variables('var_cevi_facturas')",
+															"type": "Expression"
+														}
+													}
+												}
+											],
+											"outputs": [
+												{
+													"referenceName": "json_api_web",
+													"type": "DatasetReference",
+													"parameters": {
+														"FileName": {
+															"value": "@concat(pipeline().parameters.FileName,'_CEVISUR_FACTURAS_',variables('var_set_fecha_hoy'),'.json')",
+															"type": "Expression"
+														},
+														"ContName": {
+															"value": "@pipeline().parameters.par_cont",
+															"type": "Expression"
+														},
+														"FoldPath": {
+															"value": "@concat(pipeline().parameters.par_folder,'FACTURAS')",
+															"type": "Expression"
+														}
+													}
+												}
+											]
+										}
+									]
+								}
+							],
+							"defaultActivities": [
+								{
+									"name": "Unknown Provider",
+									"description": "Return if no URL is found.",
+									"type": "Wait",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"waitTimeInSeconds": 1
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Switch Bronze Layer",
+						"type": "Switch",
+						"dependsOn": [
+							{
+								"activity": "Switch Supplier",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"on": {
+								"value": "@if(\n    contains(pipeline().parameters.par_url,'driv'),\n    'DRIVIN',\n    if(contains(pipeline().parameters.par_url,'e-smap'),\n    'RIVERA',\n    if(contains(pipeline().parameters.par_url,'cevisur'),\n    'CEVISUR',\n    if(contains(pipeline().parameters.par_url,'187.141.10.78'),\n    'NIETO','Default'  \n    )\n    )\n    )\n)",
+								"type": "Expression"
+							},
+							"cases": [
+								{
+									"value": "NIETO",
+									"activities": [
+										{
+											"name": "Notebook Load NIETO Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_nieto",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "NIETO",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "RIVERA",
+									"activities": [
+										{
+											"name": "Notebook RIVERA Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_rivera",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "RIVERA",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "DRIVIN",
+									"activities": [
+										{
+											"name": "Notebook Load DRIVIN Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_drivin",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "DRIVIN",
+													"parFilePath": {
+														"value": "@concat(variables('par_cont'),variables('par_folder'))",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								},
+								{
+									"value": "CEVISUR",
+									"activities": [
+										{
+											"name": "Notebook Load CEVISUR Bronze",
+											"type": "DatabricksNotebook",
+											"dependsOn": [],
+											"policy": {
+												"timeout": "0.12:00:00",
+												"retry": 0,
+												"retryIntervalInSeconds": 30,
+												"secureOutput": false,
+												"secureInput": false
+											},
+											"userProperties": [],
+											"typeProperties": {
+												"notebookPath": "/Repos/fernando.alves@br.nestle.com/DatabricksMX/0010_load_bronze_tb_mx_api_cevisur",
+												"baseParameters": {
+													"parFechaExecution": {
+														"value": "@variables('var_set_fecha_hoy')",
+														"type": "Expression"
+													},
+													"parFileNameTitle": "CEVISUR",
+													"parFilePath": {
+														"value": "@concat(pipeline().parameters.par_cont,pipeline().parameters.par_folder)",
+														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceName": {
+												"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+												"type": "LinkedServiceReference"
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "Set variable Fecha Hoy",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "var_set_fecha_hoy",
+							"value": {
+								"value": "@pipeline().parameters.par_stardate",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"par_url": {
+						"type": "string"
+					},
+					"par_stardate": {
+						"type": "string"
+					},
+					"par_enddate": {
+						"type": "string"
+					},
+					"par_header_content_type": {
+						"type": "string",
+						"defaultValue": "application/json"
+					},
+					"par_header_key": {
+						"type": "string"
+					},
+					"FileName": {
+						"type": "string",
+						"defaultValue": "JSON"
+					},
+					"par_cont": {
+						"type": "string",
+						"defaultValue": "dev"
+					},
+					"par_folder": {
+						"type": "string",
+						"defaultValue": "inbound/ext_api_files_new/DRIVIN/"
+					},
+					"par_url_login": {
+						"type": "string"
+					},
+					"par_provee": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_riv_ventas": {
+						"type": "String"
+					},
+					"var_nie_ventas": {
+						"type": "String"
+					},
+					"var_driv": {
+						"type": "String"
+					},
+					"var_supplier": {
+						"type": "String"
+					},
+					"var_cevi_login": {
+						"type": "String"
+					},
+					"var_cevi_ventas": {
+						"type": "String"
+					},
+					"var_cevi_inventario": {
+						"type": "String"
+					},
+					"var_cevi_clientes": {
+						"type": "String"
+					},
+					"var_cevi_produtos": {
+						"type": "String"
+					},
+					"var_riv_inventario": {
+						"type": "String"
+					},
+					"var_nie_inventarios": {
+						"type": "String"
+					},
+					"var_nie_clientes": {
+						"type": "String"
+					},
+					"var_nie_productos": {
+						"type": "String"
+					},
+					"var_set_fecha_hoy": {
+						"type": "String"
+					},
+					"var_cevi_facturas": {
+						"type": "String"
+					},
+					"var_url_default": {
+						"type": "String"
+					},
+					"var_driv_direccion": {
+						"type": "String"
+					},
+					"var_driv_rutas": {
+						"type": "String"
+					},
+					"var_driv_vehiculos": {
+						"type": "String"
+					},
+					"var_driv_grupo_vehiculos": {
+						"type": "String"
+					},
+					"var_nie_almacenes": {
+						"type": "String"
+					},
+					"par_cont": {
+						"type": "String",
+						"defaultValue": "dev"
+					},
+					"par_folder": {
+						"type": "String",
+						"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
+					}
+				},
+				"folder": {
+					"name": "amsmx_sc_drivin/HistoricoDrivIn"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-10-17T16:07:36Z"
 			},
 			"dependsOn": []
 		},
@@ -1925,8 +6551,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"folder": {
 					"name": "amsmx_finance_creditnotes"
@@ -2232,8 +6857,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"varFileName": {
@@ -2537,8 +7161,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"m_parContainer": {
@@ -2888,8 +7511,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"m_parContainer": {
@@ -3140,8 +7762,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"m_parContainer": {
@@ -3211,6 +7832,80 @@
 								23
 							]
 						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_alice_retrival_FORMS_OTAbiertas_shpt')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_common_shp",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"parEnvironment": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parEnvironment')]",
+							"parAdlsDestinationFolder": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder')]",
+							"parFileName": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parFileName')]",
+							"parShpSiteUrl": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpSiteUrl')]",
+							"parShpRelativeFolderPath": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath')]",
+							"parModifiedLastNHours": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours')]",
+							"parClientID": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientID')]",
+							"parClientSecret": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2023-09-28T08:00:00",
+						"timeZone": "Central Standard Time (Mexico)"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_alice_retrival_FORMS_People_MHE_shpt')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_common_shp",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"parEnvironment": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment')]",
+							"parAdlsDestinationFolder": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parAdlsDestinationFolder')]",
+							"parFileName": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parFileName')]",
+							"parShpSiteUrl": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpSiteUrl')]",
+							"parShpRelativeFolderPath": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parShpRelativeFolderPath')]",
+							"parModifiedLastNHours": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parModifiedLastNHours')]",
+							"parClientID": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientID')]",
+							"parClientSecret": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parClientSecret')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Hour",
+						"interval": 1,
+						"startTime": "2023-09-28T08:00:00",
+						"timeZone": "Central Standard Time (Mexico)"
 					}
 				}
 			},
@@ -3349,666 +8044,6 @@
 				}
 			},
 			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_sales_powerbi_refresh')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_sales_refresh_power_bi",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"par_blob_filename": "[parameters('tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename')]",
-							"par_blob_path": "[parameters('tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_path')]"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/datascience/blobs/datastore/sales/powerbi/",
-					"ignoreEmptyBlobs": true,
-					"scope": "[parameters('tg_sales_powerbi_refresh_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_tb_mx_sc_alice_api_historical_inbound')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_extract_api_tablas_inb_outb",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"par_search_type": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_search_type')]",
-							"par_url": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url')]",
-							"par_folder": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_folder')]",
-							"par_url_base": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url_base')]",
-							"par_cont": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_cont')]",
-							"par_status": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_status')]",
-							"par_function": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_function')]",
-							"par_tabla": "[parameters('tg_tb_mx_sc_alice_api_historical_inbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-04-10T20:56:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								30
-							],
-							"hours": [
-								1
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_tb_mx_sc_alice_api_historical_outbound')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_extract_api_tablas_inb_outb",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"par_search_type": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_search_type')]",
-							"par_url": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url')]",
-							"par_folder": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_folder')]",
-							"par_url_base": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_url_base')]",
-							"par_cont": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_cont')]",
-							"par_function": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_function')]",
-							"par_tabla": "[parameters('tg_tb_mx_sc_alice_api_historical_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-04-10T20:53:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								1
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_afs_npp_1')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_afs_npp",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Month",
-						"interval": 1,
-						"startTime": "2023-07-02T13:51:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								35
-							],
-							"hours": [
-								17
-							],
-							"monthDays": [
-								1
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_afs_npp_2')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_afs_npp",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2023-07-04T17:15:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								8
-							],
-							"weekDays": [
-								"Monday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tr_drivin_daily_api')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_daily_DRIVIN",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-03-14T14:12:00Z",
-						"timeZone": "UTC",
-						"schedule": {
-							"minutes": [
-								0
-							],
-							"hours": [
-								23
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_load_sales')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Get ADF DB notebooks parameters",
-						"type": "Lookup",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "DelimitedTextSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "DelimitedTextReadSettings"
-								}
-							},
-							"dataset": {
-								"referenceName": "ds_adls_datascience_csv",
-								"type": "DatasetReference",
-								"parameters": {
-									"par_directory": "datastore/sales/adf_parameters/",
-									"par_filename": "ADF_parameters_db_notebooks.csv",
-									"par_delimiter": ",",
-									"par_encoding": "UTF-8",
-									"par_header": true
-								}
-							},
-							"firstRowOnly": false
-						}
-					},
-					{
-						"name": "ForEach ADF DB notebooks parameters",
-						"type": "ForEach",
-						"dependsOn": [
-							{
-								"activity": "Get ADF DB notebooks parameters",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"items": {
-								"value": "@activity('Get ADF DB notebooks parameters').output.value",
-								"type": "Expression"
-							},
-							"isSequential": false,
-							"activities": [
-								{
-									"name": "If Condition ADF DB notebooks parameters",
-									"type": "IfCondition",
-									"dependsOn": [],
-									"userProperties": [],
-									"typeProperties": {
-										"expression": {
-											"value": "@equals(item().blob_filename,pipeline().parameters.par_blob_filename)",
-											"type": "Expression"
-										},
-										"ifTrueActivities": [
-											{
-												"name": "pl_load_sales",
-												"type": "ExecutePipeline",
-												"dependsOn": [],
-												"userProperties": [],
-												"typeProperties": {
-													"pipeline": {
-														"referenceName": "pl_common_generic_databricks_notebooks_solution",
-														"type": "PipelineReference"
-													},
-													"waitOnCompletion": true,
-													"parameters": {
-														"par_db_folder_path": {
-															"value": "@string(item().db_folder_path)",
-															"type": "Expression"
-														},
-														"par_db_sol_path": {
-															"value": "@string(item().db_sol_path)",
-															"type": "Expression"
-														},
-														"par_solution": {
-															"value": "@string(item().solution)",
-															"type": "Expression"
-														},
-														"par_id": {
-															"value": "@string(item().id)",
-															"type": "Expression"
-														},
-														"par_parquet": {
-															"value": "@string(item().parquet)",
-															"type": "Expression"
-														}
-													}
-												}
-											}
-										]
-									}
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"par_blob_path": {
-						"type": "string"
-					},
-					"par_blob_filename": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"var_db_folder_path": {
-						"type": "String"
-					},
-					"var_db_sol_path": {
-						"type": "String"
-					},
-					"var_solution": {
-						"type": "String"
-					},
-					"var_id": {
-						"type": "String"
-					},
-					"var_test": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_sales"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:33Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_master_copy_tipification_to_lake')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "API Copy Sharepoint to Lake",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "pl_common_verify_file_sharepoint",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_shp_copy-multiplefilestodatalakehourfilter",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {
-								"parAdlsDestinationFolder": "inbound/credit_notes/files_tipification",
-								"parFileName": "Tipification",
-								"parShpSiteUrl": "https://nestle.sharepoint.com/teams/nmex-tipification-trabajo",
-								"parShpRelativeFolderPath": "Documentos Compartilhados",
-								"parModifiedLastNHours": "200",
-								"parClientID": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-trabajo-tipification/?api-version=7.0",
-								"parClientSecret": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-trabajo-tipification/?api-version=7.0",
-								"par_UtcNowVar": {
-									"value": "@variables('var_UtcNow')",
-									"type": "Expression"
-								}
-							}
-						}
-					},
-					{
-						"name": "utcNowFolder",
-						"type": "SetVariable",
-						"dependsOn": [],
-						"policy": {
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "var_UtcNow",
-							"value": {
-								"value": "@utcnow()",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "pl_common_verify_file_sharepoint",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "utcNowFolder",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_verify_file_sharepoint",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "pl_common_load_extract_tipification",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "API Copy Sharepoint to Lake",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_load_extract_tipification",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "pl_common_extract_log_register",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "pl_common_load_extract_tipification",
-								"dependencyConditions": [
-									"Succeeded",
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_extract_log_register",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "pl_common_extract_log_register_failure",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "pl_common_verify_file_sharepoint",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_extract_log_register",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					},
-					{
-						"name": "pl_common_extract_log_register_failure_01",
-						"type": "ExecutePipeline",
-						"dependsOn": [
-							{
-								"activity": "API Copy Sharepoint to Lake",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"pipeline": {
-								"referenceName": "pl_common_extract_log_register",
-								"type": "PipelineReference"
-							},
-							"waitOnCompletion": true,
-							"parameters": {}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"variables": {
-					"var_UtcNow": {
-						"type": "String"
-					},
-					"var_FileTipificationNameOut": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_finance_creditnotes"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:34Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_ageing')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_master_extract_tables_alice",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"m_parContainer": "[parameters('tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]",
-							"m_parFileNameTitle": "[parameters('tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle')]",
-							"m_parPathDestination": "[parameters('tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination')]",
-							"m_parPathCopy": "[parameters('tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy')]",
-							"m_parFileNameCopy": "[parameters('tg_alice_tb_mx_sc_ageing_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-04-20T07:15:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								7
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_master_extract_tables_alice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_atp')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "pl_master_extract_tables_alice",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"m_parContainer": "[parameters('tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]",
-							"m_parFileNameTitle": "[parameters('tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle')]",
-							"m_parPathDestination": "[parameters('tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination')]",
-							"m_parPathCopy": "[parameters('tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy')]",
-							"m_parFileNameCopy": "[parameters('tg_alice_tb_mx_sc_atp_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
-						}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Day",
-						"interval": 1,
-						"startTime": "2023-04-21T07:15:00",
-						"timeZone": "Central Standard Time (Mexico)",
-						"schedule": {
-							"minutes": [
-								15
-							],
-							"hours": [
-								7,
-								15,
-								23
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pl_master_extract_tables_alice')]"
-			]
 		}
 	]
 }

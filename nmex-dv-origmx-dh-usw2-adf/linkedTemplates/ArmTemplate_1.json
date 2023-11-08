@@ -155,6 +155,34 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/tr_drivin_daily_api')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-03-14T14:12:00Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								23
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/nmex-origmx-dh-usw2-ithub-shared-ir')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -214,8 +242,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"par_conteudo_email": {
@@ -562,47 +589,6 @@
 				"typeProperties": {
 					"location": {
 						"type": "HttpServerLocation"
-					}
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/ds_ar_sftp_ncdt')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_ar_sftp_ncdt",
-					"type": "LinkedServiceReference",
-					"parameters": {
-						"parhost": "200.38.155.5",
-						"parport": 22,
-						"paruser": "nestle_reportes_cliente",
-						"parkey": "sftp-pass-nestletp"
-					}
-				},
-				"parameters": {
-					"par_directory": {
-						"type": "string"
-					},
-					"par_filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "SftpLocation",
-						"fileName": {
-							"value": "@if(equals(dataset().par_filename,'0'),null , dataset().par_filename)\r\n\r\n",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().par_directory",
-							"type": "Expression"
-						}
 					}
 				}
 			},
