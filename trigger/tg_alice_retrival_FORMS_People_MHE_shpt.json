@@ -1,0 +1,34 @@
+{
+	"name": "tg_alice_retrival_FORMS_People_MHE_shpt",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pl_common_shp",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"parEnvironment": "dev",
+					"parAdlsDestinationFolder": "/inbound/catalogs/supplychain/logistics/",
+					"parFileName": "FORMS_People&MHE.xlsx",
+					"parShpSiteUrl": "https://nestle.sharepoint.com/teams/nmex-supplychain-alice",
+					"parShpRelativeFolderPath": "Shared Documents",
+					"parModifiedLastNHours": "25",
+					"parClientID": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-supplychain-alice/?api-version=7.0",
+					"parClientSecret": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-supplychain-alice/?api-version=7.0"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 1,
+				"startTime": "2023-09-28T08:00:00",
+				"timeZone": "Central Standard Time (Mexico)"
+			}
+		}
+	}
+}

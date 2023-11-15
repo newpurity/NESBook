@@ -54,7 +54,7 @@
 			"name": "amsmx_professional/catalogs"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-06T16:03:20Z"
+		"lastPublishTime": "2023-08-07T23:28:25Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

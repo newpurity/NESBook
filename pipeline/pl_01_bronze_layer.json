@@ -48,9 +48,46 @@
 						"par_IsATM": {
 							"value": "@pipeline().parameters.par_IsATM",
 							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr_siweb",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "clean_bronze",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "load_bronze_layer",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/Production/DatabricksMX/sv_utilities/functions/117_failure_clean_bronze",
+					"baseParameters": {
+						"par_IdClient": {
+							"value": "@pipeline().parameters.par_IdClient",
+							"type": "Expression"
 						},
-						"par_FilesToProcess": {
-							"value": "@pipeline().parameters.par_FilesToProcess",
+						"par_IdRetailer": {
+							"value": "@pipeline().parameters.par_IdRetailer",
+							"type": "Expression"
+						},
+						"par_IdLog": {
+							"value": "@pipeline().parameters.par_IdLog",
 							"type": "Expression"
 						}
 					}
@@ -93,17 +130,13 @@
 			"par_IsATM": {
 				"type": "string",
 				"defaultValue": "false"
-			},
-			"par_FilesToProcess": {
-				"type": "string",
-				"defaultValue": "fileName"
 			}
 		},
 		"folder": {
 			"name": "Siweb"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-07T17:28:31Z"
+		"lastPublishTime": "2023-10-06T17:46:19Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "fechas_drivin2.csv",
+				"fileName": "token_proveedores.csv",
 				"folderPath": "inbound/api/drivin",
 				"container": "dev"
 			},

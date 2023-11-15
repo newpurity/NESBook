@@ -389,10 +389,6 @@
 						"par_IsATM": {
 							"value": "@pipeline().parameters.par_IsATM",
 							"type": "Expression"
-						},
-						"par_FilesToProcess": {
-							"value": "@pipeline().parameters.par_FilesToProcess",
-							"type": "Expression"
 						}
 					}
 				},
@@ -502,9 +498,6 @@
 			},
 			"par_CustomViewsList": {
 				"type": "string"
-			},
-			"par_FilesToProcess": {
-				"type": "string"
 			}
 		},
 		"variables": {
@@ -525,7 +518,7 @@
 			"name": "Siweb"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-07T17:28:31Z"
+		"lastPublishTime": "2023-08-07T23:28:29Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

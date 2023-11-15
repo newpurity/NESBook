@@ -1,0 +1,261 @@
+{
+	"name": "pl_common_generic_api_test",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable Fecha Hoy",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_set_fecha_hoy",
+					"value": {
+						"value": "@formatDateTime(pipeline().TriggerTime,'yyyyMMdd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get ADF_parameters_apis",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_adls_datascience_csv",
+						"type": "DatasetReference",
+						"parameters": {
+							"par_directory": "datastore/sales/adf_parameters/",
+							"par_filename": "ADF_parameters_mayoreo_apis.csv",
+							"par_delimiter": ",",
+							"par_encoding": "UTF-8",
+							"par_header": true
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Filter ADF_parameters_apis",
+				"type": "Filter",
+				"dependsOn": [
+					{
+						"activity": "Get ADF_parameters_apis",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get ADF_parameters_apis').output.value",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@equals(string(item().retailer),pipeline().parameters.par_retailer)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach type retailer",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable Fecha Hoy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Filter ADF_parameters_apis",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Filter ADF_parameters_apis').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Notebook API generic bronze layer",
+							"type": "DatabricksNotebook",
+							"dependsOn": [
+								{
+									"activity": "Copy API Data_copy1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"notebookPath": "/Repos/Production/DatabricksMX/sl_so/sl_so_mayoreo/sl_so_mayoreo_apis_generic/execution/0010.Execution_Extract_MX_Sales_Mayoreo_API_Generic",
+								"baseParameters": {
+									"parFechaExecution": {
+										"value": "@variables('var_set_fecha_hoy')",
+										"type": "Expression"
+									},
+									"parFilePath": {
+										"value": "@concat(item().cont,item().blob_path)",
+										"type": "Expression"
+									},
+									"parRetailer": {
+										"value": "@item().retailer",
+										"type": "Expression"
+									},
+									"parRetailerType": {
+										"value": "@item().tipo",
+										"type": "Expression"
+									},
+									"parTableType": {
+										"value": "@item().tb_type",
+										"type": "Expression"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"par_cluster": "0130-211945-mcv1mi12"
+								}
+							}
+						},
+						{
+							"name": "Copy API Data_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "01:00:00",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"api-key": {
+											"value": "@item().header_key",
+											"type": "Expression"
+										},
+										"Content-type": "application/json",
+										"Authorization": {
+											"value": "@variables('var_api_token')",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ar_rest_api_generic_auth",
+									"type": "DatasetReference",
+									"parameters": {
+										"par_url_complete": {
+											"value": "@if(empty(item().range_date),item().url,concat(item().url,formatDateTime(addDays(pipeline().TriggerTime,int(item().range_date)),item().date_format),item().header_content_type,if(equals(item().range_date,'-2'),'',formatDateTime(pipeline().TriggerTime,item().date_format))))",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "json_api_web",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
+											"type": "Expression"
+										},
+										"ContName": {
+											"value": "@item().cont",
+											"type": "Expression"
+										},
+										"FoldPath": {
+											"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"par_retailer": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"var_set_fecha_hoy": {
+				"type": "String"
+			},
+			"var_test": {
+				"type": "String"
+			},
+			"var_api_token": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "amsmx_sales/amsmx_common_db"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-09-20T16:21:28Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

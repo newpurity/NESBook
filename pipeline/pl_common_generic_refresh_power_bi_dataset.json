@@ -283,7 +283,7 @@
 			"name": "amsla_data-load-tool"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-07-06T16:03:13Z"
+		"lastPublishTime": "2023-08-07T23:28:15Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

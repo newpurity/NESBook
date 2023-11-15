@@ -1,0 +1,299 @@
+{
+	"name": "pl_api_drivin_daily",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup1').output.value\n",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Token",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Proveedor",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "par_header_key",
+								"value": {
+									"value": "@item().Prop_1",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable Fecha Hoy",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Token",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "var_set_fecha_hoy",
+								"value": {
+									"value": "@formatDateTime(pipeline().TriggerTime,'yyyy-MM-dd')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Execute Pipeline1",
+							"type": "ExecutePipeline",
+							"dependsOn": [
+								{
+									"activity": "Set variable Fecha Hoy",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "pl_extract_origenes_copy1",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"par_url": "https://external.driv.in/",
+									"par_stardate": {
+										"value": "@variables('var_set_fecha_hoy')",
+										"type": "Expression"
+									},
+									"par_enddate": {
+										"value": "@variables('var_set_fecha_hoy')",
+										"type": "Expression"
+									},
+									"par_header_key": {
+										"value": "@variables('par_header_key')",
+										"type": "Expression"
+									},
+									"par_provee": {
+										"value": "@variables('par_provee')",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Proveedor",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "par_provee",
+								"value": {
+									"value": "@item().Prop_0",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Switch1",
+							"type": "Switch",
+							"dependsOn": [
+								{
+									"activity": "Execute Pipeline1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@if(contains(variables('par_provee'),'Velbus'),'Velbus',if(contains(variables('par_provee'),'Oplays'),'Oplays','Default'))",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "Velbus",
+										"activities": [
+											{
+												"name": "Silver Velbus",
+												"type": "DatabricksNotebook",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_tb_mx_sc_drivin_velbus"
+												},
+												"linkedServiceName": {
+													"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+													"type": "LinkedServiceReference",
+													"parameters": {
+														"par_cluster": "0130-211945-mcv1mi12"
+													}
+												}
+											}
+										]
+									},
+									{
+										"value": "Oplays",
+										"activities": [
+											{
+												"name": "Silver Oplays",
+												"type": "DatabricksNotebook",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_tb_mx_sc_drivin_oplays"
+												},
+												"linkedServiceName": {
+													"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+													"type": "LinkedServiceReference",
+													"parameters": {
+														"par_cluster": "0130-211945-mcv1mi12"
+													}
+												}
+											}
+										]
+									}
+								],
+								"defaultActivities": [
+									{
+										"name": "Silver Generico",
+										"type": "DatabricksNotebook",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"notebookPath": "/Repos/valeria.camacho1@mx.nestle.com/DatabricksMX/sl_ncdt/sl_Driv_In_API/execution/0020_load_silver_mx_tb_drivin_apis"
+										},
+										"linkedServiceName": {
+											"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+											"type": "LinkedServiceReference",
+											"parameters": {
+												"par_cluster": "0130-211945-mcv1mi12"
+											}
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"par_cont": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"par_folder": {
+				"type": "string",
+				"defaultValue": "/inbound/ext_api_files_new/DRIVIN/"
+			}
+		},
+		"variables": {
+			"par_stardate": {
+				"type": "String"
+			},
+			"par_enddate": {
+				"type": "String"
+			},
+			"par_header_key": {
+				"type": "String"
+			},
+			"var_set_fecha_hoy": {
+				"type": "String"
+			},
+			"par_provee": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "amsmx_sc_drivin"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-10-17T16:07:36Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
