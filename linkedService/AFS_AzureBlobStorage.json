@@ -12,7 +12,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "datalakeafs",
-				"secretVersion": "b09820ccb19344f1823065fdda05fb6a"
+				"secretVersion": "ba08088b86f447389e4ab7f4e6b7c3c5"
 			}
 		}
 	},
