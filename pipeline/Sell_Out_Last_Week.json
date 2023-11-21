@@ -14,6 +14,9 @@
 					"secureInput": false
 				},
 				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Update Delta Tables Last Week"
+				},
 				"linkedServiceName": {
 					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
 					"type": "LinkedServiceReference",
