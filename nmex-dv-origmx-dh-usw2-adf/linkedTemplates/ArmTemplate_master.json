@@ -1043,9 +1043,6 @@
 					},
 					"tr_palantir_Sindicadas_properties_pl_datasets_parameters_Area": {
 						"value": "[parameters('tr_palantir_Sindicadas_properties_pl_datasets_parameters_Area')]"
-					},
-					"tr_palantir_catalogs_properties_pl_datasets_parameters_Area": {
-						"value": "[parameters('tr_palantir_catalogs_properties_pl_datasets_parameters_Area')]"
 					}
 				}
 			},
@@ -1066,6 +1063,9 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"tr_palantir_catalogs_properties_pl_datasets_parameters_Area": {
+						"value": "[parameters('tr_palantir_catalogs_properties_pl_datasets_parameters_Area')]"
 					},
 					"tr_palantir_nesmovil_properties_pl_datasets_parameters_Area": {
 						"value": "[parameters('tr_palantir_nesmovil_properties_pl_datasets_parameters_Area')]"
@@ -1105,6 +1105,26 @@
 					},
 					"tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret": {
 						"value": "[parameters('tg_alice_retrival_FORMS_OTAbiertas_shpt_properties_pl_common_shp_parameters_parClientSecret')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'nmex-dv-origmx-dh-usw2-adf_ArmTemplate_8')]"
+			]
+		},
+		{
+			"name": "nmex-dv-origmx-dh-usw2-adf_ArmTemplate_10",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_10.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment": {
 						"value": "[parameters('tg_alice_retrival_FORMS_People_MHE_shpt_properties_pl_common_shp_parameters_parEnvironment')]"
@@ -1177,26 +1197,6 @@
 					},
 					"tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla": {
 						"value": "[parameters('tg_mx_sc_tb_mx_sc_alice_api_live_outbound_properties_pl_extract_api_tablas_inb_outb_parameters_par_tabla')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'nmex-dv-origmx-dh-usw2-adf_ArmTemplate_8')]"
-			]
-		},
-		{
-			"name": "nmex-dv-origmx-dh-usw2-adf_ArmTemplate_10",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_10.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
 					},
 					"tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename": {
 						"value": "[parameters('tg_sales_powerbi_refresh_properties_pl_sales_refresh_power_bi_parameters_par_blob_filename')]"
@@ -1371,6 +1371,26 @@
 					},
 					"tg_alice_tb_mx_sc_otr_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
 						"value": "[parameters('tg_alice_tb_mx_sc_otr_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'nmex-dv-origmx-dh-usw2-adf_ArmTemplate_9')]"
+			]
+		},
+		{
+			"name": "nmex-dv-origmx-dh-usw2-adf_ArmTemplate_11",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_11.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 						"value": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]"
@@ -1416,26 +1436,6 @@
 					},
 					"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
 						"value": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
-					}
-				}
-			},
-			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'nmex-dv-origmx-dh-usw2-adf_ArmTemplate_9')]"
-			]
-		},
-		{
-			"name": "nmex-dv-origmx-dh-usw2-adf_ArmTemplate_11",
-			"type": "Microsoft.Resources/deployments",
-			"apiVersion": "2018-02-01",
-			"properties": {
-				"mode": "incremental",
-				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_11.json', parameters('containerSasToken'))]",
-					"contentVersion": "1.0.0.0"
-				},
-				"parameters": {
-					"factoryName": {
-						"value": "[parameters('factoryName')]"
 					},
 					"tg_alice_tb_mx_sc_vl06f_nac_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 						"value": "[parameters('tg_alice_tb_mx_sc_vl06f_nac_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]"

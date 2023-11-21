@@ -7,6 +7,66 @@
 			"metadata": "Nombre de instancia de Data Factory",
 			"defaultValue": "nmex-dv-origmx-dh-usw2-adf"
 		},
+		"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle": {
+			"type": "string",
+			"defaultValue": "contabilizado"
+		},
+		"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
+			"type": "string",
+			"defaultValue": "OTR_Contabilizado*"
+		},
+		"tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle": {
+			"type": "string",
+			"defaultValue": "trm_log"
+		},
+		"tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
+			"type": "string",
+			"defaultValue": "TRM LOG*"
+		},
+		"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle": {
+			"type": "string",
+			"defaultValue": "vl06f_con"
+		},
+		"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy": {
+			"type": "string",
+			"defaultValue": "inbound/alice/"
+		},
+		"tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy": {
+			"type": "string",
+			"defaultValue": "VL06F_CON*"
+		},
 		"tg_alice_tb_mx_sc_vl06f_nac_properties_pl_master_extract_tables_alice_parameters_m_parContainer": {
 			"type": "string",
 			"defaultValue": "dev"
@@ -48,6 +108,132 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_otr_contabilizado')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_master_extract_tables_alice",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"m_parContainer": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]",
+							"m_parFileNameTitle": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle')]",
+							"m_parPathDestination": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination')]",
+							"m_parPathCopy": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy')]",
+							"m_parFileNameCopy": "[parameters('tg_alice_tb_mx_sc_otr_contabilizado_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-04-20T07:15:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								7
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_trm_log')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_master_extract_tables_alice",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"m_parContainer": "[parameters('tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]",
+							"m_parFileNameTitle": "[parameters('tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle')]",
+							"m_parPathDestination": "[parameters('tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination')]",
+							"m_parPathCopy": "[parameters('tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy')]",
+							"m_parFileNameCopy": "[parameters('tg_alice_tb_mx_sc_trm_log_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-04-20T07:15:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								7
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_vl06f_con')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_master_extract_tables_alice",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"m_parContainer": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parContainer')]",
+							"m_parFileNameTitle": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameTitle')]",
+							"m_parPathDestination": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parPathDestination')]",
+							"m_parPathCopy": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parPathCopy')]",
+							"m_parFileNameCopy": "[parameters('tg_alice_tb_mx_sc_vl06f_con_properties_pl_master_extract_tables_alice_parameters_m_parFileNameCopy')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2023-04-20T07:15:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								15
+							],
+							"hours": [
+								7
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/tg_alice_tb_mx_sc_vl06f_nac')]",
 			"type": "Microsoft.DataFactory/factories/triggers",

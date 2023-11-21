@@ -13,6 +13,326 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/pl_common_shp')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Copy files of any size from SharePoint  to Data Lake, including copy all files matching a startswith condition of a folder and files modified in the last x hours.\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
+				"activities": [
+					{
+						"name": "ForEachFile",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "FilterFiles",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('FilterFiles').output.Value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Copy File",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Filename Copy",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "7.00:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "BinarySource",
+											"storeSettings": {
+												"type": "HttpReadSettings",
+												"requestMethod": "GET",
+												"additionalHeaders": {
+													"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+													"type": "Expression"
+												},
+												"requestTimeout": ""
+											},
+											"formatSettings": {
+												"type": "BinaryReadSettings"
+											}
+										},
+										"sink": {
+											"type": "BinarySink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_ar_rest_shp_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_Url": {
+													"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',pipeline().parameters.parFileName,''')/$value')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_adsl2_origenesmx_binary",
+											"type": "DatasetReference",
+											"parameters": {
+												"par_directory": {
+													"value": "@pipeline().parameters.parAdlsDestinationFolder",
+													"type": "Expression"
+												},
+												"par_filename": {
+													"value": "@pipeline().parameters.parFileName",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								},
+								{
+									"name": "Filename Copy",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "var_File_NameOut",
+										"value": {
+											"value": "@pipeline().parameters.parFileName",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "GetShpClientId",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientID",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "GetShpSecret",
+						"type": "WebActivity",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@pipeline().parameters.parClientSecret",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {},
+							"authentication": {
+								"type": "MSI",
+								"resource": "https://vault.azure.net"
+							}
+						}
+					},
+					{
+						"name": "ReadSharepointFolder",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetSharepointBearerToken",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": {
+								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFolderByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),'/',pipeline().parameters.parShpRelativeFolderPath,''')/Files')",
+								"type": "Expression"
+							},
+							"method": "GET",
+							"headers": {
+								"Authorization": {
+									"value": "@{concat('Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
+									"type": "Expression"
+								},
+								"Accept": "application/json;odata=verbose"
+							}
+						}
+					},
+					{
+						"name": "GetSharepointBearerToken",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "GetShpClientId",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "GetShpSecret",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": true,
+							"secureInput": true
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/x-www-form-urlencoded"
+							},
+							"body": {
+								"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "FilterFiles",
+						"type": "Filter",
+						"dependsOn": [
+							{
+								"activity": "ReadSharepointFolder",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('ReadSharepointFolder').output['d']['results']",
+								"type": "Expression"
+							},
+							"condition": {
+								"value": "@and(\n    startswith(item()['Name'],pipeline().parameters.parFileName),\n    greaterOrEquals(\n        item()['TimeLastModified'],\n        addToTime(\n            utcnow(),\n            mul(int(pipeline().parameters.parModifiedLastNHours),-1),\n            'hour'\n        )\n    )\n)",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"parEnvironment": {
+						"type": "string"
+					},
+					"parAdlsDestinationFolder": {
+						"type": "string"
+					},
+					"parFileName": {
+						"type": "string"
+					},
+					"parShpSiteUrl": {
+						"type": "string"
+					},
+					"parShpRelativeFolderPath": {
+						"type": "string"
+					},
+					"parModifiedLastNHours": {
+						"type": "string"
+					},
+					"parNewFileName": {
+						"type": "string"
+					},
+					"parClientID": {
+						"type": "string"
+					},
+					"parClientSecret": {
+						"type": "string"
+					},
+					"par_UtcNowVar": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"var_File_NameOut": {
+						"type": "String"
+					},
+					"varNombreArchivoAtual": {
+						"type": "String"
+					},
+					"varNombreNewArchivo": {
+						"type": "String"
+					},
+					"varPathUTCArchivoAnterior": {
+						"type": "String"
+					}
+				},
+				"folder": {
+					"name": "amsmx_supply_alice/pl_extract/SharePoint Catalogs"
+				},
+				"annotations": [],
+				"lastPublishTime": "2023-08-07T23:28:27Z"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/pl_common_shp_copy-multiplefilestodatalakehourfilter')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -10720,339 +11040,6 @@
 				},
 				"annotations": [],
 				"lastPublishTime": "2023-08-07T23:28:27Z"
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/pl_load_tablas_notebook_alice')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "Switch Table Load",
-						"type": "Switch",
-						"dependsOn": [],
-						"userProperties": [],
-						"typeProperties": {
-							"on": {
-								"value": "@pipeline().parameters.parTableName",
-								"type": "Expression"
-							},
-							"cases": [
-								{
-									"value": "lx03",
-									"activities": [
-										{
-											"name": "Load LX03",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_lx03",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "lt23",
-									"activities": [
-										{
-											"name": "Load LT23",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_lt23",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "otr",
-									"activities": [
-										{
-											"name": "Load OTR",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_otr",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "contabilizado",
-									"activities": [
-										{
-											"name": "Load OTR Contabilizado",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_otr_contabilizado",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "mb5t",
-									"activities": [
-										{
-											"name": "Load MB5T",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_mb5t",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "me2n",
-									"activities": [
-										{
-											"name": "Load ME2N",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_me2n",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "vl06f_nac",
-									"activities": [
-										{
-											"name": "Load VL06F_NAC",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_vl06f_nac",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "vl06f_con",
-									"activities": [
-										{
-											"name": "Load VL06F_CON",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_vl06f_con",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "atp",
-									"activities": [
-										{
-											"name": "Load ATP",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_atp",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "trm_log",
-									"activities": [
-										{
-											"name": "Load TRM_LOG",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_trm_log",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "me80fn",
-									"activities": [
-										{
-											"name": "Load ME80FN",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_me80fn",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								},
-								{
-									"value": "ageing",
-									"activities": [
-										{
-											"name": "Load AGEING",
-											"type": "ExecutePipeline",
-											"dependsOn": [],
-											"userProperties": [],
-											"typeProperties": {
-												"pipeline": {
-													"referenceName": "pl_common_tabla_ageing",
-													"type": "PipelineReference"
-												},
-												"waitOnCompletion": true,
-												"parameters": {
-													"parFechaAtual_Carga": {
-														"value": "@pipeline().parameters.parFechaAtual_Carga",
-														"type": "Expression"
-													}
-												}
-											}
-										}
-									]
-								}
-							]
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"parFechaAtual_Carga": {
-						"type": "string"
-					},
-					"parTableName": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"varPathNotebook": {
-						"type": "String"
-					}
-				},
-				"folder": {
-					"name": "amsmx_supply_alice"
-				},
-				"annotations": [],
-				"lastPublishTime": "2023-08-07T23:28:30Z"
 			},
 			"dependsOn": []
 		}

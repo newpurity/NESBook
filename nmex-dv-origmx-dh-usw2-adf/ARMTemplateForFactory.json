@@ -1024,6 +1024,48 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/Sell_Out_Last_Week')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Last_Week",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Update Delta Tables Last Week"
+						},
+						"linkedServiceName": {
+							"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"par_cluster": "0130-211945-mcv1mi12"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"folder": {
+					"name": "amsmx_veterinarios"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Update_Sell_Out_NPP')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -1090,7 +1132,7 @@
 					"name": "amsmx_veterinarios"
 				},
 				"annotations": [],
-				"lastPublishTime": "2023-10-31T18:33:58Z"
+				"lastPublishTime": "2023-11-08T15:35:19Z"
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/lk_nmex_dv_origenesmx_id_usw2_dbr')]"
@@ -31190,7 +31232,7 @@
 							"type": "LinkedServiceReference"
 						},
 						"secretName": "datalakeafs",
-						"secretVersion": "b09820ccb19344f1823065fdda05fb6a"
+						"secretVersion": "ba08088b86f447389e4ab7f4e6b7c3c5"
 					}
 				}
 			},
@@ -33923,6 +33965,88 @@
 				"typeProperties": {}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_mx_npp_sell_out_weekly_2')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Update_Sell_Out_NPP",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2023-11-21T22:57:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								6
+							],
+							"weekDays": [
+								"Thursday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Update_Sell_Out_NPP')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tg_mx_npp_sell_out_last_week')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Sell_Out_Last_Week",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2023-11-21T23:01:00",
+						"timeZone": "Central Standard Time (Mexico)",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								5
+							],
+							"weekDays": [
+								"Wednesday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/Sell_Out_Last_Week')]"
+			]
 		}
 	]
 }
