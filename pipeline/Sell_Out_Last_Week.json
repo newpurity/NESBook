@@ -1,0 +1,36 @@
+{
+	"name": "Sell_Out_Last_Week",
+	"properties": {
+		"activities": [
+			{
+				"name": "Last_Week",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Update Delta Tables Last Week"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0130-211945-mcv1mi12"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "amsmx_veterinarios"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-11-21T23:03:08Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

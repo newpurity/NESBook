@@ -54,13 +54,43 @@
 						"par_cluster": "0130-211945-mcv1mi12"
 					}
 				}
+			},
+			{
+				"name": "Sell Out Currently Week",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Sell Out Monthly",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/gerardo.arce1@mx.nestle.com/Databricks_NPP/execution/Update Delta Tables Current Week"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0130-211945-mcv1mi12"
+					}
+				}
 			}
 		],
 		"folder": {
 			"name": "amsmx_veterinarios"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-11-08T15:35:19Z"
+		"lastPublishTime": "2023-11-21T23:06:05Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
