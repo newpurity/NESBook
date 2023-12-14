@@ -22,12 +22,6 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"parAdlsDestinationFolder": "inbound/credit_notes/files_tipification",
-						"parFileName": "Tipification",
-						"parShpSiteUrl": "https://nestle.sharepoint.com/teams/nmex-tipification-trabajo",
-						"parShpRelativeFolderPath": "Documentos Compartilhados",
-						"parModifiedLastNHours": "200",
-						"parClientID": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-nmex-trabajo-tipification/?api-version=7.0",
-						"parClientSecret": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-nmex-trabajo-tipification/?api-version=7.0",
 						"par_UtcNowVar": {
 							"value": "@variables('var_UtcNow')",
 							"type": "Expression"
@@ -36,7 +30,7 @@
 				}
 			},
 			{
-				"name": "utcNowFolder",
+				"name": "utcNowFolder01",
 				"type": "SetVariable",
 				"dependsOn": [],
 				"policy": {
@@ -57,7 +51,7 @@
 				"type": "ExecutePipeline",
 				"dependsOn": [
 					{
-						"activity": "utcNowFolder",
+						"activity": "utcNowFolder01",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -166,7 +160,7 @@
 			"name": "amsmx_finance_creditnotes"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:34Z"
+		"lastPublishTime": "2023-12-11T18:16:13Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

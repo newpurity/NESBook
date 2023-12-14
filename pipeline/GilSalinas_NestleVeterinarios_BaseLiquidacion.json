@@ -223,7 +223,7 @@
 			"name": "amsmx_supply_alice/pl_extract/amsmx_veterinarios"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:26Z"
+		"lastPublishTime": "2023-12-11T18:16:05Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

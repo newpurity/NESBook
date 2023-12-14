@@ -93,6 +93,30 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable api token",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Web Login",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "var_api_token",
+					"value": {
+						"value": "@concat('Bearer ',activity('Web Login').output.token)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -103,13 +127,16 @@
 		"variables": {
 			"var_test": {
 				"type": "String"
+			},
+			"var_api_token": {
+				"type": "String"
 			}
 		},
 		"folder": {
 			"name": "amsmx_sales/amsmx_common_db"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:26Z"
+		"lastPublishTime": "2023-12-11T18:16:06Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

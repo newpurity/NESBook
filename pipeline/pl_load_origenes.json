@@ -1,0 +1,128 @@
+{
+	"name": "pl_load_origenes",
+	"properties": {
+		"activities": [
+			{
+				"name": "Databricks Notebook Biblia",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/eduardo.trueba@mx.nestle.com/DatabricksMX/sl_so/sl_so_biblia/execution/0030.Exec_Load_SO_MG_Estado"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0517-180241-h3awdlrk"
+					}
+				}
+			},
+			{
+				"name": "Databricks Notebook Prometeo",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/eduardo.trueba@mx.nestle.com/DatabricksMX/sl_so/sl_so_origenes_pbi/execution/0030.Exec_Load_SO_MG_Estado"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0517-180241-h3awdlrk"
+					}
+				}
+			},
+			{
+				"name": "Databricks Notebook SKU",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/eduardo.trueba@mx.nestle.com/DatabricksMX/sl_so/sl_so_sku/execution/0032.Exec_Load_SO_SKU_Origenes"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0517-180241-h3awdlrk"
+					}
+				}
+			},
+			{
+				"name": "Databricks Notebook Trad",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/eduardo.trueba@mx.nestle.com/DatabricksMX/sl_so/sl_so_mg_mod_trad/execution/0031.Exec_Load_SO_MG_Moderno_Trad_Origenes"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0517-180241-h3awdlrk"
+					}
+				}
+			},
+			{
+				"name": "Databricks Notebook Estado",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Repos/eduardo.trueba@mx.nestle.com/DatabricksMX/sl_so/sl_so_mg_estado/execution/0031.Exec_Load_SO_MG_Estado_Origenes"
+				},
+				"linkedServiceName": {
+					"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"par_cluster": "0517-180241-h3awdlrk"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "amsmx_sales"
+		},
+		"annotations": [],
+		"lastPublishTime": "2023-12-11T18:16:02Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "pipeline3",
 	"properties": {
 		"activities": [
 			{
@@ -13,10 +13,10 @@
 			}
 		],
 		"folder": {
-			"name": "amsmx_veterinarios"
+			"name": "amsla_data-load-tool"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-12-11T18:15:56Z"
+		"lastPublishTime": "2023-12-11T18:15:57Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

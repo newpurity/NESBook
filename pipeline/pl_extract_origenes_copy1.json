@@ -1578,7 +1578,7 @@
 			"name": "amsmx_sc_drivin/HistoricoDrivIn"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-10-17T16:07:36Z"
+		"lastPublishTime": "2023-12-11T18:16:11Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

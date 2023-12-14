@@ -90,7 +90,7 @@
 			"name": "amsmx_veterinarios"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-11-08T15:35:19Z"
+		"lastPublishTime": "2023-11-21T23:06:05Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

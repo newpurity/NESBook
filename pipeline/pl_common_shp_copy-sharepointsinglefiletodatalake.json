@@ -4,96 +4,11 @@
 		"description": "Direct copy of sharepoint file to datalake\n\nTo use this pipeline you need to have the sharepoint client id and secret id registered in the dedicated sharepoint key vault",
 		"activities": [
 			{
-				"name": "GetShpClientId",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": true,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"url": {
-						"value": "@pipeline().parameters.parClientID",
-						"type": "Expression"
-					},
-					"method": "GET",
-					"authentication": {
-						"type": "MSI",
-						"resource": "https://vault.azure.net"
-					}
-				}
-			},
-			{
-				"name": "GetShpSecret",
-				"type": "WebActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": true,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"url": {
-						"value": "@pipeline().parameters.parClientSecret",
-						"type": "Expression"
-					},
-					"method": "GET",
-					"authentication": {
-						"type": "MSI",
-						"resource": "https://vault.azure.net"
-					}
-				}
-			},
-			{
-				"name": "GetSharepointBearerToken",
-				"type": "WebActivity",
-				"dependsOn": [
-					{
-						"activity": "GetShpClientId",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					},
-					{
-						"activity": "GetShpSecret",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": true,
-					"secureInput": true
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"url": "https://accounts.accesscontrol.windows.net/12a3af23-a769-4654-847f-958f3d479f4a/tokens/OAuth/2",
-					"method": "POST",
-					"headers": {
-						"Content-Type": "application/x-www-form-urlencoded"
-					},
-					"body": {
-						"value": "@concat('grant_type=client_credentials&client_id=',uriComponent(activity('GetShpClientId').output.value),'@12a3af23-a769-4654-847f-958f3d479f4a&client_secret=',uriComponent(activity('GetShpSecret').output.value),'&resource=00000003-0000-0ff1-ce00-000000000000/nestle.sharepoint.com@12a3af23-a769-4654-847f-958f3d479f4a')\n",
-						"type": "Expression"
-					}
-				}
-			},
-			{
 				"name": "Copy File",
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "GetSharepointBearerToken",
+						"activity": "Copy New Version",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -111,13 +26,8 @@
 					"source": {
 						"type": "BinarySource",
 						"storeSettings": {
-							"type": "HttpReadSettings",
-							"requestMethod": "GET",
-							"additionalHeaders": {
-								"value": "@{concat('Authorization: Bearer ', activity('GetSharepointBearerToken').output.access_token)}",
-								"type": "Expression"
-							},
-							"requestTimeout": ""
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
 						},
 						"formatSettings": {
 							"type": "BinaryReadSettings"
@@ -133,11 +43,15 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_ar_rest_shp_binary",
+						"referenceName": "ds_adsl2_extdata_binary",
 						"type": "DatasetReference",
 						"parameters": {
-							"par_Url": {
-								"value": "@concat(pipeline().parameters.parShpSiteUrl,'/_api/web/GetFileByServerRelativeUrl(''',replace(pipeline().parameters.parShpSiteUrl,'https://nestle.sharepoint.com',''),pipeline().parameters.parShpRelativeFolderPath,'/',pipeline().parameters.parFileName,''')/$value')",
+							"par_directory": {
+								"value": "@pipeline().parameters.parEXTPath",
+								"type": "Expression"
+							},
+							"par_filename": {
+								"value": "@pipeline().parameters.parFileName",
 								"type": "Expression"
 							}
 						}
@@ -159,6 +73,31 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Copy New Version",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-00-nams-pr-baisein-wrpa5gaht7mno-internal.westus2.environments.microsoftazurelogicapps.net:443/workflows/ef225bc09ba04743964045e7cce8cfcc/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=auO8sQ8k44fZEYc-IskF0tnPfT_KS-fonchYIytFGfQ",
+					"connectVia": {
+						"referenceName": "nmex-pp-origenesmx-ithub-ir",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@concat('{\n\"Operacao\": \"COPY FILE\"\n}')",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -172,27 +111,15 @@
 			"parFileName": {
 				"type": "string"
 			},
-			"parShpSiteUrl": {
-				"type": "string",
-				"defaultValue": "https://nestle.sharepoint.com/teams/MXFillOutBillingReference"
-			},
-			"parShpRelativeFolderPath": {
-				"type": "string",
-				"defaultValue": "Shared Documents/Archivos tipificación"
-			},
 			"parNewFileName": {
 				"type": "string"
 			},
-			"parClientID": {
-				"type": "string",
-				"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientid-mxbilingrebates/?api-version=7.0"
-			},
-			"parClientSecret": {
-				"type": "string",
-				"defaultValue": "https://nmexdvorigmxdhusw2key.vault.azure.net/secrets/shp-clientsecret-mxbilingrebates/?api-version=7.0"
-			},
 			"parUTCNow": {
 				"type": "string"
+			},
+			"parEXTPath": {
+				"type": "string",
+				"defaultValue": "Sharepoint_CreditNotes"
 			}
 		},
 		"variables": {
@@ -204,7 +131,7 @@
 			"name": "amsmx_finance_creditnotes/Utils/SharePoint/Toolset"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:27Z"
+		"lastPublishTime": "2023-12-11T18:16:06Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

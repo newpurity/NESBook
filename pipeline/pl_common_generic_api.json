@@ -106,69 +106,6 @@
 					"isSequential": false,
 					"activities": [
 						{
-							"name": "Copy API Data",
-							"type": "Copy",
-							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
-							"userProperties": [],
-							"typeProperties": {
-								"source": {
-									"type": "RestSource",
-									"httpRequestTimeout": "00:05:00",
-									"requestInterval": "00.00:00:00.010",
-									"requestMethod": "GET"
-								},
-								"sink": {
-									"type": "JsonSink",
-									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
-									},
-									"formatSettings": {
-										"type": "JsonWriteSettings"
-									}
-								},
-								"enableStaging": false
-							},
-							"inputs": [
-								{
-									"referenceName": "ar_rest_api_generic_auth",
-									"type": "DatasetReference",
-									"parameters": {
-										"par_url_complete": {
-											"value": "@concat(item().url,item().header_key)",
-											"type": "Expression"
-										}
-									}
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "json_api_web",
-									"type": "DatasetReference",
-									"parameters": {
-										"FileName": {
-											"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
-											"type": "Expression"
-										},
-										"ContName": {
-											"value": "@item().cont",
-											"type": "Expression"
-										},
-										"FoldPath": {
-											"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
-											"type": "Expression"
-										}
-									}
-								}
-							]
-						},
-						{
 							"name": "Notebook API generic bronze layer",
 							"type": "DatabricksNotebook",
 							"dependsOn": [
@@ -214,7 +151,10 @@
 							},
 							"linkedServiceName": {
 								"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
-								"type": "LinkedServiceReference"
+								"type": "LinkedServiceReference",
+								"parameters": {
+									"par_cluster": "0130-211945-mcv1mi12"
+								}
 							}
 						},
 						{
@@ -291,6 +231,80 @@
 								"referenceName": "lk_nmex_dv_origenesmx_id_usw2_dbr",
 								"type": "LinkedServiceReference"
 							}
+						},
+						{
+							"name": "Copy API Data",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "01:00:00",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"api-key": {
+											"value": "@item().header_key",
+											"type": "Expression"
+										},
+										"Content-type": "application/json",
+										"Authorization": {
+											"value": "@concat('Bearer ',variables('var_api_token'))",
+											"type": "Expression"
+										}
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "ar_rest_api_generic_auth",
+									"type": "DatasetReference",
+									"parameters": {
+										"par_url_complete": {
+											"value": "@if(empty(item().range_date),item().url,concat(item().url,formatDateTime(addDays(pipeline().TriggerTime,int(item().range_date)),item().date_format),item().header_content_type,if(equals(item().range_date,'-2'),'',formatDateTime(pipeline().TriggerTime,item().date_format))))",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "json_api_web",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@concat(item().retailer,'_',variables('var_set_fecha_hoy'),'_',item().tipo,'.json')",
+											"type": "Expression"
+										},
+										"ContName": {
+											"value": "@item().cont",
+											"type": "Expression"
+										},
+										"FoldPath": {
+											"value": "@concat(item().blob_path,'/',item().retailer,'/',item().tipo)",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
@@ -425,13 +439,16 @@
 			},
 			"var_test": {
 				"type": "String"
+			},
+			"var_api_token": {
+				"type": "String"
 			}
 		},
 		"folder": {
 			"name": "amsmx_sales/amsmx_common_db"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-08-07T23:28:31Z"
+		"lastPublishTime": "2023-12-11T18:16:11Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

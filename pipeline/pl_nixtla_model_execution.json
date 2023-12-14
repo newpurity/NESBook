@@ -125,7 +125,7 @@
 			"name": "amsmx_nixtla"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-10-31T22:36:25Z"
+		"lastPublishTime": "2023-12-11T18:16:02Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }

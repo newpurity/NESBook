@@ -255,7 +255,7 @@
 			"name": "amsmx_sales/amsmx_common_db"
 		},
 		"annotations": [],
-		"lastPublishTime": "2023-09-20T16:21:28Z"
+		"lastPublishTime": "2023-12-11T18:16:06Z"
 	},
 	"type": "Microsoft.DataFactory/factories/pipelines"
 }
